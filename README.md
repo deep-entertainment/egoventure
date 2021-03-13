@@ -1,4 +1,4 @@
-![EgoVenture logo](/Users/dennis.ploeger/code/private/godot/egoventure/images/4229745237bdcdaefb580f166cb3eb11f5d68374.png)
+![EgoVenture logo](docs/images/logo.png)
 
 # First person point and click adventure framework for Godot
 
