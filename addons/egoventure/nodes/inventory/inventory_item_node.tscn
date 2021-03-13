@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://addons/egoventure/nodes/inventory/inventory_item_node.gd" type="Script" id=1]
+
+[node name="InventoryItem" type="TextureButton"]
+mouse_default_cursor_shape = 2
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="pressed" from="." to="." method="_on_InventoryItem_pressed"]

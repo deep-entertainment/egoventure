@@ -1,0 +1,113 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://images/misc/inv_icon.png" type="Texture" id=1]
+[ext_resource path="res://addons/egoventure/nodes/inventory/inventory.gd" type="Script" id=2]
+[ext_resource path="res://images/misc/notepad_icon.png" type="Texture" id=4]
+
+[sub_resource type="Animation" id=1]
+resource_name = "Activate"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("Canvas/Panel:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, -72 ), Vector2( 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Activate:margin_top")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 72 ]
+}
+
+[node name="Inventory" type="Control"]
+anchor_right = 1.0
+margin_bottom = 72.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Canvas" type="CanvasLayer" parent="."]
+
+[node name="Panel" type="PanelContainer" parent="Canvas"]
+anchor_right = 1.0
+margin_top = -72.0
+margin_bottom = 52.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="InventoryPanel" type="HBoxContainer" parent="Canvas/Panel"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 2553.0
+margin_bottom = 117.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Menu" type="TextureButton" parent="Canvas/Panel/InventoryPanel"]
+margin_top = 55.0
+margin_bottom = 55.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+button_mask = 3
+expand = true
+stretch_mode = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Notepad" type="TextureButton" parent="Canvas/Panel/InventoryPanel"]
+margin_left = 4.0
+margin_right = 113.0
+margin_bottom = 110.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+button_mask = 3
+texture_normal = ExtResource( 4 )
+stretch_mode = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Inventory" type="HBoxContainer" parent="Canvas/Panel/InventoryPanel"]
+margin_left = 117.0
+margin_right = 2546.0
+margin_bottom = 110.0
+size_flags_horizontal = 3
+
+[node name="Activate" type="TextureButton" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -64.0
+margin_right = 10.0
+margin_bottom = 1024.0
+texture_normal = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Animations" type="AnimationPlayer" parent="."]
+anims/Activate = SubResource( 1 )
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.7
+[connection signal="pressed" from="Canvas/Panel/InventoryPanel/Menu" to="." method="_on_Menu_pressed"]
+[connection signal="pressed" from="Canvas/Panel/InventoryPanel/Notepad" to="." method="_on_Notepad_pressed"]
+[connection signal="pressed" from="Activate" to="." method="_on_Activate_pressed"]

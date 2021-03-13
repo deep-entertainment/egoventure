@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>trigger_hotspot</title>
+    <g id="trigger_hotspot" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M6,4 L12,4 L12,15 L1,15 L1,11" id="Rectangle" stroke="#A5EFAC" stroke-dasharray="2" transform="translate(6.500000, 9.500000) rotate(-270.000000) translate(-6.500000, -9.500000) "></path>
+        <rect id="Rectangle" stroke="#A5EFAC" x="5.5" y="2.5" width="9" height="6"></rect>
+        <rect id="Rectangle" stroke="#A5EFAC" x="8.5" y="1.5" width="3" height="1"></rect>
+    </g>
+</svg>
