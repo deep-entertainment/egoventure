@@ -1,4 +1,4 @@
-# Core features for MDNA games
+# First person point and click adventure framework for Godot
 extends Node
 
 

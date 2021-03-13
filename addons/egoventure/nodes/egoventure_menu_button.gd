@@ -1,6 +1,6 @@
-# A button for the Mdna main menu
+# A button for the EgoVenture main menu
 tool
-class_name MdnaMenuButton
+class_name EgoVentureMenuButton
 extends Button
 
 

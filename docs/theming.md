@@ -1,4 +1,4 @@
-# Theming mdna core
+# Theming EgoVenture
 
 ## Introduction
 
