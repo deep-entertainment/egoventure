@@ -6,7 +6,7 @@
 
 *EgoVenture* is a [Godot](https://godotengine.org) framework written in Gdscript for creating first person pont and click adventure games like [the Carol Reed games by MDNA games](https://mdna-games.com/) for mouse- and touch-based games.
 
-Actually, this enigne was originally made by MDNA games together with deep entertainment and is used for the Carol Reed series since 2020.
+Actually, this enigne was originally made by MDNA games together with deep entertainment and is used for the Carol Reed series since 2021.
 
 It's streamlined for their games, but may be of use for other developers as well. Thus we're releasing it as Open Source under the [MIT license](LICENSE).
 
