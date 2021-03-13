@@ -1,0 +1,43 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://addons/egoventure/nodes/inventory/detail_view.gd" type="Script" id=1]
+
+[node name="DetailView" type="CanvasLayer"]
+layer = 99
+script = ExtResource( 1 )
+
+[node name="Panel" type="PanelContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBox" type="VBoxContainer" parent="Panel"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 2553.0
+margin_bottom = 1433.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Image" type="TextureRect" parent="Panel/VBox"]
+margin_right = 2546.0
+margin_bottom = 1218.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 6.0
+expand = true
+stretch_mode = 4
+
+[node name="DetailScene" type="Node" parent="Panel/VBox"]
+
+[node name="Description" type="Label" parent="Panel/VBox"]
+margin_top = 1317.0
+margin_right = 2546.0
+margin_bottom = 1331.0
+size_flags_horizontal = 3
+size_flags_vertical = 6
+align = 1
+valign = 1
+[connection signal="gui_input" from="Panel" to="." method="_on_panel_gui_input"]

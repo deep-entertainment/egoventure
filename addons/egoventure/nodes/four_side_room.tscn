@@ -1,0 +1,62 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://addons/egoventure/nodes/hotspots/hotspot.gd" type="Script" id=2]
+[ext_resource path="res://addons/egoventure/nodes/four_side_room.gd" type="Script" id=6]
+
+[node name="Room" type="Node2D"]
+script = ExtResource( 6 )
+
+[node name="Views" type="Node" parent="."]
+
+[node name="Front" type="Sprite" parent="Views"]
+position = Vector2( 0, -1440 )
+z_index = -1
+centered = false
+__meta__ = {
+"_editor_description_": "	"
+}
+
+[node name="Right" type="Sprite" parent="Views"]
+position = Vector2( 2560, 0 )
+z_index = -1
+centered = false
+
+[node name="Back" type="Sprite" parent="Views"]
+position = Vector2( 0, 1440 )
+z_index = -1
+centered = false
+
+[node name="Left" type="Sprite" parent="Views"]
+position = Vector2( -2560, 0 )
+z_index = -1
+centered = false
+
+[node name="Camera" type="Camera2D" parent="."]
+anchor_mode = 0
+current = true
+
+[node name="Left" type="TextureButton" parent="Camera"]
+margin_left = -7.0
+margin_top = 132.0
+margin_right = 420.0
+margin_bottom = 1453.0
+mouse_default_cursor_shape = 14
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+hotspot_type = 4
+
+[node name="Right" type="TextureButton" parent="Camera"]
+margin_left = 2140.0
+margin_top = 132.0
+margin_right = 2568.0
+margin_bottom = 1452.0
+mouse_default_cursor_shape = 15
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+hotspot_type = 3
+[connection signal="pressed" from="Camera/Left" to="." method="_on_left_pressed"]
+[connection signal="pressed" from="Camera/Right" to="." method="_on_right_pressed"]
