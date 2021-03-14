@@ -25,7 +25,7 @@ export(String) var state_variable = ""
 
 # Connect the pressed signal
 func _init():
-	hotspot_type = Cursors.Type.MAP
+	cursor_type = Cursors.Type.MAP
 
 
 # Update cache blocking for the target scene, then jump there
