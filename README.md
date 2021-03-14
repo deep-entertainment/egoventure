@@ -30,6 +30,8 @@ It's streamlined for their games, but may be of use for other developers as well
 
 * [Hint system](docs/hints.md)
 
+* [Tools](docs/tools.md)
+
 * [Theming](docs/theming.md)
 
 * [API-Docs](docs/api)
