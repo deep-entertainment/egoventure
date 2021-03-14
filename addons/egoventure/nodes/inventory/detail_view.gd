@@ -61,6 +61,6 @@ func hide():
 	if Speedy.hidden:
 		Speedy.hidden = false
 	$Panel.hide()
-	for child in $Panel/DetailScene.get_children():
-		$Panel/DetailScene.remove_child(child)
+	for child in $Panel/VBox/DetailScene.get_children():
+		$Panel/VBox/DetailScene.remove_child(child)
 	is_visible = false
