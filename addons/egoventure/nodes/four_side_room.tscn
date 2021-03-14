@@ -45,7 +45,7 @@ script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-hotspot_type = 4
+cursor_type = 4
 
 [node name="Right" type="TextureButton" parent="Camera"]
 margin_left = 2140.0
@@ -57,6 +57,6 @@ script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-hotspot_type = 3
+cursor_type = 3
 [connection signal="pressed" from="Camera/Left" to="." method="_on_left_pressed"]
 [connection signal="pressed" from="Camera/Right" to="." method="_on_right_pressed"]
