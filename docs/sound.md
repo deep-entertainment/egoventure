@@ -8,4 +8,4 @@ See the [Boombox API docs](api/boombox.gd.md) for details.
 
 When using  the`Boombox.play_music` function,  `Boombox` includes an audio fader that will fade from the currently playing track to the new one.
 
-Of course the currently played music and background sound are also restored when a saved game is loaded.
+Of course, when a game is loaded, the music and background sound that was playing in the saved game, is loaded as well.
