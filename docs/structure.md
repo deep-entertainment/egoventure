@@ -14,4 +14,4 @@ Various parts that build up the game are created using standard [Godot resources
 
 Most tools use [Godot controls](https://docs.godotengine.org/en/stable/classes/class_control.html) to implement their actions. Also, the main menu is made up using controls and can completely by themed using [Godot themes](https://docs.godotengine.org/en/stable/tutorials/gui/gui_skinning.html) using [special theme overrides](theming.md).
 
-Finally, there should be a core singleton for each game, that handles very basic stuff like initializing the state, configuring *EgoVenture* and handling signals.
+Finally, there should be a core singleton for each game, that handles very basic stuff like initializing the state, and is used for configuring EgoVenture and handling signals.
