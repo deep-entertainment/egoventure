@@ -43,3 +43,7 @@ As this framework is used internally at Mdna Games, we'll have to consider each 
 If a new feature doesn't match or contradicts our needs, we might refuse to accept it, but we welcome you to fork this repository and implement it yourself.
 
 You're welcome to open pull requests about bugs or (confirmed) features any time and we'll review it and might ask you for modifications. Thank you for your work!
+
+## Logo
+
+Logo based on ["Brown eye" by secretlondon on OpenClipart](https://openclipart.org/detail/27539/brown-eye)
