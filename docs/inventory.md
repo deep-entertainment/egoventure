@@ -4,7 +4,7 @@
 
 Each inventory item can be viewed in a detail view, which can optionally show scenes for more advanced usage.
 
-All inventory items are displayed in an inventory bar, that either scrolls down from the top on mouse-based devices and be toggled on touch devices.
+All inventory items are displayed in an inventory bar, that either scrolls down from the top on mouse-based devices and can be toggled on touch devices.
 
 Each item can be selected and show a specific mouse cursor (on mouse-controlled devices).
 

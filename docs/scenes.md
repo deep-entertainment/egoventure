@@ -10,7 +10,7 @@ This makes designing a game straight forward.
 
 Because changing scenes - especially with large images - takes time, *EgoVenture* includes a scene caching algorithm that preloads upcoming scenes in the background.
 
-To achieve that, the algorith, expects that scene files names contain a numeric index.
+To achieve that, the algorithm expects that scene files names contain a numeric index.
 
 Scene filenames need to start start with a letter, an underscore or a dash. At some point it needs to include a number. After that number any other character **other than a number** can follow.
 
@@ -36,9 +36,9 @@ Because not all views can follow one another, *EgoVenture* includes a concept of
 
 ## Four-Side-Room scenes
 
-Because most of the scenes, the player walks through, consist of a front, right, left and back view, *EgoVenture* includes a helper scene `four_side_room.tscn`, that can be instantiated in a scene to speed up creating walk-throughs.
+Since most of the scenes that the player walks through, consist of a front, right, left and back view, *EgoVenture* includes a helper scene `four_side_room.tscn`, that can be instantiated in a scene to speed up creating walk-throughs.
 
-After instantiating it in the specific scene, it can be configured what images to show in on the four sides.
+After instantiating it in the specific scene, it can be configured which images will be displayed on the four sides.
 
 The four sides will be shown around the center like a cut-open box.
 

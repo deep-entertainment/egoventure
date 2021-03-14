@@ -2,7 +2,7 @@
 
 *EgoVenture* includes a hint system called `Notebook`.
 
-It is designed to be a list of goals with a list of associated hints that are progressed as the player advances in the game. When the player has done something or was somewhere, a hint can be progressed and the next hint is shown in the notepad. Once all hints are progressed, the next goal is reached.
+It is designed to be a list of goals with a list of associated hints that are progressed as the player advances in the game. When the player has done something or has been somewhere, a hint can be progressed and the next hint is shown in the notepad. Once all hints are progressed, the next goal is reached.
 
 The hint progression are stored in save games.
 
@@ -22,10 +22,10 @@ When the player advanced to a certain point in the game that would progress a hi
 Notepad.progress_goal(goal_id: int, hint_id: int)
 ```
 
-Goals and hints are counted from zero. So to progress from the first goal, first hint to the second hint of the first goal, call:
+So to progress from the first goal, first hint to the second hint of the first goal, call:
 
 ```gdscript
-Notepad.progress_goal(0, 0)
+Notepad.progress_goal(1, 1)
 ```
 
 If all hints of a goal are progressed, `Notepad` automatically moves to the next goal.

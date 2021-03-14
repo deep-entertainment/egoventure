@@ -1,4 +1,4 @@
-# Structure
+# Basic Structure
 
 This document outlines the basic design of *EgoVenture*.
 

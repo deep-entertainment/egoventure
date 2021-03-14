@@ -8,6 +8,6 @@ Usually, the games need two more plugins to fully function:
 
 * Parrot - voice dialog handling
 
-To easily get started making an *EgoVenture* game, it's recommended to use the *EgoVenture Game Template*. This template includes all required plugins, a default game configuration, a basic game state and initialization code and the recommended folder structure to get started right away.
+To easily get started making an *EgoVenture* game, it's recommended to use the *EgoVenture Game Template*. This template includes all required plugins, a default game configuration, a basic game state and initialization code and the recommended folder structure to get you started right away.
 
 FIXME Add tutorial with game template.
