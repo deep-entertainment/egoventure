@@ -5,9 +5,9 @@ class_name Hotspot, "res://addons/egoventure/images/hotspot.svg"
 extends TextureButton
 
 
-# The hotspot type
-export(Cursors.Type) var hotspot_type = Cursors.Type.GO_FORWARD \
-		setget _set_hotspot_type
+# The cursor type
+export(Cursors.Type) var cursor_type = Cursors.Type.GO_FORWARD \
+		setget _set_cursor_type
 
 # If set, changes to the given scene
 export(String, FILE, "*.tscn") var target_scene = ""
@@ -52,21 +52,21 @@ func _input(event):
 
 # Set the default value of a new hotspot
 func _enter_tree():
-	_set_hotspot_type(hotspot_type)
+	_set_cursor_type(cursor_type)
 
 
-# Set the hotspot type
+# Set the cursor type
 # 
 # ** Parameters **
 # 
 # - type: The type to set
-func _set_hotspot_type(type):
-	hotspot_type = type
+func _set_cursor_type(type):
+	cursor_type = type
 	mouse_default_cursor_shape = Cursors.CURSOR_MAP[type]
-	if Cursors.get_cursor_texture(hotspot_type) == null:
+	if Cursors.get_cursor_texture(cursor_type) == null:
 		yield(Cursors, "cursors_configured")
 		
-	_hotspot_indicator.texture = Cursors.get_cursor_texture(hotspot_type) 
+	_hotspot_indicator.texture = Cursors.get_cursor_texture(cursor_type) 
 
 
 # Switch to the target scene with the configured target view
