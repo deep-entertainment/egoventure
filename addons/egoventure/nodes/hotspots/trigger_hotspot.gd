@@ -22,6 +22,7 @@ var _hotspot_indicator: Sprite
 # texture
 func _init():
 	_hotspot_indicator = Sprite.new()
+	_hotspot_indicator.texture = Cursors.get_cursor_texture(Cursors.Type.USE)
 	add_child(_hotspot_indicator)
 	_hotspot_indicator.hide()
 	_hotspot_indicator.position = rect_size / 2
