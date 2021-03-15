@@ -68,13 +68,13 @@ func on_mouse_entered():
 		
 		if found:
 			Cursors.override(
-				Cursors.Type.USE,
+				Cursors.Type.DEFAULT,
 				Inventory.selected_item.item.image_active,
 				Inventory.selected_item.item.image_active.get_size() / 2
 			)
 		else:
 			Cursors.override(
-				Cursors.Type.USE,
+				Cursors.Type.DEFAULT,
 				Inventory.selected_item.item.image_normal,
 				Inventory.selected_item.item.image_normal.get_size() / 2
 			)
@@ -85,10 +85,10 @@ func on_mouse_entered():
 func _on_mouse_exited():
 	if Inventory.selected_item != null:
 		Cursors.override(
-				Cursors.Type.USE,
-				Inventory.selected_item.item.image_normal,
-				Inventory.selected_item.item.image_normal.get_size() / 2
-			)
+			Cursors.Type.DEFAULT,
+			Inventory.selected_item.item.image_normal,
+			Inventory.selected_item.item.image_normal.get_size() / 2
+		)
 	else:
 		Cursors.reset(Cursors.Type.USE)
 
