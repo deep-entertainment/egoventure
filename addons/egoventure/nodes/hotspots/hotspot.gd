@@ -39,8 +39,14 @@ func _init():
 	_hotspot_indicator.position = rect_size / 2
 	button_mask = BUTTON_MASK_LEFT
 	connect("pressed", self, "_on_pressed")
-		
+	
 
+# Update hotspot indicator
+func _process(_delta):
+	_hotspot_indicator.texture = Cursors.get_cursor_texture(cursor_type) 
+
+
+# Hotspot indicator toggle
 func _input(event):
 	if event.is_action_pressed("hotspot_indicator"):
 		Speedy.hidden = true
@@ -65,8 +71,6 @@ func _set_cursor_type(type):
 	mouse_default_cursor_shape = Cursors.CURSOR_MAP[type]
 	if Cursors.get_cursor_texture(cursor_type) == null:
 		yield(Cursors, "cursors_configured")
-		
-	_hotspot_indicator.texture = Cursors.get_cursor_texture(cursor_type) 
 
 
 # Switch to the target scene with the configured target view
@@ -78,6 +82,3 @@ func _on_pressed():
 				Boombox.play_effect(effect)
 			EgoVenture.target_view = target_view
 			EgoVenture.change_scene(target_scene)
-
-
-

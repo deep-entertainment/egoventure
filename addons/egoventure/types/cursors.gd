@@ -53,6 +53,9 @@ const CURSOR_MAP: Dictionary = {
 # A cache to hold the default cursors for easy resetting them
 var _default_cursors: Dictionary = {}
 
+# A cache to hold the currently overridden cursors
+var _overridden_cursors: Dictionary = {}
+
 
 # Configure the mouse cursors
 func configure(configuration: GameConfiguration):
@@ -74,6 +77,7 @@ func configure(configuration: GameConfiguration):
 # - texture: Texture to use for the overridden cursor
 # - hotspot: The cursor hotspot
 func override(type, texture: Texture, hotspot: Vector2):
+	_overridden_cursors[type] = texture
 	Speedy.set_custom_mouse_cursor(
 		texture,
 		CURSOR_MAP[type],
@@ -87,6 +91,7 @@ func override(type, texture: Texture, hotspot: Vector2):
 #
 # - type: The type to reset (based on the Type enum)
 func reset(type):
+	_overridden_cursors.erase(type)
 	Speedy.set_custom_mouse_cursor(
 		_default_cursors[type].cursor,
 		CURSOR_MAP[type],
@@ -100,6 +105,8 @@ func reset(type):
 #
 # - type: The type to return the default texture of
 func get_cursor_texture(type):
+	if type in _overridden_cursors:
+		return _overridden_cursors[type]
 	if type in _default_cursors:
 		return _default_cursors[type].cursor
 	
