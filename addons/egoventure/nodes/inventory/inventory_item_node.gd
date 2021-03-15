@@ -82,6 +82,7 @@ func _on_mouse_exited():
 
 # Handle clicks on another inventory item
 func _on_InventoryItem_pressed():
+	release_focus()
 	if _is_touch and Inventory.selected_item == self:
 		# On touch, selecting the same item again, deselects it
 		Inventory.release_item()
