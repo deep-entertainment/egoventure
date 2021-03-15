@@ -144,6 +144,7 @@ func release_item():
 	selected_item = null
 	if not is_touch:
 		Cursors.reset(Cursors.Type.DEFAULT)
+		Speedy.keep_shape = false
 
 
 # Returns the current list of inventory items

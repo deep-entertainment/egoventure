@@ -104,4 +104,5 @@ func _on_InventoryItem_pressed():
 				item.image_normal,
 				(item.image_normal as Texture).get_size() / 2
 			)
+			Speedy.keep_shape = true
 
