@@ -76,12 +76,19 @@ func configure(configuration: GameConfiguration):
 # - type: The type to override (based on the Type enum)
 # - texture: Texture to use for the overridden cursor
 # - hotspot: The cursor hotspot
-func override(type, texture: Texture, hotspot: Vector2):
+# - target_position: Warp the mouse cursor to this point
+func override(
+	type, 
+	texture: Texture, 
+	hotspot: Vector2,
+	target_position = null
+):
 	_overridden_cursors[type] = texture
 	Speedy.set_custom_mouse_cursor(
 		texture,
 		CURSOR_MAP[type],
-		hotspot
+		hotspot,
+		target_position
 	)
 	
 
