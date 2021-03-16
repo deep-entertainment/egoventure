@@ -37,16 +37,8 @@ Configure the mouse cursors
 ### override
 
 ```gdscript
-func override(type, texture: Texture, hotspot: Vector2)
+func override(type, texture: Texture, hotspot: Vector2, target_position = null)
 ```
-
-Override a specific cursor type with a texture
-
-** Parameters **
-
-- type: The type to override (based on the Type enum)
-- texture: Texture to use for the overridden cursor
-- hotspot: The cursor hotspot
 
 ### reset
 
