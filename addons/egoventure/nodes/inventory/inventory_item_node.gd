@@ -100,12 +100,13 @@ func _on_InventoryItem_pressed():
 			texture_normal = item.image_active
 		else:
 			modulate.a = 0
-			var position = get_viewport().get_mouse_position()
+			var pos = rect_global_position
+			var mpos = get_global_mouse_position()
 			Cursors.override(
 				Cursors.Type.DEFAULT,
 				item.image_normal,
 				(item.image_normal as Texture).get_size() / 2,
-				position - (item.image_normal as Texture).get_size() / 2
+				rect_global_position
 			)
 			Speedy.keep_shape = true
 
