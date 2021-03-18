@@ -19,12 +19,14 @@ onready var _is_touch: bool = OS.has_touchscreen_ui_hint()
 func _gui_input(event):
 	if Inventory.selected_item == null:
 		if event is InputEventScreenTouch and \
-				(event as InputEventScreenTouch).index == 2:
+				(event as InputEventScreenTouch).index == 2 and \
+				not Inventory.just_released:
 			show_detail()
 			accept_event()
 		elif event is InputEventMouseButton and \
 				(event as InputEventMouseButton).button_index == BUTTON_RIGHT \
-				and not (event as InputEventMouseButton).pressed:
+				and not (event as InputEventMouseButton).pressed and \
+				not Inventory.just_released:
 			show_detail()
 			accept_event()
 

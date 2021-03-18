@@ -18,6 +18,11 @@ var selected_item: InventoryItemNode = null
 # Wether the inventory is currently activated
 var activated: bool = false
 
+# Wether the inventory item was just released (to prevent other
+# actions to be carried out)
+var just_released: bool = false
+
+
 # The list of inventory items
 var _inventory_items: Array
 
@@ -31,6 +36,10 @@ func _ready():
 	if ! is_touch:
 		$Activate.hide()
 		$Canvas/Panel/InventoryPanel/Menu.hide()
+		
+		
+func _process(_delta):
+	just_released = false
 
 
 # Handle inventory drop events and border trigger for mouse
@@ -42,11 +51,13 @@ func _input(event):
 				(event as InputEventMouseButton).button_index == BUTTON_RIGHT \
 				and not (event as InputEventMouseButton).pressed:
 			release_item()
+			just_released = true
 		elif Inventory.selected_item != null and \
 				event is InputEventScreenTouch and \
 				(event as InputEventScreenTouch).index == 2 and \
 				not (event as InputEventScreenTouch).pressed:
 			release_item()
+			just_released = true
 		elif ! is_touch and event is InputEventMouseMotion and \
 				$Timer.is_stopped():
 			# Activate the inventory when reaching the upper screen border
