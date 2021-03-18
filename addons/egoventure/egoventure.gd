@@ -374,6 +374,7 @@ func _on_notepad_pressed():
 
 # The player wants to quit the game. Save the continue state and quit
 func _on_quit_game():
-	EgoVenture.save_continue()
+	if game_started:
+		EgoVenture.save_continue()
 	get_tree().quit()
 
