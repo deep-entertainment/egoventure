@@ -13,9 +13,12 @@ signal quit_game
 # The date format used for display in the save slots
 const DATE_FORMAT: String = "{month}/{day}/{year} {hour}:{minute}"
 
-
 # Lowest Audio level
 const AUDIO_MIN: float = -50.0
+
+# Minimum number of seconds a speech or background sample should
+# be played
+const MINIMUM_SAMPLE_TIME: float = 2.0
 
 
 # Wether the main menu can be hidden
@@ -467,6 +470,13 @@ func _on_Menu_gui_input(event):
 func _on_SpeechSlider_gui_input(event):
 	if event is InputEventMouseButton and not \
 			(event as InputEventMouseButton).pressed:
+		if $Menu/Speech.get_playback_position() < MINIMUM_SAMPLE_TIME:
+			yield(
+				get_tree().create_timer(
+					MINIMUM_SAMPLE_TIME - $Menu/Speech.get_playback_position()
+				), 
+				"timeout"
+			)
 		$Menu/Speech.stop()
 
 
@@ -474,4 +484,11 @@ func _on_SpeechSlider_gui_input(event):
 func _on_EffectsSlider_gui_input(event):
 	if event is InputEventMouseButton and not \
 			(event as InputEventMouseButton).pressed:
+		if $Menu/Effects.get_playback_position() < MINIMUM_SAMPLE_TIME:
+			yield(
+				get_tree().create_timer(
+					MINIMUM_SAMPLE_TIME - $Menu/Effects.get_playback_position()
+				), 
+				"timeout"
+			)
 		$Menu/Effects.stop()
