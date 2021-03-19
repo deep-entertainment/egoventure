@@ -45,5 +45,6 @@ func _on_pressed():
 			EgoVenture.wait_screen(
 				ceil(EgoVenture.MIN_WAITING_TIME-((end - start) / 1000))
 			)
+			yield(EgoVenture.wait_timer, "timeout")
 		Speedy.hidden = false
 		EgoVenture.change_scene(target_scene)

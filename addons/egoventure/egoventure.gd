@@ -42,12 +42,12 @@ var configuration: GameConfiguration
 # Wether at least one savegame exists
 var saves_exist: bool = false
 
+# A timer that runs down while a waiting screen is shown
+var wait_timer: Timer
+
 
 # A cache of scenes for faster switching
 var _scene_cache: SceneCache
-
-# A timer that runs down while a waiting screen is shown
-var _wait_timer: Timer
 
 
 # Load the ingame configuration
@@ -67,8 +67,9 @@ func _init():
 
 # Create the wait timer
 func _ready():
-	_wait_timer = Timer.new()
-	add_child(_wait_timer)
+	wait_timer = Timer.new()
+	wait_timer.one_shot = true
+	add_child(wait_timer)
 
 
 # Update the scene cache
@@ -77,9 +78,9 @@ func _ready():
 #
 # - delta: The time since the last call to _process
 func _process(_delta):
-	if _wait_timer.get_time_left() > 0:
+	if not wait_timer.is_stopped():
 		WaitingScreen.set_progress(
-			100.0 - _wait_timer.get_time_left() / MIN_WAITING_TIME * 100
+			100.0 - wait_timer.get_time_left() / MIN_WAITING_TIME * 100
 		)
 	else:
 		_scene_cache.update_progress()
@@ -317,11 +318,12 @@ func reset():
 	Boombox.reset()
 
 
+# Show a waiting screen for the given time
 func wait_screen(time: float):
 	WaitingScreen.show()
-	_wait_timer.start(time)
+	wait_timer.start(time)
 	yield(
-		_wait_timer,
+		wait_timer,
 		"timeout"
 	)
 	WaitingScreen.hide()
