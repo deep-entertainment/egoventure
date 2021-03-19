@@ -274,6 +274,18 @@ func options_set_effects_level(value: float):
 # *Returns* The current value
 func options_get_effects_level() -> float:
 	return in_game_configuration.effects_db
+	
+
+func set_full_screen():
+	if in_game_configuration.fullscreen:
+		OS.window_fullscreen = true
+	else:
+		OS.window_fullscreen = false
+		OS.window_size = Vector2(
+			OS.get_screen_size().x - 300,
+			OS.get_screen_size().y - 300
+		)
+		OS.center_window()
 
 
 # Reset the game to the default
@@ -354,6 +366,7 @@ func _load_in_game_configuration():
 	else:
 		in_game_configuration = InGameConfiguration.new()
 	set_audio_levels()
+	set_full_screen()
 
 
 # Get the current scene

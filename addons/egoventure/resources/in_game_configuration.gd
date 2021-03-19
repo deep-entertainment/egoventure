@@ -6,6 +6,9 @@ extends Resource
 # Wether subtitles should be shown
 var subtitles: bool = true
 
+# Wether to show the game in full screen
+var fullscreen: bool = true
+
 # The volume of the speech channel in db
 var speech_db: float = 0.0
 
@@ -23,6 +26,10 @@ func _get_property_list():
 	var properties = []
 	properties.append({
 		"name": "subtitles",
+		"type": TYPE_BOOL
+	})	
+	properties.append({
+		"name": "fullscreen",
 		"type": TYPE_BOOL
 	})
 	properties.append({
