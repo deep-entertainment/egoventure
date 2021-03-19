@@ -327,6 +327,12 @@ func wait_screen(time: float):
 	WaitingScreen.hide()
 
 
+# Reset the continue state
+func reset_continue_state():
+	in_game_configuration.continue_state = null
+	save_in_game_configuration()
+
+
 # Update the state with the current values
 func _update_state():
 	EgoVenture.state.current_scene = _get_current_scene().filename
