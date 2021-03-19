@@ -13,6 +13,9 @@ signal queue_complete
 # e.g.: home04b.tscn has the index 4, castle12detail1.tscn has the index 12.
 const SCENE_REGEX = "^[a-z_-]+(?<index>\\d+)\\D?.*$"
 
+# The minimum time to wait when switching scenes
+const MIN_WAITING_TIME = 4
+
 
 # The current state of the game
 var state: BaseState
@@ -43,6 +46,9 @@ var saves_exist: bool = false
 # A cache of scenes for faster switching
 var _scene_cache: SceneCache
 
+# A timer that runs down while a waiting screen is shown
+var _wait_timer: Timer
+
 
 # Load the ingame configuration
 func _init():
@@ -59,13 +65,24 @@ func _init():
 	userdir.list_dir_end()
 
 
+# Create the wait timer
+func _ready():
+	_wait_timer = Timer.new()
+	add_child(_wait_timer)
+
+
 # Update the scene cache
 #
 # ** Parameters **
 #
 # - delta: The time since the last call to _process
 func _process(_delta):
-	_scene_cache.update_progress()
+	if _wait_timer.get_time_left() > 0:
+		WaitingScreen.set_progress(
+			100.0 - _wait_timer.get_time_left() / MIN_WAITING_TIME * 100
+		)
+	else:
+		_scene_cache.update_progress()
 	
 
 # Configure the game from the game's core class
@@ -298,6 +315,16 @@ func reset():
 	EgoVenture.target_view = ""
 	EgoVenture.game_started = false
 	Boombox.reset()
+
+
+func wait_screen(time: float):
+	WaitingScreen.show()
+	_wait_timer.start(time)
+	yield(
+		_wait_timer,
+		"timeout"
+	)
+	WaitingScreen.hide()
 
 
 # Update the state with the current values
