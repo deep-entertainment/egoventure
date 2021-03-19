@@ -332,6 +332,7 @@ func wait_screen(time: float):
 # Reset the continue state
 func reset_continue_state():
 	in_game_configuration.continue_state = null
+	game_started = false
 	save_in_game_configuration()
 
 
