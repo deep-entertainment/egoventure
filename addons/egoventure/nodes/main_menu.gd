@@ -92,7 +92,9 @@ func configure(configuration: GameConfiguration):
 		"MusicLabel", 
 		"EffectsLabel", 
 		"SubtitlesLabel",
-		"Subtitles"
+		"Subtitles",
+		"FullscreenLabel",
+		"Fullscreen"
 	]:
 		var node = get_node("Menu/Options/CenterContainer/VBox/Grid/%s" % label)
 		node.add_font_override(
@@ -152,6 +154,8 @@ func toggle():
 		if not $Menu.visible:
 			$Menu/SaveSlots.visible = false
 		else:
+			$Menu/Options/CenterContainer/VBox/Grid/Fullscreen.pressed = \
+				EgoVenture.in_game_configuration.fullscreen
 			Speedy.set_shape(Input.CURSOR_ARROW)
 
 
@@ -492,3 +496,9 @@ func _on_EffectsSlider_gui_input(event):
 				"timeout"
 			)
 		$Menu/Effects.stop()
+
+
+func _on_Fullscreen_toggled(button_pressed):
+	EgoVenture.in_game_configuration.fullscreen = button_pressed
+	EgoVenture.save_in_game_configuration()
+	EgoVenture.set_full_screen()

@@ -5,10 +5,6 @@ class_name MapHotspot, "res://addons/egoventure/images/map_hotspot.svg"
 extends Hotspot
 
 
-# The minimum time to wait when switching scenes
-const MIN_WAITING_TIME = 4
-
-
 # The loading image to show while the scenes for the new location are
 # cached
 export(Texture) var loading_image
@@ -45,14 +41,10 @@ func _on_pressed():
 		if caches > 0:
 			yield(EgoVenture, "queue_complete")
 		var end = OS.get_ticks_msec()
-		if ((end - start) / 1000) < MIN_WAITING_TIME:
-			WaitingScreen.show()
-			yield(
-				get_tree().create_timer(
-					ceil(MIN_WAITING_TIME-((end - start) / 1000))
-				),
-				"timeout"
+		if ((end - start) / 1000) < EgoVenture.MIN_WAITING_TIME:
+			EgoVenture.wait_screen(
+				ceil(EgoVenture.MIN_WAITING_TIME-((end - start) / 1000))
 			)
-			WaitingScreen.hide()
+			yield(EgoVenture.wait_timer, "timeout")
 		Speedy.hidden = false
 		EgoVenture.change_scene(target_scene)
