@@ -10,6 +10,14 @@ First person point and click adventure framework for Godot
 
 ## Constants Descriptions
 
+### MIN\_WAITING\_TIME
+
+```gdscript
+const MIN_WAITING_TIME: int = 4
+```
+
+The minimum time to wait when switching scenes
+
 ### SCENE\_REGEX
 
 ```gdscript
@@ -85,6 +93,14 @@ var saves_exist: bool = false
 ```
 
 Wether at least one savegame exists
+
+### wait\_timer
+
+```gdscript
+var wait_timer: Timer
+```
+
+A timer that runs down while a waiting screen is shown
 
 ## Method Descriptions
 
@@ -290,6 +306,12 @@ Return the current speech volume
 
 *Returns* The current value
 
+### set\_full\_screen
+
+```gdscript
+func set_full_screen()
+```
+
 ### reset
 
 ```gdscript
@@ -297,6 +319,22 @@ func reset()
 ```
 
 Reset the game to the default
+
+### wait\_screen
+
+```gdscript
+func wait_screen(time: float)
+```
+
+Show a waiting screen for the given time
+
+### reset\_continue\_state
+
+```gdscript
+func reset_continue_state()
+```
+
+Reset the continue state
 
 ## Signals
 

@@ -18,6 +18,14 @@ var subtitles: bool = true
 
 Wether subtitles should be shown
 
+### fullscreen
+
+```gdscript
+var fullscreen: bool = true
+```
+
+Wether to show the game in full screen
+
 ### speech\_db
 
 ```gdscript

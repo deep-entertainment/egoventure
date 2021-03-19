@@ -26,6 +26,15 @@ var activated: bool = false
 
 Wether the inventory is currently activated
 
+### just\_released
+
+```gdscript
+var just_released: bool = false
+```
+
+Wether the inventory item was just released (to prevent other
+actions to be carried out)
+
 ### is\_touch
 
 ```gdscript

@@ -26,6 +26,15 @@ const DATE_FORMAT: String = "{month}/{day}/{year} {hour}:{minute}"
 
 The date format used for display in the save slots
 
+### MINIMUM\_SAMPLE\_TIME
+
+```gdscript
+const MINIMUM_SAMPLE_TIME: float = 2
+```
+
+Minimum number of seconds a speech or background sample should
+be played
+
 ## Property Descriptions
 
 ### resumeable

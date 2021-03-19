@@ -9,16 +9,6 @@
 A hotspot supporting precaching of scenes and showing a loading
 screen and playing a tune while doing so
 
-## Constants Descriptions
-
-### MIN\_WAITING\_TIME
-
-```gdscript
-const MIN_WAITING_TIME: int = 4
-```
-
-The minimum time to wait when switching scenes
-
 ## Property Descriptions
 
 ### loading\_image
