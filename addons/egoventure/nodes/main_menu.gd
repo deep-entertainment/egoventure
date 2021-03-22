@@ -84,6 +84,11 @@ func configure(configuration: GameConfiguration):
 			configuration.menu_saveslots_next_image
 	$Menu/Options/Background.texture = configuration.menu_options_background
 	
+	$Menu/QuitConfirm.dialog_text = configuration.menu_quit_confirmation
+	$Menu/OverwriteConfirm.dialog_text = \
+			configuration.menu_overwrite_confirmation
+	$Menu/RestartConfirm.dialog_text = configuration.menu_restart_confirmation
+	
 	$Menu.theme = configuration.design_theme
 	
 	# Set option labels to the menu button style

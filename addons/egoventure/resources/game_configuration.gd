@@ -40,6 +40,18 @@ var menu_options_speech_sample: AudioStream
 # The sample to play when the effect slider is changed
 var menu_options_effects_sample: AudioStream
 
+# The confirmation text for the quit confirmation prompt
+var menu_quit_confirmation: String = "Do you really want to quit the game?"
+
+# The confirmation text for the overwrite confirmation prompt
+var menu_overwrite_confirmation: String = \
+		"Are you sure you want to overwrite a saved game?"
+
+# The confirmation text for the restart confirmation prompt
+var menu_restart_confirmation: String = \
+		"You will lose all progress when starting a new game. " +\
+		"Do you really want to restart?"
+
 # The vertical size of the inventory bar
 var inventory_size: int = 92
 
@@ -130,6 +142,18 @@ func _get_property_list():
 		type = TYPE_OBJECT,
 		hint = PROPERTY_HINT_RESOURCE_TYPE,
 		hint_string = "AudioStream"
+	})
+	properties.append({
+		name = "menu_quit_confirmation",
+		type = TYPE_STRING
+	})
+	properties.append({
+		name = "menu_overwrite_confirmation",
+		type = TYPE_STRING
+	})
+	properties.append({
+		name = "menu_restart_confirmation",
+		type = TYPE_STRING
 	})
 	properties.append({
 		name = "Saveslots",
