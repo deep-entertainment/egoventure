@@ -10,6 +10,8 @@ Actually, this engine was originally made by MDNA games together with deep enter
 
 It's streamlined for their games, but may be of use for other developers as well. Thus we're releasing it as Open Source under the [MIT license](LICENSE).
 
+If you want to see all the features, EgoVenture provides, check out the [egoventure-example-game "Carol Refurbished"](https://github.com/deep-entertainment/egoventure-example-game).
+
 ## Documentation
 
 * [Getting started](docs/getting_started.md)
