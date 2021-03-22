@@ -1,9 +1,8 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://addons/egoventure/nodes/notepad.gd" type="Script" id=1]
 [ext_resource path="res://addons/egoventure/nodes/egoventure_menu_button.gd" type="Script" id=2]
 [ext_resource path="res://theme.tres" type="Theme" id=3]
-[ext_resource path="res://images/misc/journal.jpg" type="Texture" id=4]
 
 [sub_resource type="Image" id=1]
 data = {
@@ -70,7 +69,6 @@ __meta__ = {
 [node name="BackgroundPicture" type="TextureRect" parent="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-texture = ExtResource( 4 )
 expand = true
 stretch_mode = 6
 __meta__ = {
