@@ -16,6 +16,9 @@ const SCENE_REGEX = "^[a-z_-]+(?<index>\\d+)\\D?.*$"
 # The minimum time to wait when switching scenes
 const MIN_WAITING_TIME = 4
 
+# The waiting time until a long touch event will be triggered
+const LONG_TOUCH_SEC: float = 1.0
+
 
 # The current state of the game
 var state: BaseState
@@ -49,6 +52,9 @@ var wait_timer: Timer
 # A cache of scenes for faster switching
 var _scene_cache: SceneCache
 
+# Last time a touch was pressed
+var _touch_timer: Timer
+
 
 # Load the ingame configuration
 func _init():
@@ -65,11 +71,48 @@ func _init():
 	userdir.list_dir_end()
 
 
-# Create the wait timer
+# Create the wait and touch timer
 func _ready():
 	wait_timer = Timer.new()
 	wait_timer.one_shot = true
 	add_child(wait_timer)
+	_touch_timer = Timer.new()
+	_touch_timer.one_shot = true
+	add_child(_touch_timer)
+
+
+# Handle long touch events
+func _input(event):
+	if event is InputEventScreenTouch:
+		if event.pressed:
+			_touch_timer.stop()
+			if _touch_timer.is_connected(
+					"timeout", 
+					self, 
+					"_trigger_show_indicator"
+				):
+				_touch_timer.disconnect(
+					"timeout", 
+					self, 
+					"_trigger_show_indicator"
+				)
+			_touch_timer.start(LONG_TOUCH_SEC)
+			_touch_timer.connect("timeout", self, "_trigger_show_indicator")
+		else:
+			_touch_timer.stop()
+			_touch_timer.disconnect("timeout", self, "_trigger_show_indicator")
+			var release_event = InputEventAction.new()
+			release_event.pressed = false
+			release_event.action = "hotspot_indicator"
+			Input.parse_input_event(release_event)
+			
+
+# Trigger the event to show the hotspot indicator
+func _trigger_show_indicator():
+	var push_event = InputEventAction.new()
+	push_event.pressed = true
+	push_event.action = "hotspot_indicator"
+	Input.parse_input_event(push_event)
 
 
 # Update the scene cache

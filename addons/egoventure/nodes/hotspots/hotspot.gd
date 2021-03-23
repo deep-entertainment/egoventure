@@ -5,9 +5,6 @@ class_name Hotspot, "res://addons/egoventure/images/hotspot.svg"
 extends TextureButton
 
 
-const LONG_TOUCH_SEC: float = 1.0
-
-
 # The cursor type
 export(Cursors.Type) var cursor_type = Cursors.Type.GO_FORWARD \
 		setget _set_cursor_type
@@ -33,9 +30,6 @@ export(AudioStream) var effect = null
 var _hotspot_indicator: Sprite
 
 
-# Last time a touch was pressed
-var _touch_timer: Timer
-
 
 # Connect to the cursors_configured signal to set the hotspot indicator
 # texture
@@ -48,13 +42,6 @@ func _init():
 	connect("pressed", self, "_on_pressed")
 
 
-# Add the touch timer to the scene
-func _ready():
-	_touch_timer = Timer.new()
-	_touch_timer.one_shot = true
-	add_child(_touch_timer)
-	
-
 # Update hotspot indicator
 func _process(_delta):
 	_hotspot_indicator.texture = Cursors.get_cursor_texture(cursor_type) 
@@ -62,19 +49,12 @@ func _process(_delta):
 
 # Hotspot indicator toggle
 func _input(event):
-	if event is InputEventScreenTouch:
-		if event.pressed:
-			_touch_timer.start(LONG_TOUCH_SEC)
-			_touch_timer.connect("timeout", self, "_show_indicator")
-		else:
-			_touch_timer.stop()
-			_touch_timer.disconnect("timeout", self, "_show_indicator")
-			if _hotspot_indicator.visible:
-				_hide_indicator()
-	elif event.is_action_pressed("hotspot_indicator"):
-		_show_indicator()
+	if event.is_action_pressed("hotspot_indicator"):
+		Speedy.hidden = true
+		_hotspot_indicator.show()
 	elif event.is_action_released("hotspot_indicator"):
-		_hide_indicator()
+		Speedy.hidden = false
+		_hotspot_indicator.hide()
 
 
 # Set the default value of a new hotspot
@@ -104,14 +84,3 @@ func _on_pressed():
 			EgoVenture.target_view = target_view
 			EgoVenture.change_scene(target_scene)
 
-
-# Show the hotspot indicator
-func _show_indicator():
-	Speedy.hidden = true
-	_hotspot_indicator.show()
-	
-
-# Hide the hotspot indicator
-func _hide_indicator():
-	Speedy.hidden = false
-	_hotspot_indicator.hide()
