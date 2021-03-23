@@ -28,16 +28,20 @@ var _inventory_items: Array
 
 
 # Helper variable if we're on a touch device
-onready var is_touch: bool = OS.has_touchscreen_ui_hint()
+var is_touch: bool
 
 
 # Hide the activate and menu button on touch devices
 func _ready():
-	if ! is_touch:
-		$Activate.hide()
-		$Canvas/Panel/InventoryPanel/Menu.hide()
-		
-		
+	is_touch = OS.has_touchscreen_ui_hint()
+	if is_touch:
+		$Canvas/InventoryAnchor/Activate.show()
+		$Canvas/InventoryAnchor/Panel/InventoryPanel/Menu.show()
+	else:
+		$Canvas/InventoryAnchor/Activate.hide()
+		$Canvas/InventoryAnchor/Panel/InventoryPanel/Menu.hide()
+
+
 func _process(_delta):
 	just_released = false
 
@@ -66,36 +70,35 @@ func _input(event):
 			# Deactivate the inventory when the mouse is below it
 			elif activated and \
 					get_viewport().get_mouse_position().y \
-					> $Canvas/Panel.rect_size.y:
+					> $Canvas/InventoryAnchor/Panel.rect_size.y:
 				toggle_inventory()
 
 
 # Configure the inventory. Should be call by a game core singleton
 func configure(configuration: GameConfiguration):
-	$Canvas/Panel/InventoryPanel/Menu.texture_normal = \
+	$Canvas/InventoryAnchor/Panel/InventoryPanel/Menu.texture_normal = \
 			configuration.inventory_texture_menu
-	$Canvas/Panel/InventoryPanel/Notepad.texture_normal = \
+	$Canvas/InventoryAnchor/Panel/InventoryPanel/Notepad.texture_normal = \
 			configuration.inventory_texture_notepad
-	$Activate.texture_normal = configuration.inventory_texture_activate
-	$Canvas/Panel.theme = configuration.design_theme
-	$Canvas/Panel.margin_top = configuration.inventory_size * -1
-	$Canvas/Panel.margin_bottom = 0
-	$Canvas/Panel.rect_min_size.y = configuration.inventory_size
-	$Canvas/Panel.add_stylebox_override(
+	$Canvas/InventoryAnchor.theme = configuration.design_theme
+	$Canvas/InventoryAnchor/Panel.rect_min_size.y = configuration.inventory_size
+	$Canvas/InventoryAnchor/Panel.add_stylebox_override(
 		"panel",
-		$Canvas/Panel.get_stylebox("inventory_panel", "Panel")
+		$Canvas/InventoryAnchor/Panel.get_stylebox("inventory_panel", "Panel")
 	)
+	
+	$Canvas/InventoryAnchor/Activate.texture_normal = \
+		configuration.inventory_texture_activate
+	$Canvas/InventoryAnchor/Activate.margin_top = \
+			configuration.inventory_size + 20
+		
+	$Canvas/InventoryAnchor.margin_top = configuration.inventory_size * -1
 	
 	var animation: Animation = $Animations.get_animation("Activate")
 	animation.track_set_key_value(
 		0,
 		0,
-		Vector2(0, configuration.inventory_size * -1)
-	)
-	animation.track_set_key_value(
-		1,
-		1,
-		configuration.inventory_size
+		configuration.inventory_size * -1
 	)
 	
 	DetailView.get_node("Panel").theme = configuration.design_theme
@@ -103,15 +106,16 @@ func configure(configuration: GameConfiguration):
 
 # Disable the inventory system
 func disable():
-	$Canvas/Panel.hide()
-	$Activate.hide()
+	$Canvas/InventoryAnchor/Panel.hide()
+	$Canvas/InventoryAnchor/Activate.hide()
 
 
 # Enable the inventory system
 func enable():
-	$Canvas/Panel.show()
+	$Canvas/InventoryAnchor/Panel.show()
 	if is_touch:
-		$Activate.show()
+		print_debug("Enabling activate again")
+		$Canvas/InventoryAnchor/Activate.show()
 
 
 # Add an item to the inventory
@@ -204,7 +208,9 @@ func _on_triggered_inventory_item(
 
 # Update the inventory item view by simply removing all items and re-adding them
 func _update():
-	for child in $Canvas/Panel/InventoryPanel/Inventory.get_children():
-		$Canvas/Panel/InventoryPanel/Inventory.remove_child(child)
+	var inventory_panel = \
+			$Canvas/InventoryAnchor/Panel/InventoryPanel/Inventory
+	for child in inventory_panel.get_children():
+		inventory_panel.remove_child(child)
 	for item in _inventory_items:
-		$Canvas/Panel/InventoryPanel/Inventory.add_child(item)
+		inventory_panel.add_child(item)
