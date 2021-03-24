@@ -9,6 +9,10 @@ var is_visible = false
 var _item: InventoryItem
 
 
+# Helper variable if we're on a touch device
+onready var is_touch: bool = OS.has_touchscreen_ui_hint()
+
+
 # Configure the panel
 func _ready():
 	$Panel.add_stylebox_override(
@@ -53,7 +57,8 @@ func show(item: InventoryItem):
 		Speedy.hidden = true
 	$Panel.show()
 	is_visible = true
-	Inventory.toggle_inventory()
+	if not is_touch:
+		Inventory.toggle_inventory()
 
 
 # Hide the panel

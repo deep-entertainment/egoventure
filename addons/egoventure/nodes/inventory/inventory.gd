@@ -207,13 +207,19 @@ func _update():
 # - event: event that was triggered
 func _on_Reveal_gui_input(event):
 	if event is InputEventScreenTouch:
-		if (event as InputEventScreenTouch).pressed:
-			var push_event = InputEventAction.new()
-			push_event.pressed = true
-			push_event.action = "hotspot_indicator"
-			Input.parse_input_event(push_event)
-		else:
-			var release_event = InputEventAction.new()
-			release_event.pressed = false
-			release_event.action = "hotspot_indicator"
-			Input.parse_input_event(release_event)
+		if Inventory.selected_item == null:
+			if (event as InputEventScreenTouch).pressed:
+				var push_event = InputEventAction.new()
+				push_event.pressed = true
+				push_event.action = "hotspot_indicator"
+				Input.parse_input_event(push_event)
+			else:
+				var release_event = InputEventAction.new()
+				release_event.pressed = false
+				release_event.action = "hotspot_indicator"
+				Input.parse_input_event(release_event)
+		elif not (event as InputEventScreenTouch).pressed:
+			if DetailView.is_visible:
+				DetailView.hide()
+			else:
+				DetailView.show(Inventory.selected_item.item)
