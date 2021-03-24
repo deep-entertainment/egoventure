@@ -1,12 +1,6 @@
 # EgoVenture Inventory system
 extends Control
 
-# Emitted when the notepad button was pressed
-signal notepad_pressed
-
-# Emitted when the menu button was pressed (on touch devices)
-signal menu_pressed
-
 
 # Emitted, when another inventory item was triggered
 signal triggered_inventory_item(first_item, second_item)
@@ -180,14 +174,12 @@ func toggle_inventory():
 # Emit signal, that the notepad was pressed
 func _on_Notepad_pressed():
 	if selected_item == null:
-		emit_signal("notepad_pressed")
-		accept_event()
+		Notepad.show()
 
 
 # Emit signal, that the menu was pressed
 func _on_Menu_pressed():
-	emit_signal("menu_pressed")
-	accept_event()
+	MainMenu.toggle()
 
 
 # Emit a signal, that one item was triggered on another item	
