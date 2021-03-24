@@ -61,8 +61,8 @@ var inventory_texture_menu: Texture
 # The texture for the notepad button
 var inventory_texture_notepad: Texture
 
-# The texture for the inventory activate button (on touch devices)
-var inventory_texture_activate: Texture
+# The texture for the hot spots reveal button (on touch devices)
+var inventory_texture_reveal: Texture
 
 # The path to the hints csv file
 var notepad_hints_file: String
@@ -202,7 +202,7 @@ func _get_property_list():
 		"hint_string": "Texture"
 	})
 	properties.append({
-		"name": "inventory_texture_activate",
+		"name": "inventory_texture_reveal",
 		"type": TYPE_OBJECT,
 		"hint": PROPERTY_HINT_RESOURCE_TYPE,
 		"hint_string": "Texture"

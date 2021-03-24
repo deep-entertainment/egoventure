@@ -82,17 +82,13 @@ __meta__ = {
 
 [node name="Inventory" type="HBoxContainer" parent="Canvas/InventoryAnchor/Panel/InventoryPanel"]
 margin_left = 8.0
-margin_right = 2546.0
+margin_right = 2542.0
 size_flags_horizontal = 3
 
-[node name="Activate" type="TextureButton" parent="Canvas/InventoryAnchor"]
-anchor_left = 1.0
-anchor_right = 1.0
-margin_right = -20.0
-grow_horizontal = 0
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="Reveal" type="TextureButton" parent="Canvas/InventoryAnchor/Panel/InventoryPanel"]
+margin_left = 2546.0
+margin_right = 2546.0
+stretch_mode = 3
 
 [node name="Animations" type="AnimationPlayer" parent="."]
 anims/Activate = SubResource( 1 )
@@ -101,4 +97,4 @@ anims/Activate = SubResource( 1 )
 wait_time = 0.7
 [connection signal="pressed" from="Canvas/InventoryAnchor/Panel/InventoryPanel/Menu" to="." method="_on_Menu_pressed"]
 [connection signal="pressed" from="Canvas/InventoryAnchor/Panel/InventoryPanel/Notepad" to="." method="_on_Notepad_pressed"]
-[connection signal="pressed" from="Canvas/InventoryAnchor/Activate" to="." method="_on_Activate_pressed"]
+[connection signal="gui_input" from="Canvas/InventoryAnchor/Panel/InventoryPanel/Reveal" to="." method="_on_Reveal_gui_input"]
