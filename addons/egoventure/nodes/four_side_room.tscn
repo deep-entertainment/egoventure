@@ -58,5 +58,5 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 cursor_type = 3
-[connection signal="pressed" from="Camera/Left" to="." method="_on_left_pressed"]
-[connection signal="pressed" from="Camera/Right" to="." method="_on_right_pressed"]
+[connection signal="activate" from="Camera/Left" to="." method="_on_Left_activate"]
+[connection signal="activate" from="Camera/Right" to="." method="_on_Right_activate"]

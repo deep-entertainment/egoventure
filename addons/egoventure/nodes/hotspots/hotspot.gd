@@ -83,9 +83,10 @@ func _set_cursor_type(type):
 func _on_pressed():
 	release_focus()
 	if Inventory.selected_item == null:
+		var test = get_signal_connection_list("activate")
 		if get_signal_connection_list("activate").size() > 0:
 			emit_signal("activate")
-		else:
+		elif target_scene != "":
 			if effect:
 				Boombox.play_effect(effect)
 			EgoVenture.target_view = target_view

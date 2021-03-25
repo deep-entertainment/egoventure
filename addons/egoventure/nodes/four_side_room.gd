@@ -89,26 +89,6 @@ func _set_current_view(value: String):
 		VIEW_LEFT: $Camera.position = Vector2(_viewport_size.x * -1, 0)
 
 
-# Handle camera move when the right hotspot was pressed
-func _on_right_pressed():
-	if Inventory.selected_item == null:
-		match current_view:
-			VIEW_FRONT: _set_current_view(VIEW_RIGHT)
-			VIEW_RIGHT: _set_current_view(VIEW_BACK)
-			VIEW_BACK: _set_current_view(VIEW_LEFT)
-			VIEW_LEFT: _set_current_view(VIEW_FRONT)
-
-
-# Handle camera move when the left hotspot was pressed
-func _on_left_pressed():
-	if Inventory.selected_item == null:
-		match current_view:
-			VIEW_FRONT: _set_current_view(VIEW_LEFT)
-			VIEW_LEFT: _set_current_view(VIEW_BACK)
-			VIEW_BACK: _set_current_view(VIEW_RIGHT)
-			VIEW_RIGHT: _set_current_view(VIEW_FRONT)
-
-
 # Set the texture for the front view
 #
 # ** Parameters **
@@ -137,7 +117,7 @@ func _right_texture_set(value: Texture):
 func _back_texture_set(value: Texture):
 	back_texture = value
 	$Views/Back.texture = back_texture
-	
+
 
 # Set the texture for the left view
 #
@@ -149,4 +129,19 @@ func _left_texture_set(value: Texture):
 	$Views/Left.texture = left_texture
 
 
+# Handle camera move when the right hotspot was pressed
+func _on_Right_activate():
+	match current_view:
+			VIEW_FRONT: _set_current_view(VIEW_RIGHT)
+			VIEW_RIGHT: _set_current_view(VIEW_BACK)
+			VIEW_BACK: _set_current_view(VIEW_LEFT)
+			VIEW_LEFT: _set_current_view(VIEW_FRONT)
 
+
+# Handle camera move when the left hotspot was pressed
+func _on_Left_activate():
+	match current_view:
+		VIEW_FRONT: _set_current_view(VIEW_LEFT)
+		VIEW_LEFT: _set_current_view(VIEW_BACK)
+		VIEW_BACK: _set_current_view(VIEW_RIGHT)
+		VIEW_RIGHT: _set_current_view(VIEW_FRONT)
