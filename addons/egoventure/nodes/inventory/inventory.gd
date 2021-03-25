@@ -1,12 +1,6 @@
 # EgoVenture Inventory system
 extends Control
 
-# Emitted when the notepad button was pressed
-signal notepad_pressed
-
-# Emitted when the menu button was pressed (on touch devices)
-signal menu_pressed
-
 
 # Emitted, when another inventory item was triggered
 signal triggered_inventory_item(first_item, second_item)
@@ -28,16 +22,20 @@ var _inventory_items: Array
 
 
 # Helper variable if we're on a touch device
-onready var is_touch: bool = OS.has_touchscreen_ui_hint()
+var is_touch: bool
 
 
 # Hide the activate and menu button on touch devices
 func _ready():
-	if ! is_touch:
-		$Activate.hide()
-		$Canvas/Panel/InventoryPanel/Menu.hide()
-		
-		
+	is_touch = OS.has_touchscreen_ui_hint()
+	if is_touch:
+		$Canvas/InventoryAnchor/Panel/InventoryPanel/Reveal.show()
+		$Canvas/InventoryAnchor/Panel/InventoryPanel/Menu.show()
+	else:
+		$Canvas/InventoryAnchor/Panel/InventoryPanel/Reveal.hide()
+		$Canvas/InventoryAnchor/Panel/InventoryPanel/Menu.hide()
+
+
 func _process(_delta):
 	just_released = false
 
@@ -66,52 +64,49 @@ func _input(event):
 			# Deactivate the inventory when the mouse is below it
 			elif activated and \
 					get_viewport().get_mouse_position().y \
-					> $Canvas/Panel.rect_size.y:
+					> $Canvas/InventoryAnchor/Panel.rect_size.y:
 				toggle_inventory()
 
 
 # Configure the inventory. Should be call by a game core singleton
 func configure(configuration: GameConfiguration):
-	$Canvas/Panel/InventoryPanel/Menu.texture_normal = \
+	$Canvas/InventoryAnchor/Panel/InventoryPanel/Menu.texture_normal = \
 			configuration.inventory_texture_menu
-	$Canvas/Panel/InventoryPanel/Notepad.texture_normal = \
+	$Canvas/InventoryAnchor/Panel/InventoryPanel/Notepad.texture_normal = \
 			configuration.inventory_texture_notepad
-	$Activate.texture_normal = configuration.inventory_texture_activate
-	$Canvas/Panel.theme = configuration.design_theme
-	$Canvas/Panel.margin_top = configuration.inventory_size * -1
-	$Canvas/Panel.margin_bottom = 0
-	$Canvas/Panel.rect_min_size.y = configuration.inventory_size
-	$Canvas/Panel.add_stylebox_override(
+	$Canvas/InventoryAnchor.theme = configuration.design_theme
+	$Canvas/InventoryAnchor/Panel.rect_min_size.y = configuration.inventory_size
+	$Canvas/InventoryAnchor/Panel.add_stylebox_override(
 		"panel",
-		$Canvas/Panel.get_stylebox("inventory_panel", "Panel")
+		$Canvas/InventoryAnchor/Panel.get_stylebox("inventory_panel", "Panel")
 	)
+	
+	$Canvas/InventoryAnchor/Panel/InventoryPanel/Reveal.texture_normal = \
+		configuration.inventory_texture_reveal
+		
+	$Canvas/InventoryAnchor.margin_top = configuration.inventory_size * -1
 	
 	var animation: Animation = $Animations.get_animation("Activate")
 	animation.track_set_key_value(
 		0,
 		0,
-		Vector2(0, configuration.inventory_size * -1)
+		configuration.inventory_size * -1
 	)
-	animation.track_set_key_value(
-		1,
-		1,
-		configuration.inventory_size
-	)
+	
+	if OS.has_touchscreen_ui_hint():
+		$Animations.play("Activate")
 	
 	DetailView.get_node("Panel").theme = configuration.design_theme
 
 
 # Disable the inventory system
 func disable():
-	$Canvas/Panel.hide()
-	$Activate.hide()
+	$Canvas/InventoryAnchor/Panel.hide()
 
 
 # Enable the inventory system
 func enable():
-	$Canvas/Panel.show()
-	if is_touch:
-		$Activate.show()
+	$Canvas/InventoryAnchor/Panel.show()
 
 
 # Add an item to the inventory
@@ -125,7 +120,7 @@ func add_item(item: InventoryItem, skip_show: bool = false):
 	)
 	_inventory_items.append(inventory_item_node)
 	_update()
-	if not activated and not skip_show:
+	if not is_touch and not activated and not skip_show:
 		# Briefly show the inventory when it is not activated
 		toggle_inventory()
 		$Timer.start()
@@ -176,22 +171,15 @@ func toggle_inventory():
 		activated = true
 
 
-# Activate the inventory (on touch devices)
-func _on_Activate_pressed():
-	toggle_inventory()
-
-
 # Emit signal, that the notepad was pressed
 func _on_Notepad_pressed():
 	if selected_item == null:
-		emit_signal("notepad_pressed")
-		accept_event()
+		Notepad.show()
 
 
 # Emit signal, that the menu was pressed
 func _on_Menu_pressed():
-	emit_signal("menu_pressed")
-	accept_event()
+	MainMenu.toggle()
 
 
 # Emit a signal, that one item was triggered on another item	
@@ -204,7 +192,34 @@ func _on_triggered_inventory_item(
 
 # Update the inventory item view by simply removing all items and re-adding them
 func _update():
-	for child in $Canvas/Panel/InventoryPanel/Inventory.get_children():
-		$Canvas/Panel/InventoryPanel/Inventory.remove_child(child)
+	var inventory_panel = \
+			$Canvas/InventoryAnchor/Panel/InventoryPanel/Inventory
+	for child in inventory_panel.get_children():
+		inventory_panel.remove_child(child)
 	for item in _inventory_items:
-		$Canvas/Panel/InventoryPanel/Inventory.add_child(item)
+		inventory_panel.add_child(item)
+
+
+# React to touches on the reveal button
+#
+# ** Parameters **
+#
+# - event: event that was triggered
+func _on_Reveal_gui_input(event):
+	if event is InputEventScreenTouch:
+		if Inventory.selected_item == null:
+			if (event as InputEventScreenTouch).pressed:
+				var push_event = InputEventAction.new()
+				push_event.pressed = true
+				push_event.action = "hotspot_indicator"
+				Input.parse_input_event(push_event)
+			else:
+				var release_event = InputEventAction.new()
+				release_event.pressed = false
+				release_event.action = "hotspot_indicator"
+				Input.parse_input_event(release_event)
+		elif not (event as InputEventScreenTouch).pressed:
+			if DetailView.is_visible:
+				DetailView.hide()
+			else:
+				DetailView.show(Inventory.selected_item.item)

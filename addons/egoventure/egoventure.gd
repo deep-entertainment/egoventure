@@ -98,7 +98,6 @@ func configure(p_configuration: GameConfiguration):
 	MainMenu.connect("quit_game", self, "_on_quit_game")
 	Notepad.configure(configuration)
 	Inventory.configure(configuration)
-	Inventory.connect("notepad_pressed", self, "_on_notepad_pressed")
 	Cursors.configure(configuration)
 	MapNotification.configure(configuration)
 	_scene_cache = SceneCache.new(
@@ -111,6 +110,13 @@ func configure(p_configuration: GameConfiguration):
 	_scene_cache.connect("queue_complete", self, "_on_queue_complete")
 	Parrot.configure(configuration.design_theme)
 	Parrot.time_addendum_seconds=0.5
+	
+
+# Save the continue state when going into background on mobile
+func _notification(what):
+	if what == MainLoop.NOTIFICATION_WM_FOCUS_OUT \
+			and OS.has_touchscreen_ui_hint():
+		save_continue()
 
 
 # Checks wether the mouse cursor needs to be changed
@@ -159,9 +165,10 @@ func save(slot: int):
 
 # Save the "continue" slot
 func save_continue():
-	_update_state()
-	in_game_configuration.continue_state = EgoVenture.state.duplicate()
-	save_in_game_configuration()
+	if game_started:
+		_update_state()
+		in_game_configuration.continue_state = EgoVenture.state.duplicate()
+		save_in_game_configuration()
 
 
 # Save the in game configuration
@@ -416,14 +423,8 @@ func _on_queue_complete():
 	emit_signal("queue_complete")
 
 
-# Show the notepad
-func _on_notepad_pressed():
-	Notepad.show()
-
-
 # The player wants to quit the game. Save the continue state and quit
 func _on_quit_game():
-	if game_started:
-		EgoVenture.save_continue()
+	EgoVenture.save_continue()
 	get_tree().quit()
 

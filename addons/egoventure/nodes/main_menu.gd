@@ -44,6 +44,10 @@ var _save_slot_page: int = 1
 var _configuration: GameConfiguration
 
 
+# Helper variable if we're on a touch device
+onready var is_touch: bool = OS.has_touchscreen_ui_hint()
+
+
 # Default to hiding the menu
 func _ready():
 	EgoVenture.connect("game_loaded", self, "toggle")
@@ -162,6 +166,10 @@ func toggle():
 			$Menu/Options/CenterContainer/VBox/Grid/Fullscreen.pressed = \
 				EgoVenture.in_game_configuration.fullscreen
 			Speedy.set_shape(Input.CURSOR_ARROW)
+			if is_touch:
+				$Menu/MainMenu/Margin/VBox/MenuItems/Quit.hide()
+				$Menu/Options/CenterContainer/VBox/Grid/Fullscreen.hide()
+				$Menu/Options/CenterContainer/VBox/Grid/FullscreenLabel.hide()
 
 
 # Resume was pressed. Toggle the menu

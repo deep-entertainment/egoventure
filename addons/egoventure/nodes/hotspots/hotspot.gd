@@ -30,6 +30,7 @@ export(AudioStream) var effect = null
 var _hotspot_indicator: Sprite
 
 
+
 # Connect to the cursors_configured signal to set the hotspot indicator
 # texture
 func _init():
@@ -39,7 +40,7 @@ func _init():
 	_hotspot_indicator.position = rect_size / 2
 	button_mask = BUTTON_MASK_LEFT
 	connect("pressed", self, "_on_pressed")
-	
+
 
 # Update hotspot indicator
 func _process(_delta):
@@ -82,3 +83,4 @@ func _on_pressed():
 				Boombox.play_effect(effect)
 			EgoVenture.target_view = target_view
 			EgoVenture.change_scene(target_scene)
+
