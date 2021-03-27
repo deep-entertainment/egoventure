@@ -106,6 +106,30 @@ var menu_options_effects_sample: AudioStream
 
 The sample to play when the effect slider is changed
 
+### menu\_quit\_confirmation
+
+```gdscript
+var menu_quit_confirmation: String = "Do you really want to quit the game?"
+```
+
+The confirmation text for the quit confirmation prompt
+
+### menu\_overwrite\_confirmation
+
+```gdscript
+var menu_overwrite_confirmation: String = "Are you sure you want to overwrite a saved game?"
+```
+
+The confirmation text for the overwrite confirmation prompt
+
+### menu\_restart\_confirmation
+
+```gdscript
+var menu_restart_confirmation: String = "You will lose all progress when starting a new game. Do you really want to restart?"
+```
+
+The confirmation text for the restart confirmation prompt
+
 ### inventory\_size
 
 ```gdscript
@@ -130,13 +154,13 @@ var inventory_texture_notepad: Texture
 
 The texture for the notepad button
 
-### inventory\_texture\_activate
+### inventory\_texture\_reveal
 
 ```gdscript
-var inventory_texture_activate: Texture
+var inventory_texture_reveal: Texture
 ```
 
-The texture for the inventory activate button (on touch devices)
+The texture for the hot spots reveal button (on touch devices)
 
 ### notepad\_hints\_file
 

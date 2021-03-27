@@ -111,6 +111,4 @@ Show or hide the inventory
 
 ## Signals
 
-- signal notepad_pressed(): Emitted when the notepad button was pressed
-- signal menu_pressed(): Emitted when the menu button was pressed (on touch devices)
 - signal triggered_inventory_item(first_item, second_item): Emitted, when another inventory item was triggered
