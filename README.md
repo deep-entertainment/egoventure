@@ -1,5 +1,7 @@
 ![EgoVenture logo](docs/images/logo.png)
 
+[![Support Server](https://img.shields.io/discord/777604957737451530.svg?label=Discord&logo=Discord&colorB=7289da&style=for-the-badge)](https://discord.gg/T6y6KG4V5K)
+
 # First person point and click adventure framework for Godot
 
 ## Introduction
