@@ -116,6 +116,10 @@ In the type selector, search for "DialogResource" and click "Create"
 
 For more details on how this resource is filled, check out the [Parrot documentation about it](https://github.com/deep-entertainment/parrot/blob/main/docs/resources.md).
 
+## Exporting
+
+When you're ready with your game, refer to the [Godot export documentation](https://docs.godotengine.org/en/stable/getting_started/workflow/export/index.html) on how to export your game for the various supported platforms.
+
 ## Where to go from here
 
 Now that you know the basics, check out the rest of the documentation. 
