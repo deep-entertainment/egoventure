@@ -70,7 +70,7 @@ Additionally, these files reside in the root directory of the project:
 
 * configuration.tres: The default [game configuration](configuration.md)
 
-* core.gd: An example game core singleton, that controls the basic game logic. Check out the [structure documentation](structure.md) for details
+* core.gd: The core singleton for the game template, that controls the basic game logic. Check out the [structure documentation](structure.md) for details
 
 * game_state.gd: An example [game state](state.md) 
 
@@ -98,7 +98,7 @@ Also, check out the [default theme](theming.md) and change it to your liking. Ch
 
 Open the game folder in your operating system's file manager. There you will see the same folder structure as documented above, so you can directly copy game assets like images, music and sounds to their respective folders.
 
-When you get back to Godot, Godot will import those assets into a standard format, so it can use it in all supported platforms. Check out the [Godot documentation about the import process](https://docs.godotengine.org/en/stable/getting_started/workflow/assets/import_process.html) for details.
+When you get back to Godot, it will import those assets into a standard format, so it can use it in all supported platforms. Check out the [Godot documentation about the import process](https://docs.godotengine.org/en/stable/getting_started/workflow/assets/import_process.html) for details.
 
 ## Designing scenes
 
@@ -118,6 +118,8 @@ For more details on how this resource is filled, check out the [Parrot documenta
 
 ## Where to go from here
 
-Now that you know the basics, check out the rest of the documentation and if anything goes wrong or you have questions, please join our Discord server for community support:
+Now that you know the basics, check out the rest of the documentation. 
+
+If anything goes wrong or you have questions, please join our Discord server for community support:
 
 [![Support Server](https://img.shields.io/discord/777604957737451530.svg?label=Discord&logo=Discord&colorB=7289da&style=for-the-badge)](https://discord.gg/T6y6KG4V5K)

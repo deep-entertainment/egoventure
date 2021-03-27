@@ -8,7 +8,7 @@ The hint progression are stored in save games.
 
 ## The hints file
 
-Goals and hints are stored in a file in CSV format and in a file with the extension TXT (due to Godot issue [#38957](https://github.com/godotengine/godot/issues/38957)).
+Goals and hints are stored in a file in CSV format with the extension TXT (due to Godot issue [#38957](https://github.com/godotengine/godot/issues/38957)).
 
 The *EgoVenture Game Template* includes a sample file.
 

@@ -2,7 +2,7 @@
 
 ## Introduction
 
-*EgoVenture* games are very artistic and feature a lot of images and graphics. All aspects of the game look can be customized using Godot's [theming features](https://docs.godotengine.org/en/stable/tutorials/gui/gui_skinning.html).
+*EgoVenture* games typically feature a lot of images and graphics. All aspects of the game look can be customized using Godot's [theming features](https://docs.godotengine.org/en/stable/tutorials/gui/gui_skinning.html).
 
 A starter theme resource called _theme.tres_ is already available in the *EgoVenture game template*.
 
