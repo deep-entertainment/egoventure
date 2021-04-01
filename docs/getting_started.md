@@ -90,6 +90,12 @@ It's recommended to first set the game name in the project settings:
 
 ![Game name and descriptions](images/gettingstarted/gamename.png)
 
+Additionally, you might want to check the game resolution. EgoVenture defaults to the QHD resolution of 2560 by 1440 pixels.
+
+![The game's resolution](images/gettingstarted/resolution.png)
+
+If you plan to use a smaller resolution, you need to change this setting.
+
 Afterwards, check out the [game configuration](configuration.md) file configuration.tres and configure everything you need.
 
 Also, check out the [default theme](theming.md) and change it to your liking. Check out the [Godot documentation about GUI skinning](https://docs.godotengine.org/en/stable/tutorials/gui/gui_skinning.html) for details of configuring a theme.
