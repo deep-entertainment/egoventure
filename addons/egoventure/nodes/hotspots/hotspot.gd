@@ -54,12 +54,13 @@ func _process(_delta):
 
 # Hotspot indicator toggle
 func _input(event):
-	if event.is_action_pressed("hotspot_indicator"):
-		Speedy.hidden = true
-		_hotspot_indicator.show()
-	elif event.is_action_released("hotspot_indicator"):
-		Speedy.hidden = false
-		_hotspot_indicator.hide()
+	if not DetailView.is_visible:
+		if event.is_action_pressed("hotspot_indicator"):
+			Speedy.hidden = true
+			_hotspot_indicator.show()
+		elif event.is_action_released("hotspot_indicator"):
+			Speedy.hidden = false
+			_hotspot_indicator.hide()
 
 
 # Set the default value of a new hotspot
