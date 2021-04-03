@@ -7,7 +7,7 @@ jobs:
         name: Publish new version to asset lib
         steps:
             - name: Godot Asset Lib
-              uses: deep-entertainment/godot-asset-lib-action@v0.1.0
+              uses: deep-entertainment/godot-asset-lib-action@v0.1.2
               with:
                 username: deepgames
                 password: ${{ secrets.ASSET_STORE_PASSWORD }}
