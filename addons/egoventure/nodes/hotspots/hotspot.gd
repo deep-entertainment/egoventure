@@ -5,6 +5,11 @@ class_name Hotspot, "res://addons/egoventure/images/hotspot.svg"
 extends TextureButton
 
 
+# A signal that can be connected to for custom actions of
+# this hotspot
+signal activate
+
+
 # The cursor type
 export(Cursors.Type) var cursor_type = Cursors.Type.GO_FORWARD \
 		setget _set_cursor_type
@@ -49,12 +54,13 @@ func _process(_delta):
 
 # Hotspot indicator toggle
 func _input(event):
-	if event.is_action_pressed("hotspot_indicator"):
-		Speedy.hidden = true
-		_hotspot_indicator.show()
-	elif event.is_action_released("hotspot_indicator"):
-		Speedy.hidden = false
-		_hotspot_indicator.hide()
+	if not DetailView.is_visible:
+		if event.is_action_pressed("hotspot_indicator"):
+			Speedy.hidden = true
+			_hotspot_indicator.show()
+		elif event.is_action_released("hotspot_indicator"):
+			Speedy.hidden = false
+			_hotspot_indicator.hide()
 
 
 # Set the default value of a new hotspot
@@ -78,7 +84,10 @@ func _set_cursor_type(type):
 func _on_pressed():
 	release_focus()
 	if Inventory.selected_item == null:
-		if target_scene != "":
+		var test = get_signal_connection_list("activate")
+		if get_signal_connection_list("activate").size() > 0:
+			emit_signal("activate")
+		elif target_scene != "":
 			if effect:
 				Boombox.play_effect(effect)
 			EgoVenture.target_view = target_view

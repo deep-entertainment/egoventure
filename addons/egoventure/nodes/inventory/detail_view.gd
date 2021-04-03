@@ -68,4 +68,5 @@ func hide():
 	$Panel.hide()
 	for child in $Panel/VBox/DetailScene.get_children():
 		$Panel/VBox/DetailScene.remove_child(child)
+	$Panel/VBox/Image.texture = null
 	is_visible = false
