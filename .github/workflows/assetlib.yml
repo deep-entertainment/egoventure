@@ -1,4 +1,5 @@
 on: release
+name: Push to assetlib
 
 jobs:
     publish:
