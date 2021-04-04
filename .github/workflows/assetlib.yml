@@ -1,11 +1,13 @@
-on: create 
+on: 
+    release:
+        types:
+          - published
 name: Push to assetlib
 
 jobs:
     publish:
         runs-on: ubuntu-latest
         name: Publish new version to asset lib
-        if: ${{ github.event.ref_type == 'tag' }}
         steps:
             - name: Checkout
               uses: actions/checkout@v2
