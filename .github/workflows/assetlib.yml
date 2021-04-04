@@ -9,6 +9,8 @@ jobs:
         runs-on: ubuntu-latest
         name: Publish new version to asset lib
         steps:
+            - name: Checkout
+              uses: actions/checkout@v2
             - name: Godot Asset Lib
               uses: deep-entertainment/godot-asset-lib-action@main
               with:
