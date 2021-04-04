@@ -9,5 +9,5 @@
   "download_commit": "{{ release.tag_name }}",
   "browse_url": "{{ repository.html_url }}",
   "issues_url": "{{ repository.html_url }}/issues",
-  "icon_url": "https://raw.githubusercontent.com/deep-entertainment/egoventure/master/docs/images/icon.png",
+  "icon_url": "https://raw.githubusercontent.com/deep-entertainment/egoventure/master/docs/images/icon.png"
 }
