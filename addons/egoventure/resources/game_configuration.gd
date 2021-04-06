@@ -82,6 +82,10 @@ var tools_map_image: Texture
 # The sound to play when flashing the map
 var tools_map_sound: AudioStream
 
+# How wide the left and right navigation areas should be in the
+# four room scene
+var tools_navigation_width: float
+
 # The path where the scenes are stored
 var cache_scene_path: String = "res://scenes"
 
@@ -274,6 +278,10 @@ func _get_property_list():
 		type = TYPE_OBJECT,
 		hint = PROPERTY_HINT_RESOURCE_TYPE,
 		hint_string = "AudioStream"
+	})
+	properties.append({
+		name = "tools_navigation_width",
+		type = TYPE_REAL
 	})
 	properties.append({
 		name = "Cache",

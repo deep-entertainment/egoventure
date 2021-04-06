@@ -210,6 +210,15 @@ var tools_map_sound: AudioStream
 
 The sound to play when flashing the map
 
+### tools\_navigation\_width
+
+```gdscript
+var tools_navigation_width: float
+```
+
+How wide the left and right navigation areas should be in the
+four room scene
+
 ### cache\_scene\_path
 
 ```gdscript

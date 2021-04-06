@@ -64,6 +64,19 @@ func _ready():
 		else:
 			_set_current_view(default_view)
 		EgoVenture.check_cursor($Camera.position)
+	$Camera/Left.rect_position.x = 0
+	$Camera/Left.rect_position.y = EgoVenture.configuration.inventory_size
+	$Camera/Left.rect_size.x = EgoVenture.configuration.tools_navigation_width
+	$Camera/Left.rect_size.y = _viewport_size.y -\
+			EgoVenture.configuration.inventory_size
+	$Camera/Right.rect_position.x = _viewport_size.x -\
+			EgoVenture.configuration.tools_navigation_width
+	$Camera/Right.rect_position.y = EgoVenture.configuration.inventory_size
+	$Camera/Right.rect_size.x = EgoVenture.configuration.tools_navigation_width
+	$Camera/Right.rect_size.y = _viewport_size.y -\
+			EgoVenture.configuration.inventory_size
+	
+	
 
 
 # Properly position the different views
