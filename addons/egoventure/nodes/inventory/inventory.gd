@@ -159,6 +159,20 @@ func get_items() -> Array:
 	for item in _inventory_items:
 		items.append(item.item)
 	return items
+	
+	
+# Check, wether the player carries a specific item
+#
+# ** Parameters **
+#
+# - needle: item searched for
+#
+# - returns: true if the player is carrying the item, false if not.
+func has_item(needle: InventoryItem) -> bool:
+	for item in _inventory_items:
+		if item.item == needle:
+			return true
+	return false
 
 
 # Show or hide the inventory
