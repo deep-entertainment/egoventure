@@ -101,6 +101,20 @@ func get_items() -> Array
 
 Returns the current list of inventory items
 
+### has\_item
+
+```gdscript
+func has_item(needle: InventoryItem) -> bool
+```
+
+Check, wether the player carries a specific item
+
+** Parameters **
+
+- needle: item searched for
+
+- returns: true if the player is carrying the item, false if not.
+
 ### toggle\_inventory
 
 ```gdscript

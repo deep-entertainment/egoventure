@@ -178,3 +178,7 @@ func stop_effect()
 ```
 
 Stop playing a sound a effect
+
+## Signals
+
+- signal effect_finished(): Emited when a sound effect completed playing
