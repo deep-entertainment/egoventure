@@ -2,6 +2,10 @@
 extends Node
 
 
+# Emited when a sound effect completed playing
+signal effect_finished
+
+
 # Let Boombox ignore game pausing. So all sound will continue
 # playing when a game is paused
 var ignore_pause: bool setget _set_ignore_pause
@@ -155,3 +159,8 @@ func _set_ignore_pause(value: bool):
 		$Music2.pause_mode = Node.PAUSE_MODE_STOP
 		$Background.pause_mode = Node.PAUSE_MODE_STOP
 		$Effects.pause_mode = Node.PAUSE_MODE_STOP
+
+
+# Emit effect_finished signal
+func _on_Effects_finished():
+	emit_signal("effect_finished")

@@ -76,3 +76,4 @@ bus = "Effects"
 [node name="Fader" type="AnimationPlayer" parent="."]
 anims/fadeto1 = SubResource( 1 )
 anims/fadeto2 = SubResource( 2 )
+[connection signal="finished" from="Effects" to="." method="_on_Effects_finished"]
