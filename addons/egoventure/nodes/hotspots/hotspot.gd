@@ -42,13 +42,13 @@ func _init():
 	_hotspot_indicator = Sprite.new()
 	add_child(_hotspot_indicator)
 	_hotspot_indicator.hide()
-	_hotspot_indicator.position = rect_size / 2
 	button_mask = BUTTON_MASK_LEFT
 	connect("pressed", self, "_on_pressed")
 
 
 # Update hotspot indicator
 func _process(_delta):
+	_hotspot_indicator.position = rect_size / 2
 	_hotspot_indicator.texture = Cursors.get_cursor_texture(cursor_type) 
 
 
