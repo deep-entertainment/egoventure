@@ -50,6 +50,10 @@ var wait_timer: Timer
 var _scene_cache: SceneCache
 
 
+# Helper variable if we're on a touch device
+onready var is_touch: bool = OS.has_touchscreen_ui_hint()
+
+
 # Load the ingame configuration
 func _init():
 	pause_mode = Node.PAUSE_MODE_PROCESS
@@ -115,7 +119,7 @@ func configure(p_configuration: GameConfiguration):
 # Save the continue state when going into background on mobile
 func _notification(what):
 	if what == MainLoop.NOTIFICATION_WM_FOCUS_OUT \
-			and OS.has_touchscreen_ui_hint():
+			and is_touch:
 		save_continue()
 
 
@@ -125,18 +129,19 @@ func _notification(what):
 # 
 # - offset: A vector to add to the mouse position for calculation
 func check_cursor(offset: Vector2 = Vector2(0,0)):
-	var target_shape = Input.CURSOR_ARROW
-	var mousePos = get_viewport().get_mouse_position() + offset
+	if not is_touch:
+		var target_shape = Input.CURSOR_ARROW
+		var mousePos = get_viewport().get_mouse_position() + offset
 
-	var current_scene = get_tree().get_current_scene()
-	for child in current_scene.get_children():
-		if "mouse_default_cursor_shape" in child and child.visible:
-			var global_rect = child.get_global_rect()
-			if global_rect.has_point(mousePos):
-				if child is TriggerHotspot:
-					child.on_mouse_entered()
-				target_shape = child.mouse_default_cursor_shape
-	Speedy.set_shape(target_shape)
+		var current_scene = get_tree().get_current_scene()
+		for child in current_scene.get_children():
+			if "mouse_default_cursor_shape" in child and child.visible:
+				var global_rect = child.get_global_rect()
+				if global_rect.has_point(mousePos):
+					if child is TriggerHotspot:
+						child.on_mouse_entered()
+					target_shape = child.mouse_default_cursor_shape
+		Speedy.set_shape(target_shape)
 
 
 # Switch the current scene to the new scene
@@ -146,6 +151,13 @@ func check_cursor(offset: Vector2 = Vector2(0,0)):
 # - path: The absolute path to the new scene
 func change_scene(path: String):
 	get_tree().change_scene_to(_scene_cache.get_scene(path))
+	var is_four_side_room = false
+	for child in get_tree().current_scene.get_children():
+		if child.filename == \
+				"res://addons/egoventure/nodes/four_side_room.tscn":
+			is_four_side_room = true
+	if not is_four_side_room:
+		check_cursor()
 	
 
 # Save the current state of the game
