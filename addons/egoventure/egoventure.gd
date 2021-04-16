@@ -129,7 +129,7 @@ func _notification(what):
 # 
 # - offset: A vector to add to the mouse position for calculation
 func check_cursor(offset: Vector2 = Vector2(0,0)):
-	if not is_touch:
+	if not is_touch and not Speedy.hidden:
 		var target_shape = Input.CURSOR_ARROW
 		var mousePos = get_viewport().get_mouse_position() + offset
 
