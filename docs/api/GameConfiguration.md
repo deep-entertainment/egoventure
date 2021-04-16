@@ -82,6 +82,22 @@ var menu_saveslots_next_image: Texture
 
 The image for the "Next page" button
 
+### menu\_saveslots\_empty\_color
+
+```gdscript
+var menu_saveslots_empty_color: Color = "0,0,0,0.55"
+```
+
+The color used for empty save slots
+
+### menu\_saveslots\_free\_text
+
+```gdscript
+var menu_saveslots_free_text: String = "Free save slot"
+```
+
+The text shown under the free save slot
+
 ### menu\_options\_background
 
 ```gdscript

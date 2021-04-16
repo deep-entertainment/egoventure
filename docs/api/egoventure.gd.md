@@ -102,6 +102,14 @@ var wait_timer: Timer
 
 A timer that runs down while a waiting screen is shown
 
+### is\_touch
+
+```gdscript
+var is_touch: bool
+```
+
+Helper variable if we're on a touch device
+
 ## Method Descriptions
 
 ### configure

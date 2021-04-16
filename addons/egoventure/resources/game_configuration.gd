@@ -31,6 +31,12 @@ var menu_saveslots_previous_image: Texture
 # The image for the "Next page" button
 var menu_saveslots_next_image: Texture
 
+# The color used for empty save slots
+var menu_saveslots_empty_color: Color = Color(0, 0, 0, 0.55)
+
+# The text shown under the free save slot
+var menu_saveslots_free_text: String = "Free save slot"
+
 # The background of the options menu
 var menu_options_background: Texture
 
@@ -182,6 +188,14 @@ func _get_property_list():
 		type = TYPE_OBJECT,
 		hint = PROPERTY_HINT_RESOURCE_TYPE,
 		hint_string = "Texture"
+	})
+	properties.append({
+		name = "menu_saveslots_empty_color",
+		type = TYPE_COLOR
+	})
+	properties.append({
+		name = "menu_saveslots_free_text",
+		type = TYPE_STRING
 	})
 	properties.append({
 		name = "Inventory",

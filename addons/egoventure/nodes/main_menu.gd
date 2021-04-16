@@ -405,6 +405,17 @@ func _refresh_saveslots():
 		var connect_signals: bool = true
 		var slot_exists: bool = false
 		
+		var empty_image: Image = Image.new()
+		empty_image.create(
+			ProjectSettings.get("display/window/size/width") * 0.2,
+			ProjectSettings.get("display/window/size/height") * 0.2,
+			true,
+			Image.FORMAT_RGBA8
+		)
+		empty_image.fill(EgoVenture.configuration.menu_saveslots_empty_color)
+		var empty_image_texture = ImageTexture.new()
+		empty_image_texture.create_from_image(empty_image)
+		
 		if save_dir.file_exists("save_%d.png" % save_slot) and \
 			save_dir.file_exists("save_%d.tres" % save_slot):
 			
@@ -424,10 +435,11 @@ func _refresh_saveslots():
 			
 			# The slot is free. Show an empty panel and no date
 			slot_panel_image = slot_node.get_node("Slot/Panel/Image")
-			slot_panel_image.texture_normal = \
-					load("res://addons/egoventure/images/empty.png")
+			slot_panel_image.texture_normal = empty_image_texture
 			
-			(slot_node.get_node("Slot/Date") as Label).text = ""
+			(slot_node.get_node("Slot/Date") as Label).text = \
+				EgoVenture.configuration.menu_saveslots_free_text
+			
 			if ! _is_save_mode:
 				# Prohibit loading from empty slots
 				connect_signals = false
