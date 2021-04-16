@@ -151,6 +151,7 @@ func check_cursor(offset: Vector2 = Vector2(0,0)):
 # - path: The absolute path to the new scene
 func change_scene(path: String):
 	get_tree().change_scene_to(_scene_cache.get_scene(path))
+	yield(get_tree(),"idle_frame")
 	var is_four_side_room = false
 	for child in get_tree().current_scene.get_children():
 		if child.filename == \
