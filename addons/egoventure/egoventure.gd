@@ -141,6 +141,7 @@ func check_cursor(offset: Vector2 = Vector2(0,0)):
 					if child is TriggerHotspot:
 						child.on_mouse_entered()
 					target_shape = child.mouse_default_cursor_shape
+		Speedy.keep_shape_once = true
 		Speedy.set_shape(target_shape)
 
 
