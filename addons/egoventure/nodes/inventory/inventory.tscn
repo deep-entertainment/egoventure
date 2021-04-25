@@ -84,6 +84,7 @@ __meta__ = {
 margin_left = 8.0
 margin_right = 2542.0
 size_flags_horizontal = 3
+size_flags_vertical = 4
 
 [node name="Reveal" type="TextureButton" parent="Canvas/InventoryAnchor/Panel/InventoryPanel"]
 margin_left = 2546.0
@@ -95,6 +96,7 @@ anims/Activate = SubResource( 1 )
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.7
+
 [connection signal="pressed" from="Canvas/InventoryAnchor/Panel/InventoryPanel/Menu" to="." method="_on_Menu_pressed"]
 [connection signal="pressed" from="Canvas/InventoryAnchor/Panel/InventoryPanel/Notepad" to="." method="_on_Notepad_pressed"]
 [connection signal="gui_input" from="Canvas/InventoryAnchor/Panel/InventoryPanel/Reveal" to="." method="_on_Reveal_gui_input"]
