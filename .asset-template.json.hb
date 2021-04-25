@@ -2,7 +2,7 @@
   "title": "EgoVenture",
   "description": "First person point and click adventure framework for Godot",
   "category_id": "7",
-  "godot_version": "3.2",
+  "godot_version": "3.3",
   "version_string": "{{ context.release.tag_name }}",
   "cost": "MIT",
   "download_provider": "GitHub",
