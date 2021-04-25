@@ -67,7 +67,7 @@ func _on_mouse_entered():
 			Cursors.override(
 				Cursors.Type.DEFAULT,
 				Inventory.selected_item.item.image_active,
-				Vector2(32, 32)
+				(item.image_active as Texture).get_size() / 2
 			)
 			
 	
@@ -78,7 +78,7 @@ func _on_mouse_exited():
 		Cursors.override(
 			Cursors.Type.DEFAULT,
 			Inventory.selected_item.item.image_normal,
-			Vector2(32, 32)
+			(item.image_normal as Texture).get_size() / 2
 		)
 
 
