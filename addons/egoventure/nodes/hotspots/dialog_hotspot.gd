@@ -45,7 +45,7 @@ func _ready():
 		)
 	)
 	_set_asked(asked)
-	mouse_default_cursor_shape = Parrot.dialog_hotspot_cursor_shape
+	mouse_default_cursor_shape = Cursors.CURSOR_MAP[Cursors.Type.SPEAK]
 
 
 # Set the asked value and update the color
