@@ -100,16 +100,17 @@ func override(
 #
 # - type: The type to reset (based on the Type enum)
 func reset(type):
-	var target_mouse_position = get_viewport().get_mouse_position() - \
-			_overridden_cursors[type]['hotspot'] + \
-			_default_cursors[type].cursor_hotspot
-	_overridden_cursors.erase(type)
-	Speedy.set_custom_mouse_cursor(
-		_default_cursors[type].cursor,
-		CURSOR_MAP[type],
-		_default_cursors[type].cursor_hotspot,
-		target_mouse_position
-	)
+	if type in _overridden_cursors:
+		var target_mouse_position = get_viewport().get_mouse_position() - \
+				_overridden_cursors[type]['hotspot'] + \
+				_default_cursors[type].cursor_hotspot
+		_overridden_cursors.erase(type)
+		Speedy.set_custom_mouse_cursor(
+			_default_cursors[type].cursor,
+			CURSOR_MAP[type],
+			_default_cursors[type].cursor_hotspot,
+			target_mouse_position
+		)
 
 
 # Return the texture of the specified hotspot type
