@@ -18,6 +18,7 @@ tracks/0/keys = {
 }
 
 [node name="MapNotification" type="CanvasLayer"]
+layer = 100
 script = ExtResource( 2 )
 
 [node name="Map" type="Sprite" parent="."]
