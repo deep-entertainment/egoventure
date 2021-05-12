@@ -22,10 +22,15 @@ var _hotspot_indicator: Sprite
 # texture
 func _init():
 	_hotspot_indicator = Sprite.new()
-	_hotspot_indicator.texture = Cursors.get_cursor_texture(Cursors.Type.USE)
 	add_child(_hotspot_indicator)
 	_hotspot_indicator.hide()
+	
+
+# Update hotspot indicator
+func _process(_delta):
 	_hotspot_indicator.position = rect_size / 2
+	_hotspot_indicator.texture = Cursors.get_cursor_texture(Cursors.Type.USE)
+	_hotspot_indicator.rotation_degrees = rect_rotation * -1
 
 
 # Handle the hotspot indicator
