@@ -50,6 +50,7 @@ func _init():
 func _process(_delta):
 	_hotspot_indicator.position = rect_size / 2
 	_hotspot_indicator.texture = Cursors.get_cursor_texture(cursor_type) 
+	_hotspot_indicator.rotation_degrees = rect_rotation * -1
 
 
 # Hotspot indicator toggle
