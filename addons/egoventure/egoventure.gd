@@ -399,6 +399,8 @@ func _load(p_state: BaseState):
 	MainMenu.resumeable = true
 	Parrot.cancel()
 	
+	WaitingScreen.set_image(ImageTexture.new().create_from_image(Image.new()))
+	
 	var cached_items = update_cache(EgoVenture.state.current_scene, true)
 	if cached_items > 0:
 		yield(self, "queue_complete")
