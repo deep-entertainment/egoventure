@@ -37,6 +37,11 @@ var menu_saveslots_empty_color: Color = Color(0, 0, 0, 0.55)
 # The text shown under the free save slot
 var menu_saveslots_free_text: String = "Free save slot"
 
+# The date format for the save slots
+# The following place holders are available:
+# {month}, {day}, {year}, {hour}, {minute}
+var menu_saveslots_date_format: String = "{month}/{day}/{year} {hour}:{minute}"
+
 # The background of the options menu
 var menu_options_background: Texture
 
@@ -195,6 +200,10 @@ func _get_property_list():
 	})
 	properties.append({
 		name = "menu_saveslots_free_text",
+		type = TYPE_STRING
+	})
+	properties.append({
+		name = "menu_saveslots_date_format",
 		type = TYPE_STRING
 	})
 	properties.append({

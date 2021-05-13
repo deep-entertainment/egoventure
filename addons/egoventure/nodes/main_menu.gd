@@ -10,9 +10,6 @@ signal new_game
 signal quit_game
 
 
-# The date format used for display in the save slots
-const DATE_FORMAT: String = "{month}/{day}/{year} {hour}:{minute}"
-
 # Lowest Audio level
 const AUDIO_MIN: float = -50.0
 
@@ -359,10 +356,11 @@ func _percent_to_db(percent: float) -> float:
 # - The last modification timestamp of the file in the date format as configured
 #   in the constant
 func _get_date_from_file(file: String) -> String:
+	var timezone = OS.get_time_zone_info()
 	var datetime = OS.get_datetime_from_unix_time(
-		File.new().get_modified_time(file)
+		File.new().get_modified_time(file) + (timezone.bias * 60)
 	)
-	return DATE_FORMAT.format(datetime)
+	return _configuration.menu_saveslots_date_format.format(datetime)
 
 
 # Refresh the saveslots vie

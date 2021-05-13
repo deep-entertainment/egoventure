@@ -373,7 +373,9 @@ func _update_state():
 		EgoVenture.state.current_background = ""
 
 
-# the previously saved state, add the inventory items, switch to the saved
+# Load a saved state. Reset the game first.
+# Afterwards load the saved state
+# add the inventory items, switch to the saved
 # scene and emit the game_loaded signal
 #
 # ** Arguments **
@@ -392,12 +394,13 @@ func _load(p_state: BaseState):
 		Inventory.remove_item(item)
 	for item in state.inventory_items:
 		Inventory.add_item(item, true)
-		
+	
 	game_started = true
 	Inventory.enable()
 	MainMenu.saveable = true
 	MainMenu.resumeable = true
 	Parrot.cancel()
+	get_tree().paused = false
 	
 	WaitingScreen.set_image(ImageTexture.new().create_from_image(Image.new()))
 	
