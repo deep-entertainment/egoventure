@@ -400,7 +400,6 @@ func _load(p_state: BaseState):
 	MainMenu.saveable = true
 	MainMenu.resumeable = true
 	Parrot.cancel()
-	get_tree().paused = false
 	
 	WaitingScreen.set_image(ImageTexture.new().create_from_image(Image.new()))
 	
