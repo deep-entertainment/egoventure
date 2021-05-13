@@ -360,6 +360,11 @@ func _get_date_from_file(file: String) -> String:
 	var datetime = OS.get_datetime_from_unix_time(
 		File.new().get_modified_time(file) + (timezone.bias * 60)
 	)
+	datetime['month'] = "%02d" % datetime['month']
+	datetime['day'] = "%02d" % datetime['day']
+	datetime['year'] = "%04d" % datetime['year']
+	datetime['hour'] = "%02d" % datetime['hour']
+	datetime['minute'] = "%02d" % datetime['minute']
 	return _configuration.menu_saveslots_date_format.format(datetime)
 
 
