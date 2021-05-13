@@ -18,14 +18,6 @@ const AUDIO_MIN: float = -50
 
 Lowest Audio level
 
-### DATE\_FORMAT
-
-```gdscript
-const DATE_FORMAT: String = "{month}/{day}/{year} {hour}:{minute}"
-```
-
-The date format used for display in the save slots
-
 ### MINIMUM\_SAMPLE\_TIME
 
 ```gdscript

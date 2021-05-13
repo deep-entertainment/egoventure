@@ -8,21 +8,21 @@
 
 ## Enumerations
 
-### Type
-
-```gdscript
-const Type: Dictionary = {"CORNER_LEFT":6,"CORNER_RIGHT":5,"CUSTOM1":14,"CUSTOM2":15,"CUSTOM3":16,"DEFAULT":0,"EXIT":10,"GO_BACKWARDS":2,"GO_FORWARD":1,"GO_FORWARD_X":13,"HAND":12,"LOOK":8,"MAP":11,"SPEAK":9,"TURN_LEFT":4,"TURN_RIGHT":3,"USE":7}
-```
-
-The available types of cursors
-
 ### CURSOR\_MAP
 
 ```gdscript
-const CURSOR_MAP: Dictionary = {"0":0,"1":3,"2":6,"3":15,"4":14,"5":10,"6":9,"7":2,"8":16,"9":1,"10":11,"11":12,"12":13,"13":5,"14":7,"15":8,"16":4}
+const CURSOR_MAP: Dictionary = {"0":0,"1":3,"2":6,"3":15,"4":14,"5":10,"6":9,"7":2,"8":16,"9":1,"10":11,"11":12,"12":13,"13":7,"14":8,"15":4,"16":5}
 ```
 
 A map of cursor types to core input cursors
+
+### Type
+
+```gdscript
+const Type: Dictionary = {"CUSTOM1":13,"CUSTOM2":14,"CUSTOM3":15,"CUSTOM4":16,"DEFAULT":0,"DOWN":6,"EXIT":10,"GO_BACKWARDS":2,"GO_FORWARD":1,"HAND":12,"LOOK":8,"MAP":11,"SPEAK":9,"TURN_LEFT":4,"TURN_RIGHT":3,"UP":5,"USE":7}
+```
+
+The available types of cursors
 
 ## Method Descriptions
 

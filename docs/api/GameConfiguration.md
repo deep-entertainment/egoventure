@@ -98,6 +98,16 @@ var menu_saveslots_free_text: String = "Free save slot"
 
 The text shown under the free save slot
 
+### menu\_saveslots\_date\_format
+
+```gdscript
+var menu_saveslots_date_format: String = "{month}/{day}/{year} {hour}:{minute}"
+```
+
+The date format for the save slots
+The following place holders are available:
+{month}, {day}, {year}, {hour}, {minute}
+
 ### menu\_options\_background
 
 ```gdscript
