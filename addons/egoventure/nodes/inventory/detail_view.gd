@@ -29,6 +29,13 @@ func _ready():
 			"Label"
 		)
 	)
+	$Panel/VBox/Description.add_color_override(
+		"font_color",
+		$Panel/VBox/Description.get_color(
+			"detail_view_font_color", 
+			"Label"
+		)
+	)
 	$Panel.hide()
 
 

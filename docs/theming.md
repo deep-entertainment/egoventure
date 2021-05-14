@@ -72,14 +72,15 @@ Used in the game options for the "Volume"-settings
 
 ## Label
 
-| Subcategory | Setting     | Description                                                  | Used in        |
-| ----------- | ----------- | ------------------------------------------------------------ | -------------- |
-| Colors      | Font Color  | The font color of various items (based on labels) like the date labels, the menu titles, etc. | Various places |
-|             | Goals       | The font color of the goals in the notepad                   | Notepad        |
-|             | Hints       | The font color of the hints in the notepad                   | Notepad        |
-| Fonts       | Detail View | The font used for the description in the detail view         | Detail view    |
-|             | Goals       | The font used for the goals in the notepad                   | Notepad        |
-|             | Hints       | The font used for the hints in the notepad                   | Notepad        |
+| Subcategory | Setting                | Description                                                  | Used in        |
+| ----------- | ---------------------- | ------------------------------------------------------------ | -------------- |
+| Colors      | Detail View Font Color | The font color of the detail view description                | Detail View    |
+|             | Font Color             | The font color of various items (based on labels) like the date labels, the menu titles, etc. | Various places |
+|             | Goals                  | The font color of the goals in the notepad                   | Notepad        |
+|             | Hints                  | The font color of the hints in the notepad                   | Notepad        |
+| Fonts       | Detail View            | The font used for the description in the detail view         | Detail view    |
+|             | Goals                  | The font used for the goals in the notepad                   | Notepad        |
+|             | Hints                  | The font used for the hints in the notepad                   | Notepad        |
 
 ## Panel
 
