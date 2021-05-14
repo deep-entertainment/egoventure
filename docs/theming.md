@@ -61,24 +61,25 @@ Used in the game options for the "Subtitles"-setting
 
 Used in the game options for the "Volume"-settings
 
-| Subcategory | Setting                | Description                                                   | Used in      |
-| ----------- | ---------------------- | ------------------------------------------------------------- | ------------ |
-| Icons       | Grabber                | The image used for the grabber in the slider                  | Game options |
+| Subcategory | Setting                | Description                                                  | Used in      |
+| ----------- | ---------------------- | ------------------------------------------------------------ | ------------ |
+| Icons       | Grabber                | The image used for the grabber in the slider                 | Game options |
 |             | Grabber Highlight      | The image used for the grabber when the slider is highlighted | Game options |
-|             | Tick                   | The image used for the ticks in the slider                    | Game options |
-| Styles      | Grabber Area           | The fill for the grabber area                                 | Game options |
-|             | Grabber Area Highlight | The fill for the grabber area when highlighted                | Game options |
-|             | Slider                 | The fill for the slider                                       | Game options |
+|             | Tick                   | The image used for the ticks in the slider                   | Game options |
+| Styles      | Grabber Area           | The fill for the grabber area                                | Game options |
+|             | Grabber Area Highlight | The fill for the grabber area when highlighted               | Game options |
+|             | Slider                 | The fill for the slider                                      | Game options |
 
 ## Label
 
-| Subcategory | Setting     | Description                                          | Used in     |
-| ----------- | ----------- | ---------------------------------------------------- | ----------- |
-| Colors      | Goals       | The font color of the goals in the notepad           | Notepad     |
-|             | Hints       | The font color of the hints in the notepad           | Notepad     |
-| Fonts       | Detail View | The font used for the description in the detail view | Detail view |
-|             | Goals       | The font used for the goals in the notepad           | Notepad     |
-|             | Hints       | The font used for the hints in the notepad           | Notepad     |
+| Subcategory | Setting     | Description                                                  | Used in        |
+| ----------- | ----------- | ------------------------------------------------------------ | -------------- |
+| Colors      | Font Color  | The font color of various items (based on labels) like the date labels, the menu titles, etc. | Various places |
+|             | Goals       | The font color of the goals in the notepad                   | Notepad        |
+|             | Hints       | The font color of the hints in the notepad                   | Notepad        |
+| Fonts       | Detail View | The font used for the description in the detail view         | Detail view    |
+|             | Goals       | The font used for the goals in the notepad                   | Notepad        |
+|             | Hints       | The font used for the hints in the notepad                   | Notepad        |
 
 ## Panel
 
