@@ -11,10 +11,6 @@ signal triggered_inventory_item
 var item: InventoryItem
 
 
-# Wether we're on touch devices
-onready var _is_touch: bool = OS.has_touchscreen_ui_hint()
-
-
 # Handle detail view trigger
 func _gui_input(event):
 	if Inventory.selected_item == null:
@@ -85,7 +81,7 @@ func _on_mouse_exited():
 # Handle clicks on another inventory item
 func _on_InventoryItem_pressed():
 	release_focus()
-	if _is_touch and Inventory.selected_item == self:
+	if EgoVenture.is_touch and Inventory.selected_item == self:
 		# On touch, selecting the same item again, deselects it
 		Inventory.release_item()
 	elif Inventory.selected_item != null:
@@ -98,7 +94,7 @@ func _on_InventoryItem_pressed():
 	else:
 		# Select this inventory item
 		Inventory.selected_item = self
-		if _is_touch:
+		if EgoVenture.is_touch:
 			texture_normal = item.image_active
 		else:
 			modulate.a = 0
