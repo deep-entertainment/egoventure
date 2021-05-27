@@ -51,11 +51,14 @@ var _scene_cache: SceneCache
 
 
 # Helper variable if we're on a touch device
-onready var is_touch: bool = OS.has_touchscreen_ui_hint()
+var is_touch: bool
 
 
 # Load the ingame configuration
 func _init():
+	# Workaround for faulty feature detection as described in
+	# https://github.com/godotengine/godot/issues/49113
+	is_touch = OS.get_name() == "Android" || OS.get_name() == "iPhone"
 	pause_mode = Node.PAUSE_MODE_PROCESS
 	var userdir = Directory.new()
 	userdir.open("user://")

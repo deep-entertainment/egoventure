@@ -21,14 +21,9 @@ var just_released: bool = false
 var _inventory_items: Array
 
 
-# Helper variable if we're on a touch device
-var is_touch: bool
-
-
 # Hide the activate and menu button on touch devices
 func _ready():
-	is_touch = OS.has_touchscreen_ui_hint()
-	if is_touch:
+	if EgoVenture.is_touch:
 		$Canvas/InventoryAnchor/Panel/InventoryPanel/Reveal.show()
 		$Canvas/InventoryAnchor/Panel/InventoryPanel/Menu.show()
 	else:
@@ -56,7 +51,7 @@ func _input(event):
 				not (event as InputEventScreenTouch).pressed:
 			release_item()
 			just_released = true
-		elif ! is_touch and event is InputEventMouseMotion and \
+		elif ! EgoVenture.is_touch and event is InputEventMouseMotion and \
 				$Timer.is_stopped():
 			# Activate the inventory when reaching the upper screen border
 			if ! activated and get_viewport().get_mouse_position().y <= 10:
@@ -120,7 +115,7 @@ func add_item(item: InventoryItem, skip_show: bool = false):
 	)
 	_inventory_items.append(inventory_item_node)
 	_update()
-	if not is_touch and not activated and not skip_show:
+	if not EgoVenture.is_touch and not activated and not skip_show:
 		# Briefly show the inventory when it is not activated
 		toggle_inventory()
 		$Timer.start()
@@ -148,7 +143,7 @@ func release_item():
 			(selected_item.item as InventoryItem).image_normal
 	selected_item.modulate.a = 1
 	selected_item = null
-	if not is_touch:
+	if not EgoVenture.is_touch:
 		Cursors.reset(Cursors.Type.DEFAULT)
 		Speedy.keep_shape = false
 

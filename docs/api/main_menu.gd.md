@@ -53,14 +53,6 @@ var disabled: bool = false
 
 Wether the menu can be displayed at all
 
-### is\_touch
-
-```gdscript
-var is_touch: bool
-```
-
-Helper variable if we're on a touch device
-
 ## Method Descriptions
 
 ### configure

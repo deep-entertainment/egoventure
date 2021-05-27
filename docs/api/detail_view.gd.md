@@ -18,14 +18,6 @@ var is_visible
 
 Wether the DetailView is currently visible
 
-### is\_touch
-
-```gdscript
-var is_touch: bool
-```
-
-Helper variable if we're on a touch device
-
 ## Method Descriptions
 
 ### show

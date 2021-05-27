@@ -35,14 +35,6 @@ var just_released: bool = false
 Wether the inventory item was just released (to prevent other
 actions to be carried out)
 
-### is\_touch
-
-```gdscript
-var is_touch: bool
-```
-
-Helper variable if we're on a touch device
-
 ## Method Descriptions
 
 ### configure
