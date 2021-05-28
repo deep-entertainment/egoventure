@@ -53,7 +53,7 @@ func _ready():
 
 # Set the button we're extending from to flat
 func _enter_tree():
-	enabled_focus_mode = Control.FOCUS_NONE
+	set_focus_mode(FOCUS_NONE)
 	
 
 func _exit_tree():
