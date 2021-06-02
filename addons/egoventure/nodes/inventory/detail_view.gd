@@ -36,6 +36,10 @@ func _ready():
 
 
 # Hide the view again on click/touch
+#
+# ** Parameters **
+#
+# - event: Input event received.
 func _on_panel_gui_input(event: InputEvent):
 	if $Panel.visible and not _item.detail_show_mouse:
 		$Panel.accept_event()
