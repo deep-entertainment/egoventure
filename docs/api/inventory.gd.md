@@ -45,6 +45,10 @@ func configure(configuration: GameConfiguration)
 
 Configure the inventory. Should be call by a game core singleton
 
+** Parameters **
+
+- configuration: The game configuration
+
 ### disable
 
 ```gdscript
@@ -69,6 +73,11 @@ func add_item(item: InventoryItem, skip_show: bool = false)
 
 Add an item to the inventory
 
+** Parameters **
+
+- item: Item to add to the inventory
+- skip_show: Skip the reveal animation of the inventory bar
+
 ### remove\_item
 
 ```gdscript
@@ -76,6 +85,10 @@ func remove_item(item: InventoryItem)
 ```
 
 Remove item from the inventory
+
+** Parameters **
+
+- item: Item to remove from the inventory
 
 ### release\_item
 

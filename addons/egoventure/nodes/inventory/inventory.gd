@@ -31,12 +31,17 @@ func _ready():
 		$Canvas/InventoryAnchor/Panel/InventoryPanel/Menu.hide()
 
 
+# Reset just_released
 func _process(_delta):
 	just_released = false
 
 
 # Handle inventory drop events and border trigger for mouse
-func _input(event):
+#
+# ** Parameters **
+#
+# - event: Event received
+func _input(event: InputEvent):
 	if not DetailView.is_visible:
 		# Drop the inventory item on RMB and two finger touch
 		if Inventory.selected_item != null and \
@@ -64,6 +69,10 @@ func _input(event):
 
 
 # Configure the inventory. Should be call by a game core singleton
+# 
+# ** Parameters **
+#
+# - configuration: The game configuration
 func configure(configuration: GameConfiguration):
 	$Canvas/InventoryAnchor/Panel/InventoryPanel/Menu.texture_normal = \
 			configuration.inventory_texture_menu
@@ -105,6 +114,11 @@ func enable():
 
 
 # Add an item to the inventory
+#
+# ** Parameters **
+#
+# - item: Item to add to the inventory
+# - skip_show: Skip the reveal animation of the inventory bar
 func add_item(item: InventoryItem, skip_show: bool = false):
 	var inventory_item_node = InventoryItemNode.new()
 	inventory_item_node.configure(item)
@@ -125,6 +139,10 @@ func add_item(item: InventoryItem, skip_show: bool = false):
 
 
 # Remove item from the inventory
+# 
+# ** Parameters **
+# 
+# - item: Item to remove from the inventory
 func remove_item(item: InventoryItem):
 	var found_index = -1
 	for index in range(_inventory_items.size()):
@@ -192,6 +210,11 @@ func _on_Menu_pressed():
 
 
 # Emit a signal, that one item was triggered on another item	
+# 
+# ** Parameters **
+#
+# - first_item: First item that is used
+# - second_item: Second item that is used
 func _on_triggered_inventory_item(
 	first_item: InventoryItem,
 	second_item: InventoryItem

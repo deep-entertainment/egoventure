@@ -1,14 +1,17 @@
 # Getting started
 
+Hello and welcome to *EgoVenture*.
+
 *EgoVenture* is a framework for creating first person point and click games. It handles and streamlines the most basic stuff and makes it easy to develop games like this.
 
-Usually, the games need two more plugins to fully function:
+The *EgoVenture* project provides different packages:
 
-* Speedy Gonzales - custom mouse cursor handling
-
-* Parrot - voice dialog handling
-
-To easily get started making an *EgoVenture* game, it's recommended to use the *EgoVenture Game Template*. This template includes all required plugins, a default game configuration, a basic game state and initialization code and the recommended folder structure to get you started right away.
+* The [*EgoVenture* example game](https://godotengine.org/asset-library/asset/906), which is made by MDNA games and showcases all features of *EgoVenture*. You can download the game and open it in Godot to check out, how things are done.
+* The [*EgoVenture game template*](https://godotengine.org/asset-library/asset/905), which is used as a starting point for a new game, that bases on *EgoVenture*. This template includes all required plugins, a default game configuration, a basic game state and initialization code and the recommended folder structure to get you started right away.
+* The individual Godot addons, that form the *EgoVenture* features:
+  * The [*EgoVenture* core plugin](https://godotengine.org/asset-library/asset/903) which holds the basic features
+  * [Speedy Gonzales](https://godotengine.org/asset-library/asset/904) for easy custom mouse cursor handling
+  * [Parrot](https://godotengine.org/asset-library/asset/907) used for voice dialog handling
 
 ## Create a new Project
 
