@@ -39,7 +39,7 @@ Enter the name of your new game and the folder where it should be created:
 
 Click on "Install & Edit" to start the editor.
 
-The *EgoVenture* game template includes a small set of assets (i.e. mouse cursor icons, a basic game configuration and theme) that help you getting started. After you've clicked on "Install & Edit", these assets are automatically processed by Godot.
+The *EgoVenture* game template includes a small set of assets (i.e. mouse cursor icons, a basic game configuration and theme) that helps you getting started. After you've clicked on "Install & Edit", these assets are automatically processed by Godot.
 
 After that process finished, **<u>close Godot and open it again</u>**. Godot seems to loose the links to the provided assets if you don't.
 
