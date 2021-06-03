@@ -6,8 +6,8 @@ Hello and welcome to *EgoVenture*.
 
 The *EgoVenture* project provides different packages:
 
-* The [*EgoVenture* example game](https://godotengine.org/asset-library/asset/906), which is made by MDNA games and showcases all features of *EgoVenture*. You can download the game and open it in Godot to check out, how things are done.
-* The [*EgoVenture game template*](https://godotengine.org/asset-library/asset/905), which is used as a starting point for a new game, that bases on *EgoVenture*. This template includes all required plugins, a default game configuration, a basic game state and initialization code and the recommended folder structure to get you started right away.
+* The [*EgoVenture* example game](https://godotengine.org/asset-library/asset/906), which is made by MDNA games and showcases all features of *EgoVenture*. You can download the game and open it in Godot to check out how things are done.
+* The [*EgoVenture game template*](https://godotengine.org/asset-library/asset/905), which is used as a starting point for a new game, that is based on *EgoVenture*. This template includes all required plugins, a default game configuration, a basic game state and initialization code and the recommended folder structure to get you started right away.
 * The individual Godot addons, that form the *EgoVenture* features:
   * The [*EgoVenture* core plugin](https://godotengine.org/asset-library/asset/903) which holds the basic features
   * [Speedy Gonzales](https://godotengine.org/asset-library/asset/904) for easy custom mouse cursor handling
@@ -17,7 +17,7 @@ In the following sections we will guide you how to start creating your first gam
 
 ## Downloading Godot
 
-Go over to https://godotengine.org/download and download the current stable version of the Godot engine for your operating system and install it.
+Go to https://godotengine.org/download and download the current stable version of the Godot engine for your operating system and install it.
 
 ## Create a new Project
 
@@ -57,7 +57,7 @@ Afterwards check out the default folder structure of the game template:
 
 * `inventory`: The inventory items and their corresponding images
 
-* `images`: Is the root folder for all visual resources in this project. Currently, there are two subfolders there:
+* `images`: The root folder for all visual resources in this project. Currently, there are two subfolders there:
   * `misc`: Holds various images like icons and button images
   
   * `mouse`: Holds the default mouse cursor images
@@ -67,7 +67,7 @@ Afterwards check out the default folder structure of the game template:
   
 * `music`: Holds all music items
 
-* `scenes`: Holds all locations and their corresponding scenes. Map scenes for example can directly reside in "scenes", other scenes should be in a location subfolder. For more information check out the [scenes management documentation](scenes.md).
+* `scenes`: Holds all locations and their corresponding scenes. Map scenes, for example, can directly reside in "scenes", while other scenes should be in a location subfolder. For more information check out the [scenes management documentation](scenes.md).
 
 * `sounds`: Holds all background sounds and sound effects
 
@@ -93,7 +93,7 @@ Additionally, these files reside in the root directory of the project:
 
 ## Setting up
 
-It's recommended to first set the game name in the project settings. Click on the *Project* menu, then on *Project Settings...*. On the left side, select the section *Config* under *Application* and change the *Name* and *Description* fields so they match your game. This way, you can easily identify your game in the project manager when you start Godot.
+It's recommended to first set the game name in the project settings. Click on the *Project* menu, then on *Project Settings...*. On the left side, select the section *Config* under *Application* and change the *Name* and *Description* fields so that they match your game. This way, you can easily identify your game in the project manager when you start Godot.
 
 ![Project settings](images/gettingstarted/projectsettings.png)
 
@@ -155,7 +155,7 @@ Now it's time to playtest this scene. Click on the *Play Scene* button on the up
 
 If all went right, you should see the default view you configured earlier and can click on the left and right side of the screen to "turn around" in your scene.
 
-So, turning around already works. Now we should allow the player to advance to the next scene. 
+So, turning around now works. Now we should allow the player to advance to the next scene. 
 
 ### Adding a hotspot
 
@@ -221,7 +221,7 @@ This will directly open the script in the built-in script editor. For now, just 
 
 ![Switching back to 2d mode](images/gettingstarted/2dmode.png)
 
-Godot scripting is done using a system of *signals*. Nodes can emit signals on various actions and scripts can "listen to" this signals and react to them.
+Godot scripting is done using a system of *signals*. Nodes can emit signals on various actions and scripts can "listen to" these signals, and react to them.
 
 Select the new hotspot and on the right side, switch from *Inspector* to *Node* to see the available signals. Double click on *activate*.
 
