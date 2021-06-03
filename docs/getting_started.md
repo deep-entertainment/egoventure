@@ -243,6 +243,10 @@ Godot uses a so-called *virtual file system*, because the file systems of each p
 
 `res://inventory/keys.tres`
 
+To make it easier to use paths, you can right-click a file in the file browser and then click on *Copy Path*.
+
+![Copy path from the file browser](images/gettingstarted/copypath.png)
+
 To add this item to the player's inventory, remove the line `pass` from the script and replace it with:
 
 `Inventory.add_item(preload("res://inventory/keys.tres"))`
