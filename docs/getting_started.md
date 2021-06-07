@@ -207,7 +207,11 @@ Back to the scene. Right click the top node again and add a new child node. This
 
 ![Adding a new hotspot](images/gettingstarted/addhotspot.png)
 
-This time you only have to select a fitting mouse cursor for the hotspot (e.g. *Hand*)and move the rectangle somewhere in the scene where the player can "pick up" your inventory item by clicking on the area.
+This time you only have to select a fitting mouse cursor for the hotspot (e.g. *Hand*) and move the rectangle somewhere in the scene where the player can "pick up" your inventory item by clicking on the area.
+
+If the item is not part of your background image, you can use the "normal" texture property in the hotspot to add an image to the hotspot:
+
+![Setting a hotspot texture](images/gettingstarted/hotspottexture.png)
 
 Now we need to add a new script for this scene. We will use Godot's own scripting language *GDScript* in this example. Select your top node using the left mouse button and use the *Attach Script* button to add a new script to your scene:
 
