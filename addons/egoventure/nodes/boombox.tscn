@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://addons/egoventure/nodes/boombox.gd" type="Script" id=1]
 
@@ -57,6 +57,61 @@ tracks/1/keys = {
 "values": [ -50.0, 0.0 ]
 }
 
+[sub_resource type="Animation" id=3]
+resource_name = "fadeto1"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/path = NodePath("Background1:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ -50.0, 0.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Background2:volume_db")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, -50.0 ]
+}
+
+[sub_resource type="Animation" id=4]
+length = 0.6
+tracks/0/type = "value"
+tracks/0/path = NodePath("Background1:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, -50.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Background2:volume_db")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ -50.0, 0.0 ]
+}
+
 [node name="Boombox" type="Node"]
 script = ExtResource( 1 )
 
@@ -67,7 +122,11 @@ bus = "Music"
 volume_db = -50.0
 bus = "Music"
 
-[node name="Background" type="AudioStreamPlayer" parent="."]
+[node name="Background1" type="AudioStreamPlayer" parent="."]
+bus = "Music"
+
+[node name="Background2" type="AudioStreamPlayer" parent="."]
+volume_db = -50.0
 bus = "Music"
 
 [node name="Effects" type="AudioStreamPlayer" parent="."]
@@ -76,4 +135,9 @@ bus = "Effects"
 [node name="Fader" type="AnimationPlayer" parent="."]
 anims/fadeto1 = SubResource( 1 )
 anims/fadeto2 = SubResource( 2 )
+
+[node name="BackgroundFader" type="AnimationPlayer" parent="."]
+anims/fadeto1 = SubResource( 3 )
+anims/fadeto2 = SubResource( 4 )
+
 [connection signal="finished" from="Effects" to="." method="_on_Effects_finished"]

@@ -14,6 +14,9 @@ var ignore_pause: bool setget _set_ignore_pause
 # The active music player
 onready var active_music: Node = $Music1
 
+# The active background player
+onready var active_background: Node = $Background1
+
 
 # Reset the settings. Stop all music, sounds and backgrounds
 # Used when starting a new game
@@ -21,10 +24,14 @@ func reset():
 	active_music.stop()
 	if active_music != $Music1:
 		active_music = $Music1
+	if active_background != $Background1:
+		active_background = $Background1
 	$Fader.current_animation = "fadeto2"
 	$Fader.seek(0, true)
 	$Fader.stop()
-	$Background.stop()
+	$BackgroundFader.current_animation = "fadeto2"
+	$BackgroundFader.seek(0, true)
+	$BackgroundFader.stop()
 	$Effects.stop()
 
 
@@ -87,34 +94,51 @@ func is_music_playing() -> bool:
 #
 # - background: An audiostream of the background noise to play
 func play_background(background: AudioStream):
-	if background != $Background.stream or not $Background.playing:
-		$Background.stream = background
-		$Background.play()
+	if background != active_background.stream or not active_background.playing:
+		if not active_background.playing:
+			active_background.stream = background
+			active_background.play()
+		elif active_background == $Background1:
+			$Background2.stream = background
+			$Background2.seek(0)
+			$Background2.play()
+			$BackgroundFader.play("fadeto2")
+			yield($BackgroundFader, "animation_finished")
+			active_background.stop()
+			active_background = $Background2
+		else:
+			$Background1.stream = background
+			$Background1.seek(0)
+			$Background1.play()
+			$BackgroundFader.play("fadeto1")
+			yield($BackgroundFader, "animation_finished")
+			active_background.stop()
+			active_background = $Background1
 
 
 # Pause playing background effect
 func pause_background():
-	$Background.stream_paused = true
+	active_background.stream_paused = true
 	
 	
 # Resume playing background effect
 func resume_background():
-	$Background.stream_paused = false
+	active_background.stream_paused = false
 
 
 # Stop playing a background effect
 func stop_background():
-	$Background.stop()
+	active_background.stop()
 
 
 # Get the current background
 func get_background() -> AudioStream:
-	return $Background.stream
+	return active_background.stream
 
 
 # Get wether boombox is currently playing background
 func is_background_playing() -> bool:
-	return $Background.playing
+	return active_background.playing
 
 
 # Play a sound effect
@@ -152,12 +176,14 @@ func _set_ignore_pause(value: bool):
 	if ignore_pause:
 		$Music1.pause_mode = Node.PAUSE_MODE_PROCESS
 		$Music2.pause_mode = Node.PAUSE_MODE_PROCESS
-		$Background.pause_mode = Node.PAUSE_MODE_PROCESS
+		$Background1.pause_mode = Node.PAUSE_MODE_PROCESS
+		$Background2.pause_mode = Node.PAUSE_MODE_PROCESS
 		$Effects.pause_mode = Node.PAUSE_MODE_PROCESS
 	else:
 		$Music1.pause_mode = Node.PAUSE_MODE_STOP
 		$Music2.pause_mode = Node.PAUSE_MODE_STOP
-		$Background.pause_mode = Node.PAUSE_MODE_STOP
+		$Background1.pause_mode = Node.PAUSE_MODE_STOP
+		$Background2.pause_mode = Node.PAUSE_MODE_STOP
 		$Effects.pause_mode = Node.PAUSE_MODE_STOP
 
 
