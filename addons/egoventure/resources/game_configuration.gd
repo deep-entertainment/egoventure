@@ -106,6 +106,9 @@ var cache_scene_count: int = 3
 # A list of scenes (as path to the scene files) that are always cached
 var cache_permanent: PoolStringArray = []
 
+# The minimum time to show the loading indicator when precaching
+var cache_minimum_wait_seconds: int = 4
+
 
 # Build the property list
 func _get_property_list():
@@ -324,5 +327,9 @@ func _get_property_list():
 	properties.append({
 		name = "cache_permanent",
 		type = TYPE_STRING_ARRAY,
+	})
+	properties.append({
+		name = "cache_minimum_wait_seconds",
+		type = TYPE_INT,
 	})
 	return properties
