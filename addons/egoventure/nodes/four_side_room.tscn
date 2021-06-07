@@ -5,6 +5,9 @@
 
 [node name="Room" type="Node2D"]
 script = ExtResource( 6 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="Views" type="Node" parent="."]
 
@@ -36,9 +39,8 @@ anchor_mode = 0
 current = true
 
 [node name="Left" type="TextureButton" parent="Camera"]
-margin_left = -7.0
 margin_top = 132.0
-margin_right = 420.0
+margin_right = 427.0
 margin_bottom = 1453.0
 mouse_default_cursor_shape = 14
 script = ExtResource( 2 )
@@ -58,5 +60,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 cursor_type = 3
+
 [connection signal="activate" from="Camera/Left" to="." method="_on_Left_activate"]
 [connection signal="activate" from="Camera/Right" to="." method="_on_Right_activate"]
