@@ -12,7 +12,11 @@ var item: InventoryItem
 
 
 # Handle detail view trigger
-func _gui_input(event):
+# 
+# ** Parameters **
+#
+# - event: Event received
+func _gui_input(event: InputEvent):
 	if Inventory.selected_item == null:
 		if event is InputEventScreenTouch and \
 				(event as InputEventScreenTouch).index == 2 and \
