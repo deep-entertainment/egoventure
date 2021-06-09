@@ -361,7 +361,7 @@ func _get_date_from_file(file: String) -> String:
 	datetime['year'] = "%04d" % datetime['year']
 	datetime['hour'] = "%02d" % datetime['hour']
 	datetime['minute'] = "%02d" % datetime['minute']
-	return _configuration.menu_saveslots_date_format.format(datetime)
+	return tr(_configuration.menu_saveslots_date_format).format(datetime)
 
 
 # Refresh the saveslots vie
