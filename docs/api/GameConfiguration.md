@@ -268,3 +268,11 @@ var cache_permanent: PoolStringArray
 ```
 
 A list of scenes (as path to the scene files) that are always cached
+
+### cache\_minimum\_wait\_seconds
+
+```gdscript
+var cache_minimum_wait_seconds: int = 4
+```
+
+The minimum time to show the loading indicator when precaching

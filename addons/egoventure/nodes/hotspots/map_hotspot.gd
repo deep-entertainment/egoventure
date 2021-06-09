@@ -41,9 +41,13 @@ func _on_pressed():
 		if caches > 0:
 			yield(EgoVenture, "queue_complete")
 		var end = OS.get_ticks_msec()
-		if ((end - start) / 1000) < EgoVenture.MIN_WAITING_TIME:
+		if ((end - start) / 1000) < \
+				EgoVenture.configuration.cache_minimum_wait_seconds:
 			EgoVenture.wait_screen(
-				ceil(EgoVenture.MIN_WAITING_TIME-((end - start) / 1000))
+				ceil(
+					EgoVenture.configuration.cache_minimum_wait_seconds -\
+					((end - start) / 1000)
+				)
 			)
 			yield(EgoVenture.wait_timer, "timeout")
 		Speedy.hidden = false

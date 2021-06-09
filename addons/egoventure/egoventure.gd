@@ -13,9 +13,6 @@ signal queue_complete
 # e.g.: home04b.tscn has the index 4, castle12detail1.tscn has the index 12.
 const SCENE_REGEX = "^[a-z_-]+(?<index>\\d+)\\D?.*$"
 
-# The minimum time to wait when switching scenes
-const MIN_WAITING_TIME = 4
-
 
 # The current state of the game
 var state: BaseState
@@ -87,7 +84,8 @@ func _ready():
 func _process(_delta):
 	if not wait_timer.is_stopped():
 		WaitingScreen.set_progress(
-			100.0 - wait_timer.get_time_left() / MIN_WAITING_TIME * 100
+			100.0 - wait_timer.get_time_left() / \
+					configuration.cache_minimum_wait_seconds * 100
 		)
 	else:
 		_scene_cache.update_progress()

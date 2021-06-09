@@ -10,14 +10,6 @@ First person point and click adventure framework for Godot
 
 ## Constants Descriptions
 
-### MIN\_WAITING\_TIME
-
-```gdscript
-const MIN_WAITING_TIME: int = 4
-```
-
-The minimum time to wait when switching scenes
-
 ### SCENE\_REGEX
 
 ```gdscript
