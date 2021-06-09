@@ -123,11 +123,11 @@ volume_db = -50.0
 bus = "Music"
 
 [node name="Background1" type="AudioStreamPlayer" parent="."]
-bus = "Music"
+bus = "Effects"
 
 [node name="Background2" type="AudioStreamPlayer" parent="."]
 volume_db = -50.0
-bus = "Music"
+bus = "Effects"
 
 [node name="Effects" type="AudioStreamPlayer" parent="."]
 bus = "Effects"
