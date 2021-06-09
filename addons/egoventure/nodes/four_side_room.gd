@@ -5,6 +5,10 @@ class_name FourSideRoom
 extends Node2D
 
 
+# Triggered when the user switches the view
+signal view_changed(old_view, new_view)
+
+
 # The front view
 const VIEW_FRONT = "front"
 
@@ -93,6 +97,7 @@ func _enter_tree():
 #
 # - value: The current view
 func _set_current_view(value: String):
+	emit_signal("view_changed", current_view, value)
 	current_view = value
 	EgoVenture.current_view = value
 	match current_view:
