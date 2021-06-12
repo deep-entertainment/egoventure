@@ -120,6 +120,12 @@ func enable():
 # - item: Item to add to the inventory
 # - skip_show: Skip the reveal animation of the inventory bar
 func add_item(item: InventoryItem, skip_show: bool = false):
+	if has_item(item):
+		print(
+			"Item %s already is in the inventory. Rerufsing to add it twice" % \
+				item.title
+		)
+		return
 	var inventory_item_node = InventoryItemNode.new()
 	inventory_item_node.configure(item)
 	inventory_item_node.connect(
