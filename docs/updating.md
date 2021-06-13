@@ -8,7 +8,7 @@ The main EgoVenture functionality is distributed as Godot addons. Addons can be 
 * `addons/parrot`
 * `addons/speedy_gonzales`
 
-To update, switch to the Godot Asset lib view:
+To update, switch to the Godot AssetLib view:
 
 ![Opening the asset lib](images/update_assetlib.png)
 
@@ -26,7 +26,7 @@ Check, that the given version is the one you'd like to update to (0.18.0 in this
 
 Click "Install..." 
 
-The next part is currently a big cumbersome. First, remove the check mark at the topmost entry in the package installer:
+The next part is currently very cumbersome. First, remove the check mark at the topmost entry in the package installer:
 
 ![Unckeck the checkmark at res://](images/update_installer1.png)
 
@@ -34,4 +34,4 @@ Then select **every** folder and file inside the Addons' path (addons/egoventure
 
 ![Checking every addon checkmark](images/update_installer2.png)
 
-After that, click "Install" and the update is installed.
+After that, click "Install" and the update will be installed.
