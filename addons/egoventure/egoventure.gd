@@ -427,6 +427,7 @@ func _load_in_game_configuration():
 		in_game_configuration = ResourceLoader.load("user://in_game_configuration.tres", "", true)
 	else:
 		in_game_configuration = InGameConfiguration.new()
+	options_set_subtitles(in_game_configuration.subtitles)
 	set_audio_levels()
 	set_full_screen()
 
