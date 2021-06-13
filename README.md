@@ -17,27 +17,17 @@ If you want to see all the features, EgoVenture provides, check out the [egovent
 ## Documentation
 
 * [Getting started](docs/getting_started.md)
-
 * [Basic structure](docs/structure.md)
-
 * [The game state](docs/state.md)
-
 * [Scenes and navigation](docs/scenes.md)
-
 * [Inventory handling](docs/inventory.md)
-
 * [Hotspots](docs/hotspots.md)
-
 * [Effects, music and background sounds](docs/sound.md)
-
 * [Game configuration](docs/configuration.md)
-
 * [Hint system](docs/hints.md)
-
 * [Tools](docs/tools.md)
-
 * [Theming](docs/theming.md)
-
+* [Updating EgoVenture](docs/updating.md)
 * [API-Docs](docs/api)
 
 ## Development
