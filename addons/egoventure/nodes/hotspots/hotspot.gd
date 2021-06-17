@@ -50,18 +50,6 @@ func _init():
 	connect("pressed", self, "_on_pressed")
 	
 
-# Sanity checks
-func _ready():
-	if not Engine.editor_hint:
-		if not visibility_state in EgoVenture.state or \
-				not EgoVenture.state.get(visibility_state) is bool:
-			assert(
-				false, 
-				("Hotspot visibility state variable %s " +
-				"not found or is no bool") % visibility_state
-			)
-
-
 # Update hotspot indicator
 func _process(_delta):
 	_hotspot_indicator.position = rect_size / 2
@@ -89,6 +77,29 @@ func _input(event):
 # Set the default value of a new hotspot
 func _enter_tree():
 	_set_cursor_type(cursor_type)
+	call_deferred("_check_state")
+
+
+# Sanity check the visibility state parameter
+func _check_state():
+	if not Engine.editor_hint:
+		var state = EgoVenture.state
+		if not visibility_state.empty() and \
+				(
+					not (visibility_state in state) or
+					not state.get(visibility_state) is bool
+				):
+			assert(
+				false, 
+				(
+					"Hotspot visibility state variable %s " +
+					"of node %s not found or is not bool"
+				) % [
+					visibility_state,
+					name
+				]
+			)
+
 
 
 # Set the cursor type
