@@ -51,6 +51,10 @@ var _scene_cache: SceneCache
 var is_touch: bool
 
 
+# A texture for an empty image
+var _empty_image_texture: ImageTexture = null
+
+
 # Load the ingame configuration
 func _init():
 	# Workaround for faulty feature detection as described in
@@ -402,7 +406,19 @@ func _load(p_state: BaseState):
 	MainMenu.resumeable = true
 	Parrot.cancel()
 	
-	WaitingScreen.set_image(ImageTexture.new().create_from_image(Image.new()))
+	if _empty_image_texture == null:
+		var empty_image: Image = Image.new()
+		empty_image.create(
+			ProjectSettings.get("display/window/size/width"),
+			ProjectSettings.get("display/window/size/height"),
+			true,
+			Image.FORMAT_RGBA8
+		)
+		empty_image.fill(Color.black)
+		_empty_image_texture = ImageTexture.new()
+		_empty_image_texture.create_from_image(empty_image)
+	
+	WaitingScreen.set_image(_empty_image_texture)
 	
 	var cached_items = update_cache(EgoVenture.state.current_scene, true)
 	if cached_items > 0:
