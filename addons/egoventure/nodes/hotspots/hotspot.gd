@@ -48,6 +48,18 @@ func _init():
 	_hotspot_indicator.hide()
 	button_mask = BUTTON_MASK_LEFT
 	connect("pressed", self, "_on_pressed")
+	
+
+# Sanity checks
+func _ready():
+	if not Engine.editor_hint:
+		if not visibility_state in EgoVenture.state or \
+				not EgoVenture.state.get(visibility_state) is bool:
+			assert(
+				false, 
+				("Hotspot visibility state variable %s " +
+				"not found or is no bool") % visibility_state
+			)
 
 
 # Update hotspot indicator
@@ -61,7 +73,7 @@ func _process(_delta):
 			if not visible == EgoVenture.state.get(visibility_state):
 				visible = EgoVenture.state.get(visibility_state)
 				EgoVenture.check_cursor()
-
+			
 
 # Hotspot indicator toggle
 func _input(event):
