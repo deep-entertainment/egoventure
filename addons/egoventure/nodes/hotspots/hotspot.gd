@@ -30,6 +30,10 @@ export(
 # scene is changed
 export(AudioStream) var effect = null
 
+# Show this hotspot depending on the boolean value of this state
+# variable
+export(String) var visibility_state = ""
+
 
 # The hotspot indicator
 var _hotspot_indicator: Sprite
@@ -51,6 +55,10 @@ func _process(_delta):
 	_hotspot_indicator.position = rect_size / 2
 	_hotspot_indicator.texture = Cursors.get_cursor_texture(cursor_type) 
 	_hotspot_indicator.rotation_degrees = rect_rotation * -1
+	if not visibility_state.empty() and "state" in EgoVenture:
+		if visibility_state in EgoVenture.state and \
+				EgoVenture.state.get(visibility_state) is bool:
+			visible = EgoVenture.state.get(visibility_state)
 
 
 # Hotspot indicator toggle
