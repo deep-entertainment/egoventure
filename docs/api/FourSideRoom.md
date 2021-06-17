@@ -100,3 +100,7 @@ var current_view
 ```
 
 The current view shown to the player
+
+## Signals
+
+- signal view_changed(old_view, new_view): Triggered when the user switches the view

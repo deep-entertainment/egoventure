@@ -27,6 +27,14 @@ var active_music: Node
 
 The active music player
 
+### active\_background
+
+```gdscript
+var active_background: Node
+```
+
+The active background player
+
 ## Method Descriptions
 
 ### reset
