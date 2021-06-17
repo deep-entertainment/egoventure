@@ -58,7 +58,9 @@ func _process(_delta):
 	if not visibility_state.empty() and "state" in EgoVenture:
 		if visibility_state in EgoVenture.state and \
 				EgoVenture.state.get(visibility_state) is bool:
-			visible = EgoVenture.state.get(visibility_state)
+			if not visible == EgoVenture.state.get(visibility_state):
+				visible = EgoVenture.state.get(visibility_state)
+				EgoVenture.check_cursor()
 
 
 # Hotspot indicator toggle
