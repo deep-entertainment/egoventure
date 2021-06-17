@@ -42,6 +42,15 @@ export var effect = "[Object:null]"
 If set, plays a sound effect when the hotspot is pressed and the
 scene is changed
 
+### visibility\_state
+
+```gdscript
+export var visibility_state = ""
+```
+
+Show this hotspot depending on the boolean value of this state
+variable
+
 ## Signals
 
 - signal activate(): A signal that can be connected to for custom actions of
