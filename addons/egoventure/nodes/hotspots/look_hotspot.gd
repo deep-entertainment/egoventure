@@ -24,7 +24,8 @@ func _init():
 #
 # - _delta: Unused
 func _process(_delta):
-	if not visibility_state.empty() and "state" in EgoVenture:
+	if not Engine.editor_hint and \
+			not visibility_state.empty() and "state" in EgoVenture:
 		if visibility_state in EgoVenture.state and \
 				EgoVenture.state.get(visibility_state) is bool:
 			if not visible == EgoVenture.state.get(visibility_state):

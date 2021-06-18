@@ -143,7 +143,7 @@ func check_cursor(offset: Vector2 = Vector2(0,0)):
 			if "mouse_default_cursor_shape" in child and child.visible:
 				var global_rect = child.get_global_rect()
 				if global_rect.has_point(mousePos):
-					if child is TriggerHotspot:
+					if child.get_class() == "TriggerHotspot":
 						child.on_mouse_entered()
 					target_shape = child.mouse_default_cursor_shape
 		Speedy.keep_shape_once = true
