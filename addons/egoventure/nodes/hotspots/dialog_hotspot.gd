@@ -15,6 +15,10 @@ export(String, FILE, "*.tres") var dialog: String
 # Wether the question was already asked
 export (bool) var asked: bool = false setget _set_asked
 
+# Show this hotspot depending on the boolean value of this state
+# variable
+export(String) var visibility_state = ""
+
 
 # Connect hover signals
 func _init():
@@ -26,6 +30,11 @@ func _init():
 		connect("mouse_entered", self, "_set_hover")
 	if not is_connected("mouse_exited", self, "_update_color"):
 		connect("mouse_exited", self, "_update_color")
+		
+
+# Call _check_state at the next iteration
+func _enter_tree():
+	call_deferred("_check_state")
 
 
 # Set default value for asked
@@ -46,6 +55,20 @@ func _ready():
 	)
 	_set_asked(asked)
 	mouse_default_cursor_shape = Cursors.CURSOR_MAP[Cursors.Type.SPEAK]
+	
+
+# Check for the visibility state
+#
+# #### Parameters
+#
+# - _delta: Unused
+func _process(_delta):
+	if not visibility_state.empty() and "state" in EgoVenture:
+		if visibility_state in EgoVenture.state and \
+				EgoVenture.state.get(visibility_state) is bool:
+			if not visible == EgoVenture.state.get(visibility_state):
+				visible = EgoVenture.state.get(visibility_state)
+				EgoVenture.check_cursor()
 
 
 # Set the asked value and update the color
@@ -107,3 +130,23 @@ func _gui_input(event):
 			else:
 				emit_signal("pressed")
 
+
+# Sanity check the visibility state parameter
+func _check_state():
+	if not Engine.editor_hint:
+		var state = EgoVenture.state
+		if not visibility_state.empty() and \
+				(
+					not (visibility_state in state) or
+					not state.get(visibility_state) is bool
+				):
+			assert(
+				false, 
+				(
+					"Hotspot visibility state variable %s " +
+					"of node %s not found or is not bool"
+				) % [
+					visibility_state,
+					name
+				]
+			)
