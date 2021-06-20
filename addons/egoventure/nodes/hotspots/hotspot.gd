@@ -55,12 +55,7 @@ func _process(_delta):
 	_hotspot_indicator.position = rect_size / 2
 	_hotspot_indicator.texture = Cursors.get_cursor_texture(cursor_type) 
 	_hotspot_indicator.rotation_degrees = rect_rotation * -1
-	if not visibility_state.empty() and "state" in EgoVenture:
-		if visibility_state in EgoVenture.state and \
-				EgoVenture.state.get(visibility_state) is bool:
-			if not visible == EgoVenture.state.get(visibility_state):
-				visible = EgoVenture.state.get(visibility_state)
-				EgoVenture.check_cursor()
+	_check_visibility()
 			
 
 # Hotspot indicator toggle
@@ -99,6 +94,7 @@ func _check_state():
 					name
 				]
 			)
+		_check_visibility()
 
 
 
@@ -126,3 +122,11 @@ func _on_pressed():
 			EgoVenture.target_view = target_view
 			EgoVenture.change_scene(target_scene)
 
+
+func _check_visibility():
+	if not visibility_state.empty() and "state" in EgoVenture:
+		if visibility_state in EgoVenture.state and \
+				EgoVenture.state.get(visibility_state) is bool:
+			if not visible == EgoVenture.state.get(visibility_state):
+				visible = EgoVenture.state.get(visibility_state)
+				EgoVenture.check_cursor()
