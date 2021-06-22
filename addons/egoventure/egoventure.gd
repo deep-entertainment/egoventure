@@ -17,6 +17,9 @@ const SCENE_REGEX = "^[a-z_-]+(?<index>\\d+)\\D?.*$"
 # The current state of the game
 var state: BaseState
 
+# Path of the current scene
+var current_scene: String = ""
+
 # The current view of the four side room
 var current_view: String = ""
 
@@ -156,15 +159,18 @@ func check_cursor(offset: Vector2 = Vector2(0,0)):
 #
 # - path: The absolute path to the new scene
 func change_scene(path: String):
-	get_tree().change_scene_to(_scene_cache.get_scene(path))
-	yield(get_tree(),"idle_frame")
-	var is_four_side_room = false
-	for child in get_tree().current_scene.get_children():
-		if child.filename == \
-				"res://addons/egoventure/nodes/four_side_room.tscn":
-			is_four_side_room = true
-	if not is_four_side_room:
-		check_cursor()
+	if path != current_scene:
+		print("Changing to %s" % path)
+		current_scene = path
+		get_tree().change_scene_to(_scene_cache.get_scene(path))
+		yield(get_tree(),"idle_frame")
+		var is_four_side_room = false
+		for child in get_tree().current_scene.get_children():
+			if child.filename == \
+					"res://addons/egoventure/nodes/four_side_room.tscn":
+				is_four_side_room = true
+		if not is_four_side_room:
+			check_cursor()
 	
 
 # Save the current state of the game
