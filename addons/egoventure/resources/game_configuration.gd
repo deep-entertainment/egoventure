@@ -97,6 +97,12 @@ var tools_map_sound: AudioStream
 # four room scene
 var tools_navigation_width: float
 
+# The number of seconds to fade between the two music channels
+var tools_music_fader_seconds: float = 0.5
+
+# The number of seconds to fade between the two background channels
+var tools_background_fader_seconds: float = 0.5
+
 # The path where the scenes are stored
 var cache_scene_path: String = "res://scenes"
 
@@ -307,6 +313,14 @@ func _get_property_list():
 	})
 	properties.append({
 		name = "tools_navigation_width",
+		type = TYPE_REAL
+	})
+	properties.append({
+		name = "tools_music_fader_seconds",
+		type = TYPE_REAL
+	})
+	properties.append({
+		name = "tools_background_fader_seconds",
 		type = TYPE_REAL
 	})
 	properties.append({
