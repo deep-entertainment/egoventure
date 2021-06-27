@@ -40,6 +40,10 @@ onready var active_background: AudioStreamPlayer = $Background1
 
 # Create the tween nodes
 func _ready():
+	$Music1.volume_db = VOLUME_MAX
+	$Music2.volume_db = VOLUME_MIN
+	$Background1.volume_db = VOLUME_MAX
+	$Background2.volume_db = VOLUME_MIN
 	_music_fader = Tween.new()
 	add_child(_music_fader)
 	_background_fader = Tween.new()
@@ -64,7 +68,7 @@ func _process(_delta):
 				_music_fader
 			)
 			yield(_music_fader, "tween_all_completed")
-		
+			active_music.stop()
 			active_music = fade_to
 	
 	if _background_queue.size() > 0 and not _background_fader.is_active():
@@ -84,6 +88,7 @@ func _process(_delta):
 			)
 			yield(_background_fader, "tween_all_completed")
 			
+			active_background.stop()
 			active_background = fade_to
 
 
