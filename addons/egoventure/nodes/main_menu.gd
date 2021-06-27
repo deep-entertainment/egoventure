@@ -11,7 +11,7 @@ signal quit_game
 
 
 # Lowest Audio level
-const AUDIO_MIN: float = -50.0
+const AUDIO_MIN: float = -60.0
 
 # Minimum number of seconds a speech or background sample should
 # be played

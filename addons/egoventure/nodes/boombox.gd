@@ -3,7 +3,7 @@ extends Node
 
 
 # The volume to fade to if the channel should be off
-const VOLUME_MIN = -52
+const VOLUME_MIN = -80
 
 # The volume to fade to if hte channel should be on
 const VOLUME_MAX = 0
@@ -98,6 +98,7 @@ func reset():
 	active_music.stop()
 	if active_music != $Music1:
 		active_music = $Music1
+	active_background.stop()
 	if active_background != $Background1:
 		active_background = $Background1
 	_music_fader.reset_all()
@@ -111,7 +112,9 @@ func reset():
 #
 # - music: An audiostream of the music to play
 func play_music(music: AudioStream):
-	_music_queue.append(music)
+	if not _music_queue.has(music) and \
+			not active_music.stream == music:
+		_music_queue.append(music)
 
 
 # Pause playing music
@@ -145,7 +148,9 @@ func is_music_playing() -> bool:
 #
 # - background: An audiostream of the background noise to play
 func play_background(background: AudioStream):
-	_background_queue.append(background)
+	if not _background_queue.has(background) and \
+			not active_background.stream == background:
+		_background_queue.append(background)
 
 
 # Pause playing background effect
