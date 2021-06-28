@@ -40,10 +40,6 @@ onready var active_background: AudioStreamPlayer = $Background1
 
 # Create the tween nodes
 func _ready():
-	$Music1.volume_db = VOLUME_MAX
-	$Music2.volume_db = VOLUME_MIN
-	$Background1.volume_db = VOLUME_MAX
-	$Background2.volume_db = VOLUME_MIN
 	_music_fader = Tween.new()
 	add_child(_music_fader)
 	_background_fader = Tween.new()
@@ -101,6 +97,10 @@ func reset():
 	active_background.stop()
 	if active_background != $Background1:
 		active_background = $Background1
+	$Music1.volume_db = VOLUME_MAX
+	$Music2.volume_db = VOLUME_MIN
+	$Background1.volume_db = VOLUME_MAX
+	$Background2.volume_db = VOLUME_MIN
 	_music_fader.reset_all()
 	_background_fader.reset_all()
 	$Effects.stop()
