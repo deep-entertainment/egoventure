@@ -81,7 +81,7 @@ func _ready():
 	wait_timer = Timer.new()
 	wait_timer.one_shot = true
 	add_child(wait_timer)
-	reset()
+	Boombox.reset()
 
 
 # Update the scene cache
