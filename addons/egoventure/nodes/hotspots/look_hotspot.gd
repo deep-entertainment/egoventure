@@ -24,13 +24,8 @@ func _init():
 #
 # - _delta: Unused
 func _process(_delta):
-	if not Engine.editor_hint and \
-			not visibility_state.empty() and "state" in EgoVenture:
-		if visibility_state in EgoVenture.state and \
-				EgoVenture.state.get(visibility_state) is bool:
-			if not visible == EgoVenture.state.get(visibility_state):
-				visible = EgoVenture.state.get(visibility_state)
-				EgoVenture.check_cursor()
+	if not Engine.editor_hint:
+		_check_visibility()
 				
 
 # Call _check_state on the next iteration
@@ -57,6 +52,7 @@ func _check_state():
 					name
 				]
 			)
+		_check_visibility()
 
 
 # The hotspot was clicked, play the dialog
@@ -65,3 +61,12 @@ func _on_pressed():
 	if Inventory.selected_item == null:
 		Parrot.play(load(dialog))
 	
+
+# Check wether the hotspot should be shown or hidden
+func _check_visibility():
+	if not visibility_state.empty() and "state" in EgoVenture:
+		if visibility_state in EgoVenture.state and \
+				EgoVenture.state.get(visibility_state) is bool:
+			if not visible == EgoVenture.state.get(visibility_state):
+				visible = EgoVenture.state.get(visibility_state)
+				EgoVenture.check_cursor()

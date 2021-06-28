@@ -123,6 +123,7 @@ func _on_pressed():
 			EgoVenture.change_scene(target_scene)
 
 
+# Check wether the hotspot should be shown or hidden
 func _check_visibility():
 	if not visibility_state.empty() and "state" in EgoVenture:
 		if visibility_state in EgoVenture.state and \

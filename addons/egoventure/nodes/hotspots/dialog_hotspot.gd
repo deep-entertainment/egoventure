@@ -63,14 +63,8 @@ func _ready():
 #
 # - _delta: Unused
 func _process(_delta):
-	if not Engine.editor_hint and \
-			not visibility_state.empty() and "state" in EgoVenture:
-		if visibility_state in EgoVenture.state and \
-				EgoVenture.state.get(visibility_state) is bool:
-			if not visible == EgoVenture.state.get(visibility_state):
-				visible = EgoVenture.state.get(visibility_state)
-				EgoVenture.check_cursor()
-
+	if not Engine.editor_hint:
+		_check_visibility()
 
 # Set the asked value and update the color
 func _set_asked(value: bool):
@@ -151,3 +145,14 @@ func _check_state():
 					name
 				]
 			)
+		_check_visibility()
+
+
+# Check wether the hotspot should be shown or hidden
+func _check_visibility():
+	if not visibility_state.empty() and "state" in EgoVenture:
+		if visibility_state in EgoVenture.state and \
+				EgoVenture.state.get(visibility_state) is bool:
+			if not visible == EgoVenture.state.get(visibility_state):
+				visible = EgoVenture.state.get(visibility_state)
+				EgoVenture.check_cursor()

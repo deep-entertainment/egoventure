@@ -36,13 +36,8 @@ func _process(_delta):
 	_hotspot_indicator.position = rect_size / 2
 	_hotspot_indicator.texture = Cursors.get_cursor_texture(Cursors.Type.USE)
 	_hotspot_indicator.rotation_degrees = rect_rotation * -1
-	if not Engine.editor_hint and \
-			not visibility_state.empty() and "state" in EgoVenture:
-		if visibility_state in EgoVenture.state and \
-				EgoVenture.state.get(visibility_state) is bool:
-			if not visible == EgoVenture.state.get(visibility_state):
-				visible = EgoVenture.state.get(visibility_state)
-				EgoVenture.check_cursor()
+	if not Engine.editor_hint:
+		_check_visibility()
 
 
 # Handle the hotspot indicator
@@ -88,6 +83,7 @@ func _check_state():
 					name
 				]
 			)
+		_check_visibility()
 	
 
 # Reset cursor
@@ -154,3 +150,13 @@ func _get_property_list():
 		"hint_string": "17/17:InventoryItem"
 	})
 	return properties
+
+
+# Check wether the hotspot should be shown or hidden
+func _check_visibility():
+	if not visibility_state.empty() and "state" in EgoVenture:
+		if visibility_state in EgoVenture.state and \
+				EgoVenture.state.get(visibility_state) is bool:
+			if not visible == EgoVenture.state.get(visibility_state):
+				visible = EgoVenture.state.get(visibility_state)
+				EgoVenture.check_cursor()
