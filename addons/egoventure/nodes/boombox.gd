@@ -112,8 +112,11 @@ func reset():
 #
 # - music: An audiostream of the music to play
 func play_music(music: AudioStream):
-	if not _music_queue.has(music) and \
-			not active_music.stream == music:
+	if not active_music.playing or \
+			(
+				not _music_queue.has(music) and \
+				not active_music.stream == music
+			):
 		_music_queue.append(music)
 
 
@@ -148,8 +151,11 @@ func is_music_playing() -> bool:
 #
 # - background: An audiostream of the background noise to play
 func play_background(background: AudioStream):
-	if not _background_queue.has(background) and \
-			not active_background.stream == background:
+	if not active_background.playing or \
+			(
+				not _background_queue.has(background) and \
+				not active_background.stream == background
+			):
 		_background_queue.append(background)
 
 
