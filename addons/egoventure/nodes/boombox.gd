@@ -97,13 +97,11 @@ func reset():
 	active_background.stop()
 	if active_background != $Background1:
 		active_background = $Background1
-	$Music1.volume_db = VOLUME_MAX
-	$Music2.volume_db = VOLUME_MIN
-	$Background1.volume_db = VOLUME_MAX
-	$Background2.volume_db = VOLUME_MIN
 	_music_fader.reset_all()
 	_background_fader.reset_all()
 	$Effects.stop()
+	_reset_background_volume()
+	_reset_music_volume()
 
 
 # Play a new music file, if it isn't the current one.
@@ -132,7 +130,11 @@ func resume_music():
 
 # Stop the currently playing music
 func stop_music():
-	active_music.stop()
+	$Music1.stop()
+	$Music2.stop()
+	_music_fader.stop_all()
+	_music_queue.empty()
+	_reset_music_volume()
 	
 
 # Get the current music
@@ -171,7 +173,12 @@ func resume_background():
 
 # Stop playing a background effect
 func stop_background():
-	active_background.stop()
+	$Background1.stop()
+	$Background2.stop()
+	_background_fader.stop_all()
+	_background_queue.empty()
+	_reset_background_volume()
+	
 
 
 # Get the current background
@@ -274,3 +281,14 @@ func _fade(
 	)
 	fader.start()
 	
+
+# Reset the music volume
+func _reset_music_volume():	
+	$Music1.volume_db = VOLUME_MAX
+	$Music2.volume_db = VOLUME_MIN
+
+
+# Reset the background volume
+func _reset_background_volume():
+	$Background1.volume_db = VOLUME_MAX
+	$Background2.volume_db = VOLUME_MIN
