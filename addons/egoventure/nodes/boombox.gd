@@ -30,6 +30,14 @@ var _music_queue: Array = []
 # The queue of backgrounds to fade
 var _background_queue: Array = []
 
+# A flag that tells the music is stopping. Cancel events that are waiting
+# for the tween to finish
+var _music_is_stopping: bool = false
+
+# A flag that tells the background is stopping. Cancel events that are waiting
+# for the tween to finish
+var _background_is_stopping: bool = false
+
 
 # The active music player
 onready var active_music: AudioStreamPlayer = $Music1
@@ -64,6 +72,11 @@ func _process(_delta):
 				_music_fader
 			)
 			yield(_music_fader, "tween_all_completed")
+			
+			if _music_is_stopping:
+				_music_is_stopping = false
+				return
+			
 			active_music.stop()
 			active_music = fade_to
 	
@@ -84,6 +97,10 @@ func _process(_delta):
 			)
 			yield(_background_fader, "tween_all_completed")
 			
+			if _background_is_stopping:
+				_background_is_stopping = false
+				return
+				
 			active_background.stop()
 			active_background = fade_to
 
@@ -130,10 +147,12 @@ func resume_music():
 
 # Stop the currently playing music
 func stop_music():
+	_music_is_stopping = true
+	_music_fader.stop_all()
+	_music_queue = []
 	$Music1.stop()
 	$Music2.stop()
-	_music_fader.stop_all()
-	_music_queue.empty()
+	active_music = $Music1
 	_reset_music_volume()
 	
 
@@ -173,10 +192,12 @@ func resume_background():
 
 # Stop playing a background effect
 func stop_background():
+	_background_is_stopping = true
+	_background_fader.stop_all()
+	_background_queue = []
 	$Background1.stop()
 	$Background2.stop()
-	_background_fader.stop_all()
-	_background_queue.empty()
+	active_background = $Background1
 	_reset_background_volume()
 	
 
