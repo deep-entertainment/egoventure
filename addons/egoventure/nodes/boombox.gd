@@ -34,10 +34,6 @@ var _background_queue: Array = []
 # for the tween to finish
 var _music_is_stopping: bool = false
 
-# A flag that tells the background is stopping. Cancel events that are waiting
-# for the tween to finish
-var _background_is_stopping: bool = false
-
 
 # The active music player
 onready var active_music: AudioStreamPlayer = $Music1
@@ -49,8 +45,18 @@ onready var active_background: AudioStreamPlayer = $Background1
 # Create the tween nodes
 func _ready():
 	_music_fader = Tween.new()
+	_music_fader.connect(
+		"tween_all_completed", 
+		self, 
+		"_handle_music_tween_completed"
+	)
 	add_child(_music_fader)
 	_background_fader = Tween.new()
+	_background_fader.connect(
+		"tween_all_completed",
+		self,
+		"_handle_background_tween_completed"
+	)
 	add_child(_background_fader)
 
 
@@ -71,14 +77,6 @@ func _process(_delta):
 				EgoVenture.configuration.tools_music_fader_seconds,
 				_music_fader
 			)
-			yield(_music_fader, "tween_all_completed")
-			
-			if _music_is_stopping:
-				_music_is_stopping = false
-				return
-			
-			active_music.stop()
-			active_music = fade_to
 	
 	if _background_queue.size() > 0 and not _background_fader.is_active():
 		if not active_background.playing:
@@ -95,14 +93,6 @@ func _process(_delta):
 				EgoVenture.configuration.tools_background_fader_seconds,
 				_background_fader
 			)
-			yield(_background_fader, "tween_all_completed")
-			
-			if _background_is_stopping:
-				_background_is_stopping = false
-				return
-				
-			active_background.stop()
-			active_background = fade_to
 
 
 # Reset the settings. Stop all music, sounds and backgrounds
@@ -197,7 +187,6 @@ func resume_background():
 
 # Stop playing a background effect
 func stop_background():
-	_background_is_stopping = true
 	_background_fader.stop_all()
 	_background_queue = []
 	$Background1.stop()
@@ -323,3 +312,23 @@ func _reset_music_volume():
 func _reset_background_volume():
 	$Background1.volume_db = VOLUME_MAX
 	$Background2.volume_db = VOLUME_MIN
+
+
+# Handle a completed music tween
+func _handle_music_tween_completed():
+	var fade_to = $Music2
+	if active_music == $Music2:
+		fade_to = $Music1
+	
+	active_music.stop()
+	active_music = fade_to
+
+
+# Handle a completed background tween
+func _handle_background_tween_completed():
+	var fade_to = $Background2
+	if active_background == $Background2:
+		fade_to = $Background1
+	
+	active_background.stop()
+	active_background = fade_to
