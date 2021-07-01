@@ -158,6 +158,11 @@ func stop_music():
 
 # Get the current music
 func get_music() -> AudioStream:
+	if _music_fader.is_active():
+		if active_music == $Music1:
+			return $Music2.stream
+		else:
+			return $Music1.stream
 	return active_music.stream
 	
 	
@@ -204,6 +209,11 @@ func stop_background():
 
 # Get the current background
 func get_background() -> AudioStream:
+	if _background_fader.is_active():
+		if active_background == $Background1:
+			return $Background2.stream
+		else:
+			return $Background1.stream
 	return active_background.stream
 
 
