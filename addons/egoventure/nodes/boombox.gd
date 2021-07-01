@@ -244,6 +244,7 @@ func stop_effect():
 func _set_ignore_pause(value: bool):
 	ignore_pause = value
 	if ignore_pause:
+		pause_mode = Node.PAUSE_MODE_PROCESS
 		$Music1.pause_mode = Node.PAUSE_MODE_PROCESS
 		$Music2.pause_mode = Node.PAUSE_MODE_PROCESS
 		$Background1.pause_mode = Node.PAUSE_MODE_PROCESS
@@ -252,6 +253,7 @@ func _set_ignore_pause(value: bool):
 		_background_fader.pause_mode = Node.PAUSE_MODE_PROCESS
 		_music_fader.pause_mode = Node.PAUSE_MODE_PROCESS
 	else:
+		pause_mode = Node.PAUSE_MODE_STOP
 		$Music1.pause_mode = Node.PAUSE_MODE_STOP
 		$Music2.pause_mode = Node.PAUSE_MODE_STOP
 		$Background1.pause_mode = Node.PAUSE_MODE_STOP
