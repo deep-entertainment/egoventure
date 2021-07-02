@@ -12,8 +12,15 @@ export (String, FILE, "*.tres") var dialog
 export(String) var visibility_state = ""
 
 
+# The hotspot indicator
+var _hotspot_indicator: Sprite
+
+
 # Connect to the relevant signals and gather the cursors from configuration
 func _init():
+	_hotspot_indicator = Sprite.new()
+	add_child(_hotspot_indicator)
+	_hotspot_indicator.hide()
 	connect("pressed", self, "_on_pressed")
 	mouse_default_cursor_shape = Cursors.CURSOR_MAP[Cursors.Type.LOOK]
 	
@@ -24,9 +31,23 @@ func _init():
 #
 # - _delta: Unused
 func _process(_delta):
+	_hotspot_indicator.position = rect_size / 2
+	_hotspot_indicator.texture = Cursors.get_cursor_texture(Cursors.Type.LOOK) 
+	_hotspot_indicator.rotation_degrees = rect_rotation * -1
 	if not Engine.editor_hint:
 		_check_visibility()
-				
+		
+		
+# Hotspot indicator toggle
+func _input(event):
+	if not DetailView.is_visible:
+		if event.is_action_pressed("hotspot_indicator"):
+			Speedy.hidden = true
+			_hotspot_indicator.show()
+		elif event.is_action_released("hotspot_indicator"):
+			Speedy.hidden = false
+			_hotspot_indicator.hide()
+
 
 # Call _check_state on the next iteration
 func _enter_tree():
