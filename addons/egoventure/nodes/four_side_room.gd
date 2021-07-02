@@ -81,7 +81,7 @@ func _ready():
 				.tools_navigation_width
 		$Camera/Right.rect_size.y = _viewport_size.y -\
 				EgoVenture.configuration.inventory_size
-
+		EgoVenture.connect("requested_view_change", self, "_set_current_view")
 
 # Properly position the different views
 func _enter_tree():

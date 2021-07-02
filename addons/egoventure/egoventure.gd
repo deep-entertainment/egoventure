@@ -8,6 +8,10 @@ signal game_loaded
 # Emits when the queue of the scene cache has completed
 signal queue_complete
 
+# Emitted when a loaded game needs to change the target view but is
+# already in the current scene
+signal requested_view_change(to)
+
 
 # A regex to search for the scene index in a scene filename.
 # e.g.: home04b.tscn has the index 4, castle12detail1.tscn has the index 12.
@@ -431,7 +435,10 @@ func _load(p_state: BaseState):
 	if cached_items > 0:
 		yield(self, "queue_complete")
 	
-	change_scene(EgoVenture.state.current_scene)
+	if EgoVenture.state.current_scene == current_scene:
+		emit_signal("requested_view_change", EgoVenture.state.target_view)
+	else:
+		change_scene(EgoVenture.state.current_scene)
 	
 	if EgoVenture.state.current_music != "":
 		Boombox.play_music(load(EgoVenture.state.current_music))
