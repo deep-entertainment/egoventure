@@ -11,6 +11,15 @@ mouse cursor when no item is selected
 
 ## Property Descriptions
 
+### visibility\_state
+
+```gdscript
+var visibility_state: String = ""
+```
+
+Show this hotspot depending on the boolean value of this state
+variable
+
 ### valid\_inventory\_items
 
 ```gdscript

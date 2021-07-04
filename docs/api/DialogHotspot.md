@@ -26,6 +26,15 @@ export var asked: bool = false
 
 Wether the question was already asked
 
+### visibility\_state
+
+```gdscript
+export var visibility_state = ""
+```
+
+Show this hotspot depending on the boolean value of this state
+variable
+
 ## Signals
 
 - signal pressed(): Emitted when the button is clicked but no dialog is selected
