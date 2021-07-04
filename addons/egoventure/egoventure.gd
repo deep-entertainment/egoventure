@@ -8,6 +8,10 @@ signal game_loaded
 # Emits when the queue of the scene cache has completed
 signal queue_complete
 
+# Emitted when a loaded game needs to change the target view but is
+# already in the current scene
+signal requested_view_change(to)
+
 
 # A regex to search for the scene index in a scene filename.
 # e.g.: home04b.tscn has the index 4, castle12detail1.tscn has the index 12.
@@ -16,6 +20,9 @@ const SCENE_REGEX = "^[a-z_-]+(?<index>\\d+)\\D?.*$"
 
 # The current state of the game
 var state: BaseState
+
+# Path of the current scene
+var current_scene: String = ""
 
 # The current view of the four side room
 var current_view: String = ""
@@ -78,6 +85,7 @@ func _ready():
 	wait_timer = Timer.new()
 	wait_timer.one_shot = true
 	add_child(wait_timer)
+	Boombox.reset()
 
 
 # Update the scene cache
@@ -143,7 +151,7 @@ func check_cursor(offset: Vector2 = Vector2(0,0)):
 			if "mouse_default_cursor_shape" in child and child.visible:
 				var global_rect = child.get_global_rect()
 				if global_rect.has_point(mousePos):
-					if child is TriggerHotspot:
+					if child.get_class() == "TriggerHotspot":
 						child.on_mouse_entered()
 					target_shape = child.mouse_default_cursor_shape
 		Speedy.keep_shape_once = true
@@ -156,15 +164,18 @@ func check_cursor(offset: Vector2 = Vector2(0,0)):
 #
 # - path: The absolute path to the new scene
 func change_scene(path: String):
-	get_tree().change_scene_to(_scene_cache.get_scene(path))
-	yield(get_tree(),"idle_frame")
-	var is_four_side_room = false
-	for child in get_tree().current_scene.get_children():
-		if child.filename == \
-				"res://addons/egoventure/nodes/four_side_room.tscn":
-			is_four_side_room = true
-	if not is_four_side_room:
-		check_cursor()
+	if path != current_scene:
+		print("Changing to %s" % path)
+		current_scene = path
+		get_tree().change_scene_to(_scene_cache.get_scene(path))
+		yield(get_tree(),"idle_frame")
+		var is_four_side_room = false
+		for child in get_tree().current_scene.get_children():
+			if child.filename == \
+					"res://addons/egoventure/nodes/four_side_room.tscn":
+				is_four_side_room = true
+		if not is_four_side_room:
+			check_cursor()
 	
 
 # Save the current state of the game
@@ -424,7 +435,10 @@ func _load(p_state: BaseState):
 	if cached_items > 0:
 		yield(self, "queue_complete")
 	
-	change_scene(EgoVenture.state.current_scene)
+	if EgoVenture.state.current_scene == current_scene:
+		emit_signal("requested_view_change", EgoVenture.state.target_view)
+	else:
+		change_scene(EgoVenture.state.current_scene)
 	
 	if EgoVenture.state.current_music != "":
 		Boombox.play_music(load(EgoVenture.state.current_music))

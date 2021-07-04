@@ -13,7 +13,7 @@ The MDNA main menu
 ### AUDIO\_MIN
 
 ```gdscript
-const AUDIO_MIN: float = -50
+const AUDIO_MIN: float = -60
 ```
 
 Lowest Audio level

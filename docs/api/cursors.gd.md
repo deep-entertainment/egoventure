@@ -8,14 +8,6 @@
 
 ## Enumerations
 
-### CURSOR\_MAP
-
-```gdscript
-const CURSOR_MAP: Dictionary = {"0":0,"1":3,"2":6,"3":15,"4":14,"5":10,"6":9,"7":2,"8":16,"9":1,"10":11,"11":12,"12":13,"13":7,"14":8,"15":4,"16":5}
-```
-
-A map of cursor types to core input cursors
-
 ### Type
 
 ```gdscript
@@ -23,6 +15,14 @@ const Type: Dictionary = {"CUSTOM1":13,"CUSTOM2":14,"CUSTOM3":15,"CUSTOM4":16,"D
 ```
 
 The available types of cursors
+
+### CURSOR\_MAP
+
+```gdscript
+const CURSOR_MAP: Dictionary = {"0":0,"1":3,"2":6,"3":15,"4":14,"5":10,"6":9,"7":2,"8":16,"9":1,"10":11,"11":12,"12":13,"13":7,"14":8,"15":4,"16":5}
+```
+
+A map of cursor types to core input cursors
 
 ## Method Descriptions
 
