@@ -245,6 +245,22 @@ var tools_navigation_width: float
 How wide the left and right navigation areas should be in the
 four room scene
 
+### tools\_music\_fader\_seconds
+
+```gdscript
+var tools_music_fader_seconds: float = 0.5
+```
+
+The number of seconds to fade between the two music channels
+
+### tools\_background\_fader\_seconds
+
+```gdscript
+var tools_background_fader_seconds: float = 0.5
+```
+
+The number of seconds to fade between the two background channels
+
 ### cache\_scene\_path
 
 ```gdscript

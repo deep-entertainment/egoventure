@@ -8,6 +8,24 @@
 
 Boombox - a singleton audio player framework
 
+## Constants Descriptions
+
+### VOLUME\_MAX
+
+```gdscript
+const VOLUME_MAX: int = 0
+```
+
+The volume to fade to if hte channel should be on
+
+### VOLUME\_MIN
+
+```gdscript
+const VOLUME_MIN: int = -80
+```
+
+The volume to fade to if the channel should be off
+
 ## Property Descriptions
 
 ### ignore\_pause
@@ -22,7 +40,7 @@ playing when a game is paused
 ### active\_music
 
 ```gdscript
-var active_music: Node
+var active_music: AudioStreamPlayer
 ```
 
 The active music player
@@ -30,7 +48,7 @@ The active music player
 ### active\_background
 
 ```gdscript
-var active_background: Node
+var active_background: AudioStreamPlayer
 ```
 
 The active background player
