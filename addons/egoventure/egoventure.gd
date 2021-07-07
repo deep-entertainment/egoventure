@@ -125,7 +125,10 @@ func configure(p_configuration: GameConfiguration):
 	)
 	MenuGrab.set_top(configuration.inventory_size)
 	_scene_cache.connect("queue_complete", self, "_on_queue_complete")
-	Parrot.configure(configuration.design_theme)
+	Parrot.configure(
+		configuration.design_theme,
+		configuration.tools_dialog_stretch_ratio
+	)
 	Parrot.time_addendum_seconds=0.5
 	
 
