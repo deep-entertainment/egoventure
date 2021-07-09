@@ -1,6 +1,15 @@
 ### [0.24.2](https://github.com/deep-entertainment/egoventure/compare/0.24.1...0.24.2) (2021-07-09)
 
 
+### Bug Fixes
+
+* Really fixed the workflow this time (hopefully) ([ea6d0e4](https://github.com/deep-entertainment/egoventure/commit/ea6d0e4de753ab24b9b3e416b58a64e1ecdb8508))
+
+
+
+### [0.24.2](https://github.com/deep-entertainment/egoventure/compare/0.24.1...0.24.2) (2021-07-09)
+
+
 
 ## [0.24.0](https://github.com/deep-entertainment/egoventure/compare/0.23.0...0.24.0) (2021-07-09)
 
