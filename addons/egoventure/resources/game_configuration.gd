@@ -97,6 +97,10 @@ var tools_map_sound: AudioStream
 # four room scene
 var tools_navigation_width: float
 
+# The stretch ratio that influences the height of the subtitle panel. The bigger 
+# this value, the smaller the subtitle panel.
+var tools_dialog_stretch_ratio: float = 2.0
+
 # The number of seconds to fade between the two music channels
 var tools_music_fader_seconds: float = 0.5
 
@@ -313,6 +317,10 @@ func _get_property_list():
 	})
 	properties.append({
 		name = "tools_navigation_width",
+		type = TYPE_REAL
+	})
+	properties.append({
+		name = "tools_dialog_stretch_ratio",
 		type = TYPE_REAL
 	})
 	properties.append({

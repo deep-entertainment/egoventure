@@ -245,6 +245,15 @@ var tools_navigation_width: float
 How wide the left and right navigation areas should be in the
 four room scene
 
+### tools\_dialog\_stretch\_ratio
+
+```gdscript
+var tools_dialog_stretch_ratio: float = 2
+```
+
+The stretch ratio that influences the height of the subtitle panel. The bigger
+this value, the smaller the subtitle panel.
+
 ### tools\_music\_fader\_seconds
 
 ```gdscript
