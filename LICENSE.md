@@ -1,0 +1,1 @@
+See [addons/egoventure/LICENSE]
