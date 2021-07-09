@@ -10,7 +10,7 @@
 
 Actually, this engine was originally made by MDNA games together with deep entertainment and is used for the Carol Reed series since 2021.
 
-It's streamlined for their games, but may be of use for other developers as well. Thus we're releasing it as Open Source under the [MIT license](LICENSE).
+It's streamlined for their games, but may be of use for other developers as well. Thus we're releasing it as Open Source under the [MIT license](addons/egoventure/LICENSE).
 
 If you want to see all the features, EgoVenture provides, check out the [egoventure-example-game "Carol Refurbished"](https://github.com/deep-entertainment/egoventure-example-game).
 
