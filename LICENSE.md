@@ -1,1 +1,2 @@
-See [addons/egoventure/LICENSE]
+See [addons/egoventure/LICENSE](addons/egoventure/LICENSE)
+
