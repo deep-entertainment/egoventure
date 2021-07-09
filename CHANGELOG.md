@@ -1,3 +1,12 @@
+## [0.25.0](https://github.com/deep-entertainment/egoventure/compare/0.24.2...0.25.0) (2021-07-09)
+
+
+### Features
+
+* Optimized generated archive for the assetlib resulting in a much smaller asset to download ([9b9f860](https://github.com/deep-entertainment/egoventure/commit/9b9f8606ef2ce9b4fc0e81db149918132652f2a3))
+
+
+
 ### [0.24.2](https://github.com/deep-entertainment/egoventure/compare/0.24.1...0.24.2) (2021-07-09)
 
 
