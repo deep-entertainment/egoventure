@@ -1,3 +1,7 @@
+### [0.24.2](https://github.com/deep-entertainment/egoventure/compare/0.24.1...0.24.2) (2021-07-09)
+
+
+
 ## [0.24.0](https://github.com/deep-entertainment/egoventure/compare/0.23.0...0.24.0) (2021-07-09)
 
 
