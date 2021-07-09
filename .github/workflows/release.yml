@@ -6,9 +6,9 @@ on:
             - main
 
 jobs:
-    release:
+    prerelease:
         if: "${{ github.event.head_commit.message != 'chore: storing version and changelog' }}"
-        name: Release
+        name: Preparing release
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v2
@@ -38,6 +38,15 @@ jobs:
               with:
                 message: 'chore: storing version and changelog'
                 push: true
+    release:
+        if: "${{ github.event.head_commit.message != 'chore: storing version and changelog' }}"
+        name: Release
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v2
+              with:
+                fetch-depth: 0
+                token: ${{ secrets.DEPLOYMENT_TOKEN }}
             - name: Create version
               id: create_version
               uses: mathieudutour/github-tag-action@v5.5
