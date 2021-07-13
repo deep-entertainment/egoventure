@@ -64,32 +64,38 @@ func _ready():
 func _process(_delta):
 	if _music_queue.size() > 0 and not _music_fader.is_active():
 		if not active_music.playing:
-			active_music.stream = _music_queue.pop_front()
-			active_music.play()
+			var target = _music_queue.pop_front()
+			active_music.stream = target.music
+			active_music.play(target.from_position)
 		else:
 			var fade_to = $Music2
 			if active_music == $Music2:
 				fade_to = $Music1
+			var target = _music_queue.pop_front()
 			_fade(
 				active_music, 
 				fade_to, 
-				_music_queue.pop_front(),
+				target.music,
+				target.from_position,
 				EgoVenture.configuration.tools_music_fader_seconds,
 				_music_fader
 			)
 	
 	if _background_queue.size() > 0 and not _background_fader.is_active():
 		if not active_background.playing:
-			active_background.stream = _background_queue.pop_front()
-			active_background.play()
+			var target = _background_queue.pop_front()
+			active_background.stream = target.background
+			active_background.play(target.from_position)
 		else:
 			var fade_to = $Background2
 			if active_background == $Background2:
 				fade_to = $Background1
+			var target = _background_queue.pop_front()
 			_fade(
 				active_background,
 				fade_to,
-				_background_queue.pop_front(),
+				target.background,
+				target.from_position,
 				EgoVenture.configuration.tools_background_fader_seconds,
 				_background_fader
 			)
@@ -116,13 +122,16 @@ func reset():
 # ** Parameters**
 #
 # - music: An audiostream of the music to play
-func play_music(music: AudioStream):
+func play_music(music: AudioStream, from_position: float = 0.0):
 	if not active_music.playing or \
 			(
 				not _music_queue.has(music) and \
 				not active_music.stream == music
 			):
-		_music_queue.append(music)
+		_music_queue.append({
+			"music": music,
+			"from_position": from_position
+		})
 
 
 # Pause playing music
@@ -166,13 +175,16 @@ func is_music_playing() -> bool:
 # ** Parameters **
 #
 # - background: An audiostream of the background noise to play
-func play_background(background: AudioStream):
+func play_background(background: AudioStream, from_position: float = 0.0):
 	if not active_background.playing or \
 			(
 				not _background_queue.has(background) and \
 				not active_background.stream == background
 			):
-		_background_queue.append(background)
+		_background_queue.append({
+			"background": background,
+			"from_position": from_position
+		})
 
 
 # Pause playing background effect
@@ -217,12 +229,12 @@ func is_background_playing() -> bool:
 #
 # - effect: An audiostream of the sound effect to play
 #   make sure it's set to "loop = false" in the import settings
-func play_effect(effect: AudioStream):
+func play_effect(effect: AudioStream, from_position: float = 0.0):
 	if $Effects.playing:
 		$Effects.stop()
 	
 	$Effects.stream = effect
-	$Effects.play()
+	$Effects.play(from_position)
 
 
 # Pause playing the sound effect
@@ -281,6 +293,7 @@ func _fade(
 	fade_from: Node, 
 	fade_to: Node, 
 	stream: AudioStream, 
+	from_position: float,
 	time: float, 
 	fader: Tween
 ):
