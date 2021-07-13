@@ -298,7 +298,7 @@ func _fade(
 	fader: Tween
 ):
 	fade_to.stream = stream
-	fade_to.play()
+	fade_to.play(from_position)
 	
 	fader.interpolate_property(
 		fade_from,
