@@ -30,7 +30,7 @@ jobs:
         container:
             image: gdquest/gdscript-docs-maker:1
             volumes:
-                ${{ github.workspace }}:/game
+                - ${{ github.workspace }}:/game
         steps:
             - name: "Update docs"
               run: |
