@@ -25,6 +25,7 @@ jobs:
                 rm -rf docs/api
             - name: Update docs
               uses: docker://gdquest/gdscript-docs-maker:1
+              working-directory: /app
               with:
                 args: "/github/workspace -o /github/workspace/api/docs -d addons/egoventure"
             - name: Commit changes
