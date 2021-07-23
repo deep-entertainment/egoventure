@@ -27,7 +27,7 @@ jobs:
               uses: docker://gdquest/gd-script-docs-maker:1
               with:
                 args: "/github/workspace -o /github/workspace/api/docs -d addons/egoventure"
-           - name: Commit changes
-             run: |
-                git status
+            - name: Commit changes
+              run: |
+                 git status
                
