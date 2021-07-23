@@ -1,0 +1,33 @@
+name: "Update API docs"
+
+on:
+    - push
+
+jobs:
+    prepare:
+        name: Prepare 
+        runs-on: ubuntu-latest
+        container:
+            image: barichello/godot-ci:3.3 
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v2
+              with:
+                fetch-depth: 0
+                token: ${{ secrets.DEPLOYMENT_TOKEN }}
+            - name: Create fake project
+              run: |
+                touch theme.tres
+                godot --path . -e --no-window 
+                godot --path . -e --no-window 
+            - name: Remove existing docs
+              run: |
+                rm -rf docs/api
+            - name: Update docs
+              uses: docker://gdquest/gd-script-docs-maker:1
+              with:
+                args: "/github/workspace -o /github/workspace/api/docs -d addons/egoventure"
+           - name: Commit changes
+             run: |
+                git status
+               
