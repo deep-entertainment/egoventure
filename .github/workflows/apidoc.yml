@@ -33,7 +33,7 @@ jobs:
             - name: "Update docs"
               run: |
                 cd /app
-                ./generate-reference /github/workspace -o /github/workspace/api/docs -d addons/egoventure
+                ./generate_reference /github/workspace -o /github/workspace/api/docs -d addons/egoventure
             - name: Commit changes
               run: |
                  git status
