@@ -23,8 +23,14 @@ jobs:
             - name: Remove existing docs
               run: |
                 rm -rf docs/api
-            - name: Update docs
-              uses: docker://gdquest/gdscript-docs-maker:1
+    update:
+        name: Update
+        needs: prepare
+        runs-on: ubuntu-latest
+        container:
+            image: dquest/gdscript-docs-maker:1
+        steps:
+            - name: "Update docs"
               run: |
                 cd /app
                 ./generate-reference /github/workspace -o /github/workspace/api/docs -d addons/egoventure
