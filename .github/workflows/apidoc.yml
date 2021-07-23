@@ -28,7 +28,7 @@ jobs:
         needs: prepare
         runs-on: ubuntu-latest
         container:
-            image: dquest/gdscript-docs-maker:1
+            image: gdquest/gdscript-docs-maker:1
         steps:
             - name: "Update docs"
               run: |
