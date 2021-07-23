@@ -9,4 +9,4 @@
 config_version=4
 
 [editor_plugins]
-enabled=PoolStringArray( "res://addons/pluginenabler/plugin.cfg" )
+enabled=PoolStringArray( "res://addons/pluginsenabler/plugin.cfg" )
