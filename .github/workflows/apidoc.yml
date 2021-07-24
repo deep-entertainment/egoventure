@@ -5,7 +5,7 @@ on:
 
 jobs:
     update:
-        name: Prepare 
+        name: Update
         runs-on: ubuntu-latest
         container:
             image: barichello/godot-ci:3.3 
@@ -26,7 +26,8 @@ jobs:
             - name: "Update docs"
               uses: docker://gdquest/gdscript-docs-maker:1
               with:
-                entrypoint: "bash -c 'cd /app && ./generate_reference /github/workspace -o /github/workspace/api/docs -d addons/egoventure'"
+                entrypoint: "bash"
+                args: " -c 'cd /app && ./generate_reference /github/workspace -o /github/workspace/api/docs -d addons/egoventure'"
             - name: Commit changes
               run: |
                  git status
