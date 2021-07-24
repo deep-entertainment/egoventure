@@ -26,8 +26,7 @@ jobs:
             - name: "Update docs"
               uses: docker://gdquest/gdscript-docs-maker:1
               with:
-                entrypoint: "cd /app && ./generate_reference"
-                args: "/github/workspace -o /github/workspace/api/docs -d addons/egoventure"
+                entrypoint: "bash -c 'cd /app && ./generate_reference /github/workspace -o /github/workspace/api/docs -d addons/egoventure'"
             - name: Commit changes
               run: |
                  git status
