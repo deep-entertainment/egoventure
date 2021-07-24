@@ -27,7 +27,7 @@ jobs:
               uses: docker://gdquest/gdscript-docs-maker:1
               with:
                 entrypoint: "bash"
-                args: "-c \"cd /app && ls -la /github/workspace && ./generate_reference /github/workspace -o /github/workspace/api/docs -d addons/egoventure\""
+                args: "-c \"cd /app && ./generate_reference /github/workspace -o /github/workspace/docs/api -d addons/egoventure\""
             - name: Commit changes
               run: |
                  git status
