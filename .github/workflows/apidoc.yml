@@ -17,18 +17,24 @@ jobs:
                 token: ${{ secrets.DEPLOYMENT_TOKEN }}
             - name: Download required addons
               run: |
+                echo "Installing curl..."
                 apt update && apt install -y curl
                 for URL in $(cat .godot-req-addons.txt)
                 do
+                  echo "Installing addon from ${URL}"
                   curl -L -s -o addon.zip ${URL}
                   unzip -d tmp-addon addon.zip
                   mv tmp-addon/*/addons/* addons
                   rm -rf tmp-addon
                 done
+                ls -la addons
             - name: Create fake project
               run: |
+                echo "Faking theme.tres"
                 touch theme.tres
-                godot --path . -e --no-window 
+                echo "Scanning global objects"
+                godot --path . -e --no-window
+                echo "Enabling plugins"
                 godot --path . -e --no-window 
             - name: Remove existing docs
               run: |
