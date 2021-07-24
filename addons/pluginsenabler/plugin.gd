@@ -6,6 +6,7 @@ func _quit():
 
 func _enter_tree():
 	var dir = Directory.new()
+	var file = File.new()
 	var editor = get_editor_interface()
 
 	if not dir.file_exists("res://first_run.txt"):
