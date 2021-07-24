@@ -24,6 +24,7 @@ jobs:
                   echo "Installing addon from ${URL}"
                   curl -L -s -o addon.zip ${URL}
                   unzip -d tmp-addon addon.zip
+                  rm addon.zip
                   mv tmp-addon/*/addons/* addons
                   rm -rf tmp-addon
                 done
@@ -35,7 +36,7 @@ jobs:
                 echo "Scanning global objects"
                 godot --path . -e --no-window
                 echo "Enabling plugins"
-                godot --path . -e --no-window 
+                godot --path . -e --no-window
             - name: Remove existing docs
               run: |
                 rm -rf docs/api
@@ -44,6 +45,10 @@ jobs:
               with:
                 entrypoint: "bash"
                 args: "-c \"cd /app && ./generate_reference /github/workspace -o /github/workspace/docs/api -d addons/egoventure\""
+            - name: "Cleanup"
+              run: |
+                echo "Cleaning up..."
+                find addons -type d -maxdepth 1 | grep -v "egoventure" | grep -v "pluginsenabler" | xargs -n 1 rm -rf
             - name: Commit changes
               run: |
                  git status

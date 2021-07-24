@@ -7,8 +7,15 @@ func _quit():
 func _enter_tree():
 	var dir = Directory.new()
 	var editor = get_editor_interface()
-	editor.get_resource_filesystem().connect("filesystem_changed", self, "_quit")
-	editor.get_resource_filesystem().scan_sources()
+
+	if not dir.file_exists("res://first_run.txt"):
+	  file.open("res://first_run.txt", File.WRITE)
+    file.store_string("")
+    file.close()
+	  editor.get_resource_filesystem().connect("filesystem_changed", self, "_quit")
+	  editor.get_resource_filesystem().scan_sources()
+	  return
+
 	if dir.dir_exists("res://addons/parrot"):
 		var script = ResourceLoader.load("res://addons/parrot/plugin.gd", "GDScript", true)
 		editor.add_child(script.new())
@@ -28,3 +35,4 @@ func _enter_tree():
 	else:
 		printerr("Can not enable egoventure as parrot or speedy_gonzales are not enabled")
 
+  dir.remove("res://first_run.txt")
