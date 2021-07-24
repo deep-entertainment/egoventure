@@ -15,6 +15,15 @@ jobs:
               with:
                 fetch-depth: 0
                 token: ${{ secrets.DEPLOYMENT_TOKEN }}
+            - name: Download required addons
+              run: |
+                for URL in $(cat .godot-req-addons.txt)
+                do
+                  curl -L -s -o addon.zip ${URL}
+                  unzip -d tmp-addon addon.zip
+                  mv tmp-addon/*/addons/* addons
+                  rm -rf tmp-addon
+                done
             - name: Create fake project
               run: |
                 touch theme.tres
