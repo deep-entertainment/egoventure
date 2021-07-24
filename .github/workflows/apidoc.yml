@@ -17,6 +17,7 @@ jobs:
                 token: ${{ secrets.DEPLOYMENT_TOKEN }}
             - name: Download required addons
               run: |
+                apt update && apt install -y curl
                 for URL in $(cat .godot-req-addons.txt)
                 do
                   curl -L -s -o addon.zip ${URL}
