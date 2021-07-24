@@ -4,7 +4,7 @@ on:
     - push
 
 jobs:
-    prepare:
+    update:
         name: Prepare 
         runs-on: ubuntu-latest
         container:
@@ -26,7 +26,7 @@ jobs:
             - name: "Update docs"
               uses: docker://gdquest/gdscript-docs-maker:1
               with:
-                entrypoint: /app/generate_reference
+                entrypoint: "cd /app && ./generate_reference"
                 args: "/github/workspace -o /github/workspace/api/docs -d addons/egoventure"
             - name: Commit changes
               run: |
