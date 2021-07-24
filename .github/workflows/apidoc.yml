@@ -3,6 +3,8 @@ name: "Update API docs"
 on:
     - push
 
+concurrency: api-${{ github.ref }}
+
 jobs:
     update:
         name: Update

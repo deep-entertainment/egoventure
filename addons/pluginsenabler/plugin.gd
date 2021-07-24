@@ -8,13 +8,13 @@ func _enter_tree():
 	var dir = Directory.new()
 	var editor = get_editor_interface()
 
-	if not dir.file_exists("res://first_run.txt"):
-	  file.open("res://first_run.txt", File.WRITE)
+  if not dir.file_exists("res://first_run.txt"):
+    file.open("res://first_run.txt", File.WRITE)
     file.store_string("")
     file.close()
-	  editor.get_resource_filesystem().connect("filesystem_changed", self, "_quit")
-	  editor.get_resource_filesystem().scan_sources()
-	  return
+    editor.get_resource_filesystem().connect("filesystem_changed", self, "_quit")
+    editor.get_resource_filesystem().scan_sources()
+    return
 
 	if dir.dir_exists("res://addons/parrot"):
 		var script = ResourceLoader.load("res://addons/parrot/plugin.gd", "GDScript", true)
