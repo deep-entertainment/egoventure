@@ -413,7 +413,7 @@ func _refresh_saveslots():
 				ProjectSettings.get("display/window/size/width") * 0.2,
 				ProjectSettings.get("display/window/size/height") * 0.2,
 				true,
-				Image.FORMAT_RGBA8
+				Image.FORMAT_RGBAH
 			)
 			empty_image.fill(EgoVenture.configuration.menu_saveslots_empty_color)
 			_empty_image_texture = ImageTexture.new()
