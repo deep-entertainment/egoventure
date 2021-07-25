@@ -5,7 +5,7 @@ extends Node
 # Emits when the game was loaded
 signal game_loaded
 
-# Emits when the queue of the scene cache has completedtest
+# Emits when the queue of the scene cache has completed
 signal queue_complete
 
 # Emitted when a loaded game needs to change the target view but is
