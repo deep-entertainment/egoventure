@@ -3,20 +3,15 @@ extends EditorPlugin
 
 var first_run: bool = false
 
-onready var editor = get_editor_interface()
-
-func _quit():
+func _process(_delta):
+	if first_run and not get_editor_interface().get_resource_filesystem().is_scanning():
 		print("Scan complete. Quitting")
 		get_tree().quit(0)
-
-
-func _process(_delta):
-	if first_run and not editor.get_resource_filesystem().is_scanning():
-		_quit()
 
 func _ready():
 	var dir = Directory.new()
 	var file = File.new()
+	var editor = get_editor_interface()
 
 	if not dir.file_exists("res://first_run.txt"):
 		file.open("res://first_run.txt", File.WRITE)
@@ -26,6 +21,12 @@ func _ready():
 		editor.get_resource_filesystem().scan_sources()
 		first_run = true
 		return
+
+	call_deferred("_enable_plugins")
+
+func _enable_plugins():
+	var dir = Directory.new()
+	var editor = get_editor_interface()
 
 	if dir.dir_exists("res://addons/parrot"):
 		var script = ResourceLoader.load("res://addons/parrot/plugin.gd", "GDScript", true)
