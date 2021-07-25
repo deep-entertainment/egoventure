@@ -45,8 +45,6 @@ jobs:
             - name: Remove existing docs
               run: |
                 rm -rf docs/api
-                rm theme.tres
-                rm first_run.txt
             - name: "Update docs"
               uses: docker://gdquest/gdscript-docs-maker:1
               with:
@@ -57,6 +55,9 @@ jobs:
                 echo "Cleaning up..."
                 rm -rf addons/parrot
                 rm -rf addons/speedy_gonzales
+                rm theme.tres
+                rm first_run.txt
+                exit 0
             - name: "Commit"
               uses: EndBug/add-and-commit@v7.2.1
               with:
