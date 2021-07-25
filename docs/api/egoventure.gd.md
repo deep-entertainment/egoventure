@@ -347,6 +347,6 @@ Reset the continue state
 ## Signals
 
 - signal game_loaded(): Emits when the game was loaded
-- signal queue_complete(): Emits when the queue of the scene cache has completedtest
+- signal queue_complete(): Emits when the queue of the scene cache has completed
 - signal requested_view_change(to): Emitted when a loaded game needs to change the target view but is
 already in the current scene
