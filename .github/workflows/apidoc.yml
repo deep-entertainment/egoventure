@@ -36,6 +36,7 @@ jobs:
                 rm -rf addons/parrot/contrib
                 echo "Scanning global objects"
                 godot -e --no-window
+                cat project.godot
                 echo "Faking theme.tres"
                 touch theme.tres
                 echo "Enabling plugins"
