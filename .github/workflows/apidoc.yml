@@ -34,10 +34,10 @@ jobs:
               run: |
                 echo "Removing contrib folder of parrot"
                 rm -rf addons/parrot/contrib
-                echo "Faking theme.tres"
-                touch theme.tres
                 echo "Scanning global objects"
                 godot -e --no-window
+                echo "Faking theme.tres"
+                touch theme.tres
                 echo "Enabling plugins"
                 godot -e --no-window
             - name: Remove existing docs
@@ -51,7 +51,8 @@ jobs:
             - name: "Cleanup"
               run: |
                 echo "Cleaning up..."
-                find addons -type d -maxdepth 1 | grep -v "egoventure" | grep -v "pluginsenabler" | xargs -n 1 rm -rf
+                rm -rf addons/parrot
+                rm -rf addons/speedy_gonzales
             - name: Commit changes
               run: |
                  git status
