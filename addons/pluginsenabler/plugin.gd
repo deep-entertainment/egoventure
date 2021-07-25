@@ -1,20 +1,30 @@
 tool
 extends EditorPlugin
 
-func _quit():
-	get_tree().quit(0)
+var first_run: bool = false
 
-func _enter_tree():
+onready var editor = get_editor_interface()
+
+func _quit():
+		print("Scan complete. Quitting")
+		get_tree().quit(0)
+
+
+func _process(_delta):
+	if first_run and not editor.get_resource_filesystem().is_scanning():
+		_quit()
+
+func _ready():
 	var dir = Directory.new()
 	var file = File.new()
-	var editor = get_editor_interface()
 
 	if not dir.file_exists("res://first_run.txt"):
 		file.open("res://first_run.txt", File.WRITE)
 		file.store_string("")
 		file.close()
-		editor.get_resource_filesystem().connect("filesystem_changed", self, "_quit")
+		print("Starting filesystem scan")
 		editor.get_resource_filesystem().scan_sources()
+		first_run = true
 		return
 
 	if dir.dir_exists("res://addons/parrot"):
@@ -37,3 +47,4 @@ func _enter_tree():
 		printerr("Can not enable egoventure as parrot or speedy_gonzales are not enabled")
 
 	dir.remove("res://first_run.txt")
+	get_tree().quit(0)

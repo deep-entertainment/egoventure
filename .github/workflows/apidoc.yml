@@ -30,15 +30,16 @@ jobs:
                   mv tmp-addon/*/addons/* addons
                   rm -rf tmp-addon
                 done
-                ls -la addons
             - name: Create fake project
               run: |
+                echo "Removing contrib folder of parrot"
+                rm -rf addons/parrot/contrib
                 echo "Faking theme.tres"
                 touch theme.tres
                 echo "Scanning global objects"
-                godot --path . -e --no-window
+                godot -e --no-window
                 echo "Enabling plugins"
-                godot --path . -e --no-window
+                godot -e --no-window
             - name: Remove existing docs
               run: |
                 rm -rf docs/api
