@@ -432,34 +432,38 @@ func _refresh_saveslots():
 			slot_panel_image = slot_node.get_node("Slot/Panel/Image")
 			slot_panel_image.texture_normal = slot_image_texture
 			
+			slot_panel_image.mouse_default_cursor_shape = \
+					Cursors.CURSOR_MAP[Cursors.Type.MAP]
+			
 			(slot_node.get_node("Slot/Date") as Label).text = \
 					_get_date_from_file("user://save_%d.tres" % save_slot)
 		else:
-			
 			# The slot is free. Show an empty panel and no date
 			slot_panel_image = slot_node.get_node("Slot/Panel/Image")
 			slot_panel_image.texture_normal = _empty_image_texture
 			
 			(slot_node.get_node("Slot/Date") as Label).text = \
 				EgoVenture.configuration.menu_saveslots_free_text
-			
+				
 			if ! _is_save_mode:
 				# Prohibit loading from empty slots
 				connect_signals = false
+				slot_panel_image.mouse_default_cursor_shape = \
+					Cursors.CURSOR_MAP[Cursors.Type.DEFAULT]
 			
-		if connect_signals:
-			# Connect the pressed signals for the slot in a clean way
-			if slot_panel_image.is_connected(
+		# Connect the pressed signals for the slot in a clean way
+		if slot_panel_image.is_connected(
+			"pressed", 
+			self, 
+			"_on_slot_selected"
+		):
+			slot_panel_image.disconnect(
 				"pressed", 
 				self, 
 				"_on_slot_selected"
-			):
-				slot_panel_image.disconnect(
-					"pressed", 
-					self, 
-					"_on_slot_selected"
-				)
-				
+			)
+			
+		if connect_signals:
 			slot_panel_image.connect(
 				"pressed", 
 				self, 
