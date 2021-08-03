@@ -331,14 +331,12 @@ size_flags_vertical = 3
 [node name="Panel" type="Panel" parent="Menu/SaveSlots/VBox/HBox/Slots/Slot1/Slot"]
 margin_right = 455.0
 margin_bottom = 426.0
-mouse_default_cursor_shape = 12
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Image" type="TextureButton" parent="Menu/SaveSlots/VBox/HBox/Slots/Slot1/Slot/Panel"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-mouse_default_cursor_shape = 12
 size_flags_horizontal = 3
 size_flags_vertical = 3
 expand = true
@@ -375,14 +373,12 @@ size_flags_vertical = 3
 [node name="Panel" type="Panel" parent="Menu/SaveSlots/VBox/HBox/Slots/Slot2/Slot"]
 margin_right = 455.0
 margin_bottom = 426.0
-mouse_default_cursor_shape = 12
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Image" type="TextureButton" parent="Menu/SaveSlots/VBox/HBox/Slots/Slot2/Slot/Panel"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-mouse_default_cursor_shape = 12
 size_flags_horizontal = 3
 size_flags_vertical = 3
 expand = true
@@ -419,14 +415,12 @@ size_flags_vertical = 3
 [node name="Panel" type="Panel" parent="Menu/SaveSlots/VBox/HBox/Slots/Slot3/Slot"]
 margin_right = 455.0
 margin_bottom = 426.0
-mouse_default_cursor_shape = 12
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Image" type="TextureButton" parent="Menu/SaveSlots/VBox/HBox/Slots/Slot3/Slot/Panel"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-mouse_default_cursor_shape = 12
 size_flags_horizontal = 3
 size_flags_vertical = 3
 expand = true
@@ -463,14 +457,12 @@ size_flags_vertical = 3
 [node name="Panel" type="Panel" parent="Menu/SaveSlots/VBox/HBox/Slots/Slot4/Slot"]
 margin_right = 455.0
 margin_bottom = 426.0
-mouse_default_cursor_shape = 12
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Image" type="TextureButton" parent="Menu/SaveSlots/VBox/HBox/Slots/Slot4/Slot/Panel"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-mouse_default_cursor_shape = 12
 size_flags_horizontal = 3
 size_flags_vertical = 3
 expand = true
@@ -507,14 +499,12 @@ size_flags_vertical = 3
 [node name="Panel" type="Panel" parent="Menu/SaveSlots/VBox/HBox/Slots/Slot5/Slot"]
 margin_right = 455.0
 margin_bottom = 426.0
-mouse_default_cursor_shape = 12
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Image" type="TextureButton" parent="Menu/SaveSlots/VBox/HBox/Slots/Slot5/Slot/Panel"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-mouse_default_cursor_shape = 12
 size_flags_horizontal = 3
 size_flags_vertical = 3
 expand = true
@@ -552,14 +542,12 @@ size_flags_vertical = 3
 [node name="Panel" type="Panel" parent="Menu/SaveSlots/VBox/HBox/Slots/Slot6/Slot"]
 margin_right = 455.0
 margin_bottom = 426.0
-mouse_default_cursor_shape = 12
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Image" type="TextureButton" parent="Menu/SaveSlots/VBox/HBox/Slots/Slot6/Slot/Panel"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-mouse_default_cursor_shape = 12
 size_flags_horizontal = 3
 size_flags_vertical = 3
 expand = true
@@ -597,14 +585,12 @@ size_flags_vertical = 3
 [node name="Panel" type="Panel" parent="Menu/SaveSlots/VBox/HBox/Slots/Slot7/Slot"]
 margin_right = 455.0
 margin_bottom = 426.0
-mouse_default_cursor_shape = 12
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Image" type="TextureButton" parent="Menu/SaveSlots/VBox/HBox/Slots/Slot7/Slot/Panel"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-mouse_default_cursor_shape = 12
 size_flags_horizontal = 3
 size_flags_vertical = 3
 expand = true
@@ -642,14 +628,12 @@ size_flags_vertical = 3
 [node name="Panel" type="Panel" parent="Menu/SaveSlots/VBox/HBox/Slots/Slot8/Slot"]
 margin_right = 455.0
 margin_bottom = 426.0
-mouse_default_cursor_shape = 12
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Image" type="TextureButton" parent="Menu/SaveSlots/VBox/HBox/Slots/Slot8/Slot/Panel"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-mouse_default_cursor_shape = 12
 size_flags_horizontal = 3
 size_flags_vertical = 3
 expand = true
@@ -686,14 +670,12 @@ size_flags_vertical = 3
 [node name="Panel" type="Panel" parent="Menu/SaveSlots/VBox/HBox/Slots/Slot9/Slot"]
 margin_right = 455.0
 margin_bottom = 426.0
-mouse_default_cursor_shape = 12
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Image" type="TextureButton" parent="Menu/SaveSlots/VBox/HBox/Slots/Slot9/Slot/Panel"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-mouse_default_cursor_shape = 12
 size_flags_horizontal = 3
 size_flags_vertical = 3
 expand = true
@@ -731,14 +713,12 @@ size_flags_vertical = 3
 [node name="Panel" type="Panel" parent="Menu/SaveSlots/VBox/HBox/Slots/Slot10/Slot"]
 margin_right = 455.0
 margin_bottom = 426.0
-mouse_default_cursor_shape = 12
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Image" type="TextureButton" parent="Menu/SaveSlots/VBox/HBox/Slots/Slot10/Slot/Panel"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-mouse_default_cursor_shape = 12
 size_flags_horizontal = 3
 size_flags_vertical = 3
 expand = true
@@ -776,14 +756,12 @@ size_flags_vertical = 3
 [node name="Panel" type="Panel" parent="Menu/SaveSlots/VBox/HBox/Slots/Slot11/Slot"]
 margin_right = 455.0
 margin_bottom = 426.0
-mouse_default_cursor_shape = 12
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Image" type="TextureButton" parent="Menu/SaveSlots/VBox/HBox/Slots/Slot11/Slot/Panel"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-mouse_default_cursor_shape = 12
 size_flags_horizontal = 3
 size_flags_vertical = 3
 expand = true
@@ -821,14 +799,12 @@ size_flags_vertical = 3
 [node name="Panel" type="Panel" parent="Menu/SaveSlots/VBox/HBox/Slots/Slot12/Slot"]
 margin_right = 455.0
 margin_bottom = 426.0
-mouse_default_cursor_shape = 12
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Image" type="TextureButton" parent="Menu/SaveSlots/VBox/HBox/Slots/Slot12/Slot/Panel"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-mouse_default_cursor_shape = 12
 size_flags_horizontal = 3
 size_flags_vertical = 3
 expand = true

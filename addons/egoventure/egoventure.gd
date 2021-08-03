@@ -448,6 +448,8 @@ func _load(p_state: BaseState):
 		
 	if EgoVenture.state.current_background != "":
 		Boombox.play_background(load(EgoVenture.state.current_background))
+		
+	check_cursor()
 	
 	emit_signal("game_loaded")
 

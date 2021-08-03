@@ -80,7 +80,10 @@ func _check_state():
 func _on_pressed():
 	release_focus()
 	if Inventory.selected_item == null:
+		Speedy.hidden = true
 		Parrot.play(load(dialog))
+		yield(Parrot, "finished_dialog")
+		Speedy.hidden = false
 	
 
 # Check wether the hotspot should be shown or hidden
