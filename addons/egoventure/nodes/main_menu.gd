@@ -457,7 +457,10 @@ func _refresh_saveslots():
 			(slot_node.get_node("Slot/Date") as Label).text = \
 				EgoVenture.configuration.menu_saveslots_free_text
 				
-			if ! _is_save_mode:
+			slot_panel_image.mouse_default_cursor_shape = \
+					Cursors.CURSOR_MAP[Cursors.Type.MAP]
+				
+			if not _is_save_mode:
 				# Prohibit loading from empty slots
 				connect_signals = false
 				slot_panel_image.mouse_default_cursor_shape = \
