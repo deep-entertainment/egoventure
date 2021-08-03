@@ -67,7 +67,7 @@ Used when starting a new game
 ### play\_music
 
 ```gdscript
-func play_music(music: AudioStream)
+func play_music(music: AudioStream, from_position: float = 0)
 ```
 
 Play a new music file, if it isn't the current one.
@@ -119,7 +119,7 @@ Get wether boombox is currently playing music
 ### play\_background
 
 ```gdscript
-func play_background(background: AudioStream)
+func play_background(background: AudioStream, from_position: float = 0)
 ```
 
 Play a background effect
@@ -171,7 +171,7 @@ Get wether boombox is currently playing background
 ### play\_effect
 
 ```gdscript
-func play_effect(effect: AudioStream)
+func play_effect(effect: AudioStream, from_position: float = 0)
 ```
 
 Play a sound effect
