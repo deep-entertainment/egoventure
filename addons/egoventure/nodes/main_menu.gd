@@ -148,6 +148,18 @@ func toggle():
 				not EgoVenture.saves_exist
 		
 		$Menu.visible = !$Menu.visible
+		
+		var target_shape = Input.CURSOR_ARROW
+		var mousePos = get_viewport().get_mouse_position() + offset
+
+		for child in self.get_children():
+			if "mouse_default_cursor_shape" in child and child.visible:
+				var global_rect = child.get_global_rect()
+				if global_rect.has_point(mousePos):
+					target_shape = child.mouse_default_cursor_shape
+		Speedy.keep_shape_once = true
+		Speedy.set_shape(target_shape)
+		
 		get_tree().paused = !get_tree().paused
 		if _configuration.menu_music != null and $Menu.visible:
 			if $Menu/Music.stream == null:
@@ -227,7 +239,7 @@ func _on_slot_selected(slot: int, exists: bool):
 			Speedy.hidden = true
 			yield(VisualServer, "frame_post_draw")
 			var screenshot = get_viewport().get_texture().get_data()
-			screenshot.resize(464, 268, Image.INTERPOLATE_NEAREST)
+			screenshot.resize(464, 261, Image.INTERPOLATE_NEAREST)
 			screenshot.flip_y()
 			screenshot.save_png("user://save_%d.png" % slot)
 			yield(VisualServer, "frame_post_draw")
@@ -413,7 +425,7 @@ func _refresh_saveslots():
 				ProjectSettings.get("display/window/size/width") * 0.2,
 				ProjectSettings.get("display/window/size/height") * 0.2,
 				true,
-				Image.FORMAT_RGBA8
+				Image.FORMAT_RGBAH
 			)
 			empty_image.fill(EgoVenture.configuration.menu_saveslots_empty_color)
 			_empty_image_texture = ImageTexture.new()
@@ -432,34 +444,41 @@ func _refresh_saveslots():
 			slot_panel_image = slot_node.get_node("Slot/Panel/Image")
 			slot_panel_image.texture_normal = slot_image_texture
 			
+			slot_panel_image.mouse_default_cursor_shape = \
+					Cursors.CURSOR_MAP[Cursors.Type.MAP]
+			
 			(slot_node.get_node("Slot/Date") as Label).text = \
 					_get_date_from_file("user://save_%d.tres" % save_slot)
 		else:
-			
 			# The slot is free. Show an empty panel and no date
 			slot_panel_image = slot_node.get_node("Slot/Panel/Image")
 			slot_panel_image.texture_normal = _empty_image_texture
 			
 			(slot_node.get_node("Slot/Date") as Label).text = \
 				EgoVenture.configuration.menu_saveslots_free_text
-			
-			if ! _is_save_mode:
+				
+			slot_panel_image.mouse_default_cursor_shape = \
+					Cursors.CURSOR_MAP[Cursors.Type.MAP]
+				
+			if not _is_save_mode:
 				# Prohibit loading from empty slots
 				connect_signals = false
+				slot_panel_image.mouse_default_cursor_shape = \
+					Cursors.CURSOR_MAP[Cursors.Type.DEFAULT]
 			
-		if connect_signals:
-			# Connect the pressed signals for the slot in a clean way
-			if slot_panel_image.is_connected(
+		# Connect the pressed signals for the slot in a clean way
+		if slot_panel_image.is_connected(
+			"pressed", 
+			self, 
+			"_on_slot_selected"
+		):
+			slot_panel_image.disconnect(
 				"pressed", 
 				self, 
 				"_on_slot_selected"
-			):
-				slot_panel_image.disconnect(
-					"pressed", 
-					self, 
-					"_on_slot_selected"
-				)
-				
+			)
+			
+		if connect_signals:
 			slot_panel_image.connect(
 				"pressed", 
 				self, 
