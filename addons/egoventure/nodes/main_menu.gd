@@ -148,6 +148,18 @@ func toggle():
 				not EgoVenture.saves_exist
 		
 		$Menu.visible = !$Menu.visible
+		
+		var target_shape = Input.CURSOR_ARROW
+		var mousePos = get_viewport().get_mouse_position() + offset
+
+		for child in self.get_children():
+			if "mouse_default_cursor_shape" in child and child.visible:
+				var global_rect = child.get_global_rect()
+				if global_rect.has_point(mousePos):
+					target_shape = child.mouse_default_cursor_shape
+		Speedy.keep_shape_once = true
+		Speedy.set_shape(target_shape)
+		
 		get_tree().paused = !get_tree().paused
 		if _configuration.menu_music != null and $Menu.visible:
 			if $Menu/Music.stream == null:
