@@ -16,6 +16,9 @@ var activated: bool = false
 # actions to be carried out)
 var just_released: bool = false
 
+# Wether to ignore a game pause
+var ignore_pause: bool = false setget _set_ignore_pause
+
 
 # The list of inventory items
 var _inventory_items: Array
@@ -261,3 +264,19 @@ func _on_Reveal_gui_input(event):
 				DetailView.hide()
 			else:
 				DetailView.show(Inventory.selected_item.item)
+
+
+# Wether to ignore game pauses
+#
+# ** Parameters **
+#
+# - value: Wether to ignore game pauses or not
+func _set_ignore_pause(value: bool):
+	ignore_pause = value
+	
+	if ignore_pause:
+		$Canvas/InventoryAnchor.pause_mode = Node.PAUSE_MODE_PROCESS
+		pause_mode = Node.PAUSE_MODE_PROCESS
+	else:
+		$Canvas/InventoryAnchor.pause_mode = Node.PAUSE_MODE_STOP
+		pause_mode = Node.PAUSE_MODE_STOP

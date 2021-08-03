@@ -7,4 +7,6 @@
 /CHANGELOG.md               export-ignore
 /README.md                  export-ignore
 /LICENSE.md                 export-ignore
+/project.godot              export-ignore
+/addons/pluginsenabler      export-ignore
 

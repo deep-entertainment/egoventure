@@ -35,6 +35,14 @@ var just_released: bool = false
 Wether the inventory item was just released (to prevent other
 actions to be carried out)
 
+### ignore\_pause
+
+```gdscript
+var ignore_pause: bool = false
+```
+
+Wether to ignore a game pause
+
 ## Method Descriptions
 
 ### configure
