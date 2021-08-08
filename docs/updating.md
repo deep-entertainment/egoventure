@@ -8,6 +8,14 @@ The main EgoVenture functionality is distributed as Godot addons. Addons can be 
 * `addons/parrot`
 * `addons/speedy_gonzales`
 
+Before you start updating make sure, that you have a *current backup of your game*. Also, *read the release notes* of all intermediate releases from your current version to the version you want to update to. You can find the release notes in the following places:
+
+- [EgoVenture](https://github.com/deep-entertainment/egoventure/releases)
+- [Parrot](https://github.com/deep-entertainment/parrot/releases)
+- [Speedy Gonzales](https://github.com/deep-entertainment/speedy_gonzales/releases)
+
+Especially look for notes regarding dependency updates (e.g. From EgoVenture 0.24.0 on, Parrot 0.7.0 is required)
+
 To update, switch to the Godot AssetLib view:
 
 ![Opening the asset lib](images/update_assetlib.png)
