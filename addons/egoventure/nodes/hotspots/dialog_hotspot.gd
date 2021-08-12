@@ -54,6 +54,7 @@ func _ready():
 		)
 	)
 	_set_asked(asked)
+	scroll_active = false
 	mouse_default_cursor_shape = Cursors.CURSOR_MAP[Cursors.Type.SPEAK]
 	
 
