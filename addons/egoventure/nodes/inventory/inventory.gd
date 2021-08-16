@@ -5,6 +5,9 @@ extends Control
 # Emitted, when another inventory item was triggered
 signal triggered_inventory_item(first_item, second_item)
 
+# Emitted when the player released an item
+signal released_inventory_item(item)
+
 
 # The currently selected inventory item or null
 var selected_item: InventoryItemNode = null
@@ -166,6 +169,7 @@ func remove_item(item: InventoryItem):
 
 # Release the currently selected item
 func release_item():
+	emit_signal("released_inventory_item", selected_item.item)
 	selected_item.texture_normal = \
 			(selected_item.item as InventoryItem).image_normal
 	selected_item.modulate.a = 1
