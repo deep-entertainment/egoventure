@@ -93,7 +93,14 @@ func get_scene(path: String) -> PackedScene:
 # ** Parameters **
 #
 # - current_scene: The path and filename of the current scene
+# **Returns** Number of cached scenes
 func update_cache(current_scene: String) -> int:
+	if current_scene in _permanent_cache:
+		# Directly cache permanent scenes
+		_resource_queue.queue_resource(current_scene)
+		_queued_items.append(current_scene)
+		return 1
+
 	var scene_index = _get_index_from_filename(current_scene)
 	
 	var first_index = scene_index - _cache_count
@@ -116,6 +123,7 @@ func update_cache(current_scene: String) -> int:
 	for cache_item in _cache.keys():
 		if not cache_item in _permanent_cache:
 			if cache_item.get_base_dir() != base_path:
+				print_debug("Removing scene %s from cache" % cache_item)
 				_cache.erase(cache_item)
 			else:
 				var cache_index = _get_index_from_filename(cache_item)
