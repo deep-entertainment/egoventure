@@ -106,12 +106,6 @@ func update_cache(current_scene: String) -> int:
 		"Caching scenes from index %d to %d" % [first_index, last_index]
 	)
 	
-	for scene in _permanent_cache:
-		if not _cache.has(scene):
-			print_debug("Queueing load of permanent scene %s" % scene)
-			_resource_queue.queue_resource(scene)
-			_queued_items.append(scene)
-	
 	var base_path
 	
 	if EgoVenture.current_location == "":
