@@ -43,6 +43,9 @@ var _configuration: GameConfiguration
 # A texture for an empty image
 var _empty_image_texture: ImageTexture
 
+# Wether the mouse cursor was hidden before we switched to the menu
+var _mouse_was_hidden: bool = false
+
 
 # Default to hiding the menu
 func _ready():
@@ -146,6 +149,12 @@ func toggle():
 		
 		$Menu/MainMenu/Margin/VBox/MenuItems/Load.disabled = \
 				not EgoVenture.saves_exist
+				
+		if $Menu.visible:
+			Speedy.hidden = _mouse_was_hidden
+		else:
+			_mouse_was_hidden = Speedy.hidden
+			Speedy.hidden = false
 		
 		$Menu.visible = !$Menu.visible
 		
