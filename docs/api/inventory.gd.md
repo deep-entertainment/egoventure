@@ -139,3 +139,4 @@ Show or hide the inventory
 ## Signals
 
 - signal triggered_inventory_item(first_item, second_item): Emitted, when another inventory item was triggered
+- signal released_inventory_item(item): Emitted when the player released an item

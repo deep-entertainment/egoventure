@@ -130,6 +130,7 @@ func configure(p_configuration: GameConfiguration):
 		configuration.tools_dialog_stretch_ratio
 	)
 	Parrot.time_addendum_seconds=0.5
+	_warm_up_cache()
 	
 
 # Save the continue state when going into background on mobile
@@ -483,3 +484,9 @@ func _on_quit_game():
 	EgoVenture.save_continue()
 	get_tree().quit()
 
+
+# Warm up the cache by caching the permanent scenes
+func _warm_up_cache():
+	for scene in configuration.cache_permanent:
+		print_debug("Queueing load of permanent scene %s" % scene)
+		update_cache(scene)
