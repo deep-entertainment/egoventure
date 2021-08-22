@@ -1,3 +1,25 @@
+## [0.27.0](https://github.com/deep-entertainment/egoventure/compare/0.26.0...0.27.0) (2021-08-22)
+
+
+### Features
+
+* Added signal when inventory item is releases ([b6cc01b](https://github.com/deep-entertainment/egoventure/commit/b6cc01ba81d0c565f4198a9d7cc64e44e7ca620f))
+
+
+### Bug Fixes
+
+* Disable scrollbars in DialogHotspot ([be0e50d](https://github.com/deep-entertainment/egoventure/commit/be0e50d17444cdcf66bb10ad8ac151be4093d95a))
+* Ensuring the mouse cursor is always visible in the menu ([3d3c2e3](https://github.com/deep-entertainment/egoventure/commit/3d3c2e36023b646dd1a5508f4b89eaaf4a979f32))
+* Optimized position of caching the permanent scenes ([6118333](https://github.com/deep-entertainment/egoventure/commit/6118333bb4cc10d0137a82fceaabccde21181846))
+
+
+### Documentation
+
+* Automatic update of API docs ([a92a6bb](https://github.com/deep-entertainment/egoventure/commit/a92a6bbe1f30f2b7c1283ba40ae7b2a74ac8cae7))
+* Optimized update notes ([ebd53fc](https://github.com/deep-entertainment/egoventure/commit/ebd53fc133e7c45d438cc01ce64f855c066b9a4f))
+
+
+
 ## [0.26.0](https://github.com/deep-entertainment/egoventure/compare/0.25.0...0.26.0) (2021-08-03)
 
 
