@@ -51,6 +51,7 @@ are not used anymore
 ** Parameters **
 
 - current_scene: The path and filename of the current scene
+**Returns** Number of cached scenes
 
 ## Signals
 
