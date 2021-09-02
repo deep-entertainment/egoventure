@@ -75,6 +75,12 @@ var inventory_texture_notepad: Texture
 # The texture for the hot spots reveal button (on touch devices)
 var inventory_texture_reveal: Texture
 
+# The texture for the left arrow of the inventory bar
+var inventory_texture_left_arrow: Texture
+
+# The texture for the right arrow of the inventory bar
+var inventory_texture_right_arrow: Texture
+
 # The path to the hints csv file
 var notepad_hints_file: String
 
@@ -243,6 +249,18 @@ func _get_property_list():
 	})
 	properties.append({
 		"name": "inventory_texture_reveal",
+		"type": TYPE_OBJECT,
+		"hint": PROPERTY_HINT_RESOURCE_TYPE,
+		"hint_string": "Texture"
+	})
+	properties.append({
+		"name": "inventory_texture_left_arrow",
+		"type": TYPE_OBJECT,
+		"hint": PROPERTY_HINT_RESOURCE_TYPE,
+		"hint_string": "Texture"
+	})
+	properties.append({
+		"name": "inventory_texture_right_arrow",
 		"type": TYPE_OBJECT,
 		"hint": PROPERTY_HINT_RESOURCE_TYPE,
 		"hint_string": "Texture"
