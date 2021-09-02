@@ -53,9 +53,6 @@ const CURSOR_MAP: Dictionary = {
 # A cache to hold the default cursors for easy resetting them
 var _default_cursors: Dictionary = {}
 
-# A cache to hold the currently overridden cursors
-var _overridden_cursors: Dictionary = {}
-
 
 # Configure the mouse cursors
 func configure(configuration: GameConfiguration):
@@ -83,9 +80,9 @@ func override(
 	hotspot: Vector2,
 	target_position = null
 ):
-	_overridden_cursors[type] = {}
-	_overridden_cursors[type]['texture'] = texture
-	_overridden_cursors[type]['hotspot'] = hotspot
+	EgoVenture.state.overridden_cursors[type] = {}
+	EgoVenture.state.overridden_cursors[type]['texture'] = texture
+	EgoVenture.state.overridden_cursors[type]['hotspot'] = hotspot
 	Speedy.set_custom_mouse_cursor(
 		texture,
 		CURSOR_MAP[type],
@@ -100,11 +97,11 @@ func override(
 #
 # - type: The type to reset (based on the Type enum)
 func reset(type):
-	if type in _overridden_cursors:
+	if type in EgoVenture.state.overridden_cursors:
 		var target_mouse_position = get_viewport().get_mouse_position() - \
-				_overridden_cursors[type]['hotspot'] + \
+				EgoVenture.state.overridden_cursors[type]['hotspot'] + \
 				_default_cursors[type].cursor_hotspot
-		_overridden_cursors.erase(type)
+		EgoVenture.state.overridden_cursors.erase(type)
 		Speedy.set_custom_mouse_cursor(
 			_default_cursors[type].cursor,
 			CURSOR_MAP[type],
@@ -119,8 +116,8 @@ func reset(type):
 #
 # - type: The type to return the default texture of
 func get_cursor_texture(type):
-	if type in _overridden_cursors:
-		return _overridden_cursors[type]['texture']
+	if type in EgoVenture.state.overridden_cursors:
+		return EgoVenture.state.overridden_cursors[type]['texture']
 	if type in _default_cursors:
 		return _default_cursors[type].cursor
 	
