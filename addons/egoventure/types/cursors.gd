@@ -116,7 +116,8 @@ func reset(type):
 #
 # - type: The type to return the default texture of
 func get_cursor_texture(type):
-	if type in EgoVenture.state.overridden_cursors:
+	if EgoVenture.get("state") \
+			and type in EgoVenture.state.overridden_cursors:
 		return EgoVenture.state.overridden_cursors[type]['texture']
 	if type in _default_cursors:
 		return _default_cursors[type].cursor
