@@ -196,7 +196,7 @@ func remove_item(item: InventoryItem):
 	if found_index != -1:
 		if selected_item == _inventory_items[found_index]:
 			release_item()
-		_items_width -= _inventory_items[found_index]
+		_items_width -= _inventory_items[found_index].get_rect().size.x
 		_inventory_items.remove(found_index)
 		_update()
 
