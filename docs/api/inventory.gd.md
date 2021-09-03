@@ -76,7 +76,7 @@ Enable the inventory system
 ### add\_item
 
 ```gdscript
-func add_item(item: InventoryItem, skip_show: bool = false)
+func add_item(item: InventoryItem, skip_show: bool = false, allow_duplicate: bool = false)
 ```
 
 Add an item to the inventory
@@ -85,6 +85,7 @@ Add an item to the inventory
 
 - item: Item to add to the inventory
 - skip_show: Skip the reveal animation of the inventory bar
+- allow_duplicate: Allow to add an inventory item already in the inventory
 
 ### remove\_item
 

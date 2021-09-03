@@ -188,6 +188,22 @@ var inventory_texture_reveal: Texture
 
 The texture for the hot spots reveal button (on touch devices)
 
+### inventory\_texture\_left\_arrow
+
+```gdscript
+var inventory_texture_left_arrow: Texture
+```
+
+The texture for the left arrow of the inventory bar
+
+### inventory\_texture\_right\_arrow
+
+```gdscript
+var inventory_texture_right_arrow: Texture
+```
+
+The texture for the right arrow of the inventory bar
+
 ### notepad\_hints\_file
 
 ```gdscript
