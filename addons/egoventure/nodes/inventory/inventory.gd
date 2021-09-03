@@ -152,6 +152,7 @@ func enable():
 #
 # - item: Item to add to the inventory
 # - skip_show: Skip the reveal animation of the inventory bar
+# - allow_duplicate: Allow to add an inventory item already in the inventory
 func add_item(
 	item: InventoryItem, 
 	skip_show: bool = false, 
