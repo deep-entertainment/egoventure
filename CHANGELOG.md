@@ -1,3 +1,28 @@
+## [0.28.0](https://github.com/deep-entertainment/egoventure/compare/0.27.0...0.28.0) (2021-09-03)
+
+
+### Features
+
+* Arrows for inventory items fixes [#19](https://github.com/deep-entertainment/egoventure/issues/19) ([ccae5c8](https://github.com/deep-entertainment/egoventure/commit/ccae5c8dedc30091006aa4582ae769aebcc1b0f3))
+* Store overridden cursors in savegame fixes [#20](https://github.com/deep-entertainment/egoventure/issues/20) ([8a3678c](https://github.com/deep-entertainment/egoventure/commit/8a3678c030f7fed3087a28e5db7a21cfbed42402))
+
+
+### Bug Fixes
+
+* FIxed dialog view layer. deep-entertainment/parrot[#6](https://github.com/deep-entertainment/egoventure/issues/6). REQUIRES parrot 0.9.0 ([0cbad95](https://github.com/deep-entertainment/egoventure/commit/0cbad95b80cfff7889b613ce11c1617a82eda766))
+* Show hotspot indicator in detail view. fixes [#21](https://github.com/deep-entertainment/egoventure/issues/21) ([d18da03](https://github.com/deep-entertainment/egoventure/commit/d18da0312baa088e1832c50d7e699c59ad6eaee5))
+
+
+### Documentation
+
+* Added canvay layer reference ([d9062ea](https://github.com/deep-entertainment/egoventure/commit/d9062ea0103de978810c0ad7811617e68941fa63))
+* Automatic update of API docs ([bc19506](https://github.com/deep-entertainment/egoventure/commit/bc195069e00b694c3bda63a67db1c6d72b5c23e9))
+* Automatic update of API docs ([4dbf408](https://github.com/deep-entertainment/egoventure/commit/4dbf408d6b31089ef107b1c6efe5528fbc2d8d9a))
+* Changed add_item to be on one line again because the API doc couldn't be created ([194ed1e](https://github.com/deep-entertainment/egoventure/commit/194ed1e8c76f119046d8b644e1f23cd1b62ea69c))
+* Missing parameter doc ([91010c2](https://github.com/deep-entertainment/egoventure/commit/91010c29b5970ef1ac4cae06c4dbf42b59843fd3))
+
+
+
 ## [0.27.0](https://github.com/deep-entertainment/egoventure/compare/0.26.0...0.27.0) (2021-08-22)
 
 
