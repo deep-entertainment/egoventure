@@ -3,7 +3,7 @@
 [ext_resource path="res://addons/egoventure/nodes/inventory/detail_view.gd" type="Script" id=1]
 
 [node name="DetailView" type="CanvasLayer"]
-layer = 99
+layer = 90
 script = ExtResource( 1 )
 
 [node name="Panel" type="PanelContainer" parent="."]
