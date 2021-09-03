@@ -152,11 +152,8 @@ func enable():
 #
 # - item: Item to add to the inventory
 # - skip_show: Skip the reveal animation of the inventory bar
-func add_item(
-	item: InventoryItem, 
-	skip_show: bool = false, 
-	allow_duplicate: bool = false
-):
+# - allow_duplicate: Allow to add an inventory item already in the inventory
+func add_item(item: InventoryItem, skip_show: bool = false, allow_duplicate: bool = false):
 	if not allow_duplicate and has_item(item):
 		print(
 			"Item %s already is in the inventory. Rerufsing to add it twice" % \
