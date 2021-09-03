@@ -73,3 +73,11 @@ export var goals_fulfilled: Array = []
 ```
 
 An array of FulfillmentRecords
+
+### overridden\_cursors
+
+```gdscript
+export var overridden_cursors: Dictionary = {}
+```
+
+The currently overridden cursors
