@@ -69,6 +69,8 @@ func _process(_delta):
 
 # Set the asked value and update the color
 func _set_asked(value: bool):
+	if asked == value:
+		return
 	asked = value
 	_update_color()
 
