@@ -30,6 +30,7 @@ func _init():
 		connect("mouse_entered", self, "_set_hover")
 	if not is_connected("mouse_exited", self, "_update_color"):
 		connect("mouse_exited", self, "_update_color")
+	_update_color()
 		
 
 # Call _check_state at the next iteration
@@ -69,6 +70,8 @@ func _process(_delta):
 
 # Set the asked value and update the color
 func _set_asked(value: bool):
+	if asked == value:
+		return
 	asked = value
 	_update_color()
 
