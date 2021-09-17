@@ -64,7 +64,7 @@ func show(item: InventoryItem):
 		Speedy.hidden = true
 	$Panel.show()
 	is_visible = true
-	if not EgoVenture.is_touch:
+	if not EgoVenture.is_touch and Inventory.activated:
 		Inventory.toggle_inventory()
 
 
