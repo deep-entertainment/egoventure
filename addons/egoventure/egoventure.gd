@@ -415,6 +415,13 @@ func _load(p_state: BaseState):
 	for item in state.inventory_items:
 		Inventory.add_item(item, true)
 	
+	for reset_type in Cursors.Type:
+		Cursors.reset(Cursors.Type[reset_type])
+
+	for cursor_type in state.overridden_cursors:
+		var _cursor = state.overridden_cursors[cursor_type]
+		Cursors.override(cursor_type, _cursor.texture, _cursor.hotspot)
+	
 	game_started = true
 	Inventory.enable()
 	MainMenu.saveable = true

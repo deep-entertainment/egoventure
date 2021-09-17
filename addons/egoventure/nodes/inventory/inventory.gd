@@ -26,6 +26,12 @@ var ignore_pause: bool = false setget _set_ignore_pause
 # The list of inventory items
 var _inventory_items: Array
 
+# The size to scroll around. Defaults to the inventory height
+var _scroll_size: int
+
+# The current width of all inventory items
+var _items_width: int = 0
+
 
 # Hide the activate and menu button on touch devices
 func _ready():
@@ -35,11 +41,27 @@ func _ready():
 	else:
 		$Canvas/InventoryAnchor/Panel/InventoryPanel/Reveal.hide()
 		$Canvas/InventoryAnchor/Panel/InventoryPanel/Menu.hide()
+	$Canvas/InventoryAnchor/Panel/InventoryPanel/ScrollContainer\
+			.get_h_scrollbar().rect_scale.x = 0
+	$Canvas/InventoryAnchor/Panel/InventoryPanel/ArrowLeft.hide()
+	$Canvas/InventoryAnchor/Panel/InventoryPanel/ArrowRight.hide()
 
 
 # Reset just_released
 func _process(_delta):
 	just_released = false
+	$Canvas/InventoryAnchor/Panel/InventoryPanel/ArrowLeft.visible = \
+			$Canvas/InventoryAnchor/Panel/InventoryPanel/ScrollContainer\
+			.scroll_horizontal > 0
+	
+	var _scroll = $Canvas/InventoryAnchor/Panel/InventoryPanel/ScrollContainer
+	
+	$Canvas/InventoryAnchor/Panel/InventoryPanel/ArrowRight.visible = \
+			_items_width > _scroll.get_rect().size.x
+			
+	$Canvas/InventoryAnchor/Panel/InventoryPanel/ArrowRight.visible = \
+			_scroll.get_rect().size.x + _scroll.scroll_horizontal < \
+			_items_width
 
 
 # Handle inventory drop events and border trigger for mouse
@@ -84,8 +106,13 @@ func configure(configuration: GameConfiguration):
 			configuration.inventory_texture_menu
 	$Canvas/InventoryAnchor/Panel/InventoryPanel/Notepad.texture_normal = \
 			configuration.inventory_texture_notepad
+	$Canvas/InventoryAnchor/Panel/InventoryPanel/ArrowLeft.texture_normal = \
+			configuration.inventory_texture_left_arrow
+	$Canvas/InventoryAnchor/Panel/InventoryPanel/ArrowRight.texture_normal = \
+			configuration.inventory_texture_right_arrow
 	$Canvas/InventoryAnchor.theme = configuration.design_theme
 	$Canvas/InventoryAnchor/Panel.rect_min_size.y = configuration.inventory_size
+	_scroll_size = configuration.inventory_size
 	$Canvas/InventoryAnchor/Panel.add_stylebox_override(
 		"panel",
 		$Canvas/InventoryAnchor/Panel.get_stylebox("inventory_panel", "Panel")
@@ -125,8 +152,9 @@ func enable():
 #
 # - item: Item to add to the inventory
 # - skip_show: Skip the reveal animation of the inventory bar
-func add_item(item: InventoryItem, skip_show: bool = false):
-	if has_item(item):
+# - allow_duplicate: Allow to add an inventory item already in the inventory
+func add_item(item: InventoryItem, skip_show: bool = false, allow_duplicate: bool = false):
+	if not allow_duplicate and has_item(item):
 		print(
 			"Item %s already is in the inventory. Rerufsing to add it twice" % \
 				item.title
@@ -148,7 +176,9 @@ func add_item(item: InventoryItem, skip_show: bool = false):
 		yield($Timer,"timeout")
 		$Timer.stop()
 		toggle_inventory()
-
+	
+	_items_width += inventory_item_node.get_rect().size.x
+		
 
 # Remove item from the inventory
 # 
@@ -163,6 +193,7 @@ func remove_item(item: InventoryItem):
 	if found_index != -1:
 		if selected_item == _inventory_items[found_index]:
 			release_item()
+		_items_width -= _inventory_items[found_index].get_rect().size.x
 		_inventory_items.remove(found_index)
 		_update()
 
@@ -238,7 +269,8 @@ func _on_triggered_inventory_item(
 # Update the inventory item view by simply removing all items and re-adding them
 func _update():
 	var inventory_panel = \
-			$Canvas/InventoryAnchor/Panel/InventoryPanel/Inventory
+			$Canvas/InventoryAnchor/Panel/InventoryPanel\
+			/ScrollContainer/Inventory
 	for child in inventory_panel.get_children():
 		inventory_panel.remove_child(child)
 	for item in _inventory_items:
@@ -284,3 +316,15 @@ func _set_ignore_pause(value: bool):
 	else:
 		$Canvas/InventoryAnchor.pause_mode = Node.PAUSE_MODE_STOP
 		pause_mode = Node.PAUSE_MODE_STOP
+
+
+# Handle moving the inventory to the right
+func _on_ArrowRight_pressed() -> void:
+	var _scroll = $Canvas/InventoryAnchor/Panel/InventoryPanel/ScrollContainer
+	_scroll.scroll_horizontal += _scroll_size
+	
+
+# Handle moving the inventory to the left
+func _on_ArrowLeft_pressed() -> void:
+	$Canvas/InventoryAnchor/Panel/InventoryPanel/ScrollContainer\
+			.scroll_horizontal -= _scroll_size

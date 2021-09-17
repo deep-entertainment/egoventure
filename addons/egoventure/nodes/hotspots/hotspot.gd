@@ -60,7 +60,7 @@ func _process(_delta):
 
 # Hotspot indicator toggle
 func _input(event):
-	if not DetailView.is_visible:
+	if not DetailView.is_visible or DetailView.is_a_parent_of(self):
 		if event.is_action_pressed("hotspot_indicator"):
 			Speedy.hidden = true
 			_hotspot_indicator.show()
