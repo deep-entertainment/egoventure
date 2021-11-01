@@ -558,3 +558,6 @@ func _on_Fullscreen_toggled(button_pressed):
 	EgoVenture.in_game_configuration.fullscreen = button_pressed
 	EgoVenture.save_in_game_configuration()
 	EgoVenture.set_full_screen()
+	if $Menu/Options.visible and _configuration.menu_switch_effect != null:
+		$Menu/Effects.stream = _configuration.menu_switch_effect
+		$Menu/Effects.play()
