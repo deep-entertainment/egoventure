@@ -123,8 +123,10 @@ func _gui_input(event):
 			release_focus()
 			if (dialog != ''):
 				Speedy.hidden = true
+				MainMenu.disabled = true
 				Parrot.play(load(dialog))
 				yield(Parrot,"finished_dialog")
+				MainMenu.disabled = false
 				Speedy.hidden = false
 			else:
 				emit_signal("pressed")
