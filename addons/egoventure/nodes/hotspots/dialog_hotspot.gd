@@ -119,7 +119,7 @@ func _gui_input(event):
 			not (event as InputEventMouseButton).pressed:
 		if (event as InputEventMouseButton).button_index == BUTTON_RIGHT:
 			MainMenu.toggle()
-		else:
+		elif (event as InputEventMouseButton).button_index == BUTTON_LEFT:
 			release_focus()
 			if (dialog != ''):
 				Speedy.hidden = true
