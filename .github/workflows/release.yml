@@ -7,7 +7,7 @@ on:
 
 jobs:
     prerelease:
-        if: github.event.head_commit.message != 'chore: storing version and changelog'
+        if: "github.event.head_commit.message != 'chore: storing version and changelog'"
         name: Preparing release
         runs-on: ubuntu-latest
         steps:
@@ -39,7 +39,7 @@ jobs:
 #                message: 'chore: storing version and changelog'
 #                push: true
     release:
-        if: github.event.head_commit.message == 'chore: storing version and changelog'
+        if: "github.event.head_commit.message == 'chore: storing version and changelog'"
         name: Release
         runs-on: ubuntu-latest
         steps:
