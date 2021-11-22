@@ -33,5 +33,6 @@ jobs:
               with:
                 cwd: game-template
                 message: 'feat: Adding $ADDON version ${{ github.event.release.tag_name }}'
+                ref: "develop"
                 push: true
 
