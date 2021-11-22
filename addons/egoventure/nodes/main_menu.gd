@@ -199,6 +199,7 @@ func _on_Resume_pressed():
 # Quit was pressed. Show confirmation
 func _on_Quit_pressed():
 	$Menu/QuitConfirm.popup_centered()
+	$Menu/QuitConfirm.get_ok().release_focus()
 
 
 # Quit was confirmed. Just quit the game
@@ -239,6 +240,7 @@ func _on_slot_selected(slot: int, exists: bool):
 			# This save slot exists, show the confirmation dialog
 			_selected_slot = slot
 			$Menu/OverwriteConfirm.popup_centered()
+			$Menu/OverwriteConfirm.get_ok().release_focus()
 		else:
 			if disabled:
 				disabled = false
@@ -507,6 +509,7 @@ func _on_Continue_pressed():
 func _on_NewGame_pressed():
 	if EgoVenture.has_continue_state():
 		$Menu/RestartConfirm.popup_centered()
+		$Menu/RestartConfirm.get_ok().release_focus()
 	else:
 		_on_RestartConfirm_confirmed()
 
@@ -558,3 +561,6 @@ func _on_Fullscreen_toggled(button_pressed):
 	EgoVenture.in_game_configuration.fullscreen = button_pressed
 	EgoVenture.save_in_game_configuration()
 	EgoVenture.set_full_screen()
+	if $Menu/Options.visible and _configuration.menu_switch_effect != null:
+		$Menu/Effects.stream = _configuration.menu_switch_effect
+		$Menu/Effects.play()
