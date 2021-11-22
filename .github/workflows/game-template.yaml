@@ -28,6 +28,8 @@ jobs:
               run: |
                 rm -rf game-template/addons/$ADDON
                 cp -r release/addons/$ADDON game-template/addons
+                cd game-template
+                git status
             - name: "Commit"
               uses: EndBug/add-and-commit@v7.2.1
               with:
