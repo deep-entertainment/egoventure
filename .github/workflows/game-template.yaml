@@ -32,7 +32,7 @@ jobs:
               uses: EndBug/add-and-commit@v7.2.1
               with:
                 cwd: game-template
-                message: 'feat: Adding $ADDON version ${{ github.event.release.tag_name }}'
-                ref: "develop"
+                message: 'feat: Adding ${{ env.ADDON }} version ${{ github.event.release.tag_name }}'
+                branch: "develop"
                 push: true
 
