@@ -19,11 +19,15 @@ export(String, FILE, "*.tscn") var target_scene = ""
 
 # If set, changes the target view before going to the target scene
 export(
-	String, 
-	"front", 
+	String,
+	"front",
 	"right",
 	"back",
-	"left"
+	"left",
+	"frontleft", 
+	"frontright",
+	"backright",
+	"backleft"
 ) var target_view = FourSideRoom.VIEW_UNSET
 
 # If set, plays a sound effect when the hotspot is pressed and the
