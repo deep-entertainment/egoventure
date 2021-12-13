@@ -130,6 +130,9 @@ func configure(configuration: GameConfiguration):
 			_get_bus_percent("Effects")
 	$Menu/Options/CenterContainer/VBox/Grid/Subtitles.pressed = \
 			EgoVenture.options_get_subtitles()
+	
+	# set save slot page to slot last modified
+	_save_slot_page = _get_save_slot_page_last_modified()
 
 
 # Toggle the display of the menu and play the menu music
@@ -388,6 +391,31 @@ func _get_date_from_file(file: String) -> String:
 	datetime['hour'] = "%02d" % datetime['hour']
 	datetime['minute'] = "%02d" % datetime['minute']
 	return tr(_configuration.menu_saveslots_date_format).format(datetime)
+
+
+# Get the save slot page containing the slot that was last modified
+func _get_save_slot_page_last_modified() -> int:
+	var slot_last = 0
+	var time_last = 0
+	var save_dir = Directory.new()	
+	if save_dir.open("user://") == OK:
+		if save_dir.list_dir_begin(true) == OK:  # without navigational files
+			# iterate through save files of save directory and compare modification time
+			var slot_filename = save_dir.get_next()
+			while !slot_filename.empty():
+				if !save_dir.current_is_dir():  # skip directories
+					if slot_filename.begins_with("save_") and slot_filename.ends_with(".tres"):
+						var slot_number = slot_filename.trim_prefix("save_").trim_suffix(".tres")
+						if slot_number.is_valid_integer():
+							var slot_time = File.new().get_modified_time("user://" + slot_filename)
+							if slot_time > time_last:
+								time_last = slot_time
+								slot_last = slot_number.to_int()
+				slot_filename = save_dir.get_next()
+	
+	save_dir.list_dir_end()
+	# save slot page numbering starts with 1 and contains 12 save slots
+	return (slot_last / 12) + 1
 
 
 # Refresh the saveslots vie
