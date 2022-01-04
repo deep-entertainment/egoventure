@@ -127,7 +127,8 @@ func configure(p_configuration: GameConfiguration):
 	_scene_cache.connect("queue_complete", self, "_on_queue_complete")
 	Parrot.configure(
 		configuration.design_theme,
-		configuration.tools_dialog_stretch_ratio
+		configuration.tools_dialog_stretch_ratio,
+		"Speech"
 	)
 	Parrot.time_addendum_seconds=0.5
 	_warm_up_cache()
