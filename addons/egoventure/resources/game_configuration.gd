@@ -35,12 +35,7 @@ var menu_saveslots_next_image: Texture
 var menu_saveslots_empty_color: Color = Color(0, 0, 0, 0.55)
 
 # The text shown under the free save slot
-var menu_saveslots_free_text: String = "Free save slot"
-
-# The date format for the save slots
-# The following place holders are available:
-# {month}, {day}, {year}, {hour}, {minute}
-var menu_saveslots_date_format: String = "{month}/{day}/{year} {hour}:{minute}"
+var menu_saveslots_free_text: String = "SAVESLOTS_FREE"
 
 # The background of the options menu
 var menu_options_background: Texture
@@ -51,17 +46,23 @@ var menu_options_speech_sample: AudioStream
 # The sample to play when the effect slider is changed
 var menu_options_effects_sample: AudioStream
 
+# The modulate color for selected locale flags
+var menu_options_locale_button_modulate: Color = Color(1, 1, 1, .2)
+
+# The modulate color for selected locale flags
+var menu_options_locale_button_modulate_selected: Color = Color(1, 1, 1)
+
+# Hide the language selection from the options menu
+var menu_options_hide_language_selection: bool = false
+
 # The confirmation text for the quit confirmation prompt
-var menu_quit_confirmation: String = "Do you really want to quit the game?"
+var menu_quit_confirmation: String = "DIALOG_QUIT"
 
 # The confirmation text for the overwrite confirmation prompt
-var menu_overwrite_confirmation: String = \
-		"Are you sure you want to overwrite a saved game?"
+var menu_overwrite_confirmation: String = "DIALOG_OVERWRITE"
 
 # The confirmation text for the restart confirmation prompt
-var menu_restart_confirmation: String = \
-		"You will lose all progress when starting a new game. " +\
-		"Do you really want to restart?"
+var menu_restart_confirmation: String = "DIALOG_RESTART"
 
 # The vertical size of the inventory bar
 var inventory_size: int = 92
@@ -222,10 +223,6 @@ func _get_property_list():
 		type = TYPE_STRING
 	})
 	properties.append({
-		name = "menu_saveslots_date_format",
-		type = TYPE_STRING
-	})
-	properties.append({
 		name = "Inventory",
 		type = TYPE_NIL,
 		hint_string = "inventory",
@@ -288,6 +285,18 @@ func _get_property_list():
 		type = TYPE_OBJECT,
 		hint = PROPERTY_HINT_RESOURCE_TYPE,
 		hint_string = "AudioStream"
+	})
+	properties.append({
+		name = "menu_options_locale_button_modulate",
+		type = TYPE_COLOR
+	})
+	properties.append({
+		name = "menu_options_locale_button_modulate_selected",
+		type = TYPE_COLOR
+	})
+	properties.append({
+		name = "menu_options_hide_language_selection",
+		type = TYPE_BOOL
 	})
 	properties.append({
 		name = "Notepad",

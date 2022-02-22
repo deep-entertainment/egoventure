@@ -66,6 +66,7 @@ func _ready():
 # - _delta: Unused
 func _process(_delta):
 	if not Engine.editor_hint:
+		text = tr(text)
 		_check_visibility()
 
 # Set the asked value and update the color

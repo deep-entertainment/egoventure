@@ -102,7 +102,8 @@ func configure(configuration: GameConfiguration):
 		"SubtitlesLabel",
 		"Subtitles",
 		"FullscreenLabel",
-		"Fullscreen"
+		"Fullscreen",
+		"LocaleLabel"
 	]:
 		var node = get_node("Menu/Options/CenterContainer/VBox/Grid/%s" % label)
 		node.add_font_override(
@@ -130,6 +131,43 @@ func configure(configuration: GameConfiguration):
 			_get_bus_percent("Effects")
 	$Menu/Options/CenterContainer/VBox/Grid/Subtitles.pressed = \
 			EgoVenture.options_get_subtitles()
+	
+	if not configuration.menu_options_hide_language_selection:
+		var added_locales = []
+		
+		# Set languages
+		for locale in TranslationServer.get_loaded_locales():
+			if not locale in added_locales:
+				var locale_button = TextureButton.new()
+				locale_button.set_meta("locale", locale)
+				locale_button.expand = true
+				locale_button.stretch_mode = \
+						TextureButton.STRETCH_KEEP_ASPECT_CENTERED
+				locale_button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+				locale_button.size_flags_vertical = Control.SIZE_EXPAND_FILL
+				locale_button.mouse_default_cursor_shape = Control.CURSOR_MOVE
+				locale_button.texture_normal = load(
+					"res://addons/egoventure/images/flags/%s.svg" % locale
+				)
+				locale_button.connect(
+					"pressed", 
+					self, 
+					"_on_locale_changed", 
+					[locale]
+				)
+				if locale == EgoVenture.in_game_configuration.locale:
+					locale_button.modulate = EgoVenture.configuration.\
+							menu_options_locale_button_modulate_selected
+				else:
+					locale_button.modulate = EgoVenture.configuration.\
+							menu_options_locale_button_modulate
+				$Menu/Options/CenterContainer/VBox/Grid/Locales.add_child(
+					locale_button
+				)
+				added_locales.push_back(locale)
+	else:
+		$Menu/Options/CenterContainer/VBox/Grid/LocaleLabel.hide()
+		$Menu/Options/CenterContainer/VBox/Grid/Locales.hide()
 	
 	# set save slot page to slot last modified
 	_save_slot_page = _get_save_slot_page_last_modified()
@@ -212,7 +250,7 @@ func _on_QuitConfirm_confirmed():
 
 # Save was pressed. Show saveslots in save mode
 func _on_Save_pressed():
-	$Menu/SaveSlots/VBox/Title.text = "Save game"
+	$Menu/SaveSlots/VBox/Title.text = "SAVESLOTS_SAVE"
 	_is_save_mode = true
 	_refresh_saveslots()
 	$Menu/SaveSlots.show()
@@ -220,7 +258,7 @@ func _on_Save_pressed():
 
 # Load was pressed. Show saveslots in load mode
 func _on_Load_pressed():
-	$Menu/SaveSlots/VBox/Title.text = "Load game"
+	$Menu/SaveSlots/VBox/Title.text = "SAVESLOTS_LOAD"
 	_is_save_mode = false
 	_refresh_saveslots()
 	$Menu/SaveSlots.show()
@@ -390,7 +428,7 @@ func _get_date_from_file(file: String) -> String:
 	datetime['year'] = "%04d" % datetime['year']
 	datetime['hour'] = "%02d" % datetime['hour']
 	datetime['minute'] = "%02d" % datetime['minute']
-	return tr(_configuration.menu_saveslots_date_format).format(datetime)
+	return tr("DATEFORMAT").format(datetime)
 
 
 # Get the save slot page containing the slot that was last modified
@@ -592,3 +630,18 @@ func _on_Fullscreen_toggled(button_pressed):
 	if $Menu/Options.visible and _configuration.menu_switch_effect != null:
 		$Menu/Effects.stream = _configuration.menu_switch_effect
 		$Menu/Effects.play()
+
+
+func _on_locale_changed(locale: String):
+	for locale_button in \
+			$Menu/Options/CenterContainer/VBox/Grid/Locales.get_children():
+		if locale_button.get_meta("locale") != locale:
+			locale_button.modulate = EgoVenture.configuration.\
+					menu_options_locale_button_modulate
+		else:
+			locale_button.modulate = EgoVenture.configuration.\
+					menu_options_locale_button_modulate_selected
+		
+	EgoVenture.in_game_configuration.locale = locale
+	EgoVenture.save_in_game_configuration()
+	TranslationServer.set_locale(locale)

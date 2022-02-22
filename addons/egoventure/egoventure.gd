@@ -111,6 +111,7 @@ func _process(_delta):
 func configure(p_configuration: GameConfiguration):
 	configuration = p_configuration
 	_load_in_game_configuration()
+	TranslationServer.set_locale(self.in_game_configuration.locale)
 	MainMenu.configure(configuration)
 	MainMenu.connect("quit_game", self, "_on_quit_game")
 	Notepad.configure(configuration)
