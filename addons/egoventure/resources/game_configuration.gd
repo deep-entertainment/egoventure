@@ -126,6 +126,9 @@ var cache_permanent: PoolStringArray = []
 # The minimum time to show the loading indicator when precaching
 var cache_minimum_wait_seconds: int = 4
 
+# Whether the minimum wait time can be skipped by left clicking
+var cache_minimum_wait_skippable: bool = false
+
 
 # Build the property list
 func _get_property_list():
@@ -380,5 +383,9 @@ func _get_property_list():
 	properties.append({
 		name = "cache_minimum_wait_seconds",
 		type = TYPE_INT,
+	})
+	properties.append({
+		name = "cache_minimum_wait_skippable",
+		type = TYPE_BOOL,
 	})
 	return properties

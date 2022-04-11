@@ -12,6 +12,9 @@ signal queue_complete
 # already in the current scene
 signal requested_view_change(to)
 
+# Emitted when the waiting screen finished loading
+signal waiting_completed
+
 
 # A regex to search for the scene index in a scene filename.
 # e.g.: home04b.tscn has the index 4, castle12detail1.tscn has the index 12.
@@ -86,6 +89,7 @@ func _ready():
 	wait_timer.one_shot = true
 	add_child(wait_timer)
 	Boombox.reset()
+	WaitingScreen.connect("skipped", self, "wait_skipped")
 
 
 # Update the scene cache
@@ -260,6 +264,7 @@ func update_cache(scene: String = "", blocking = false) -> int:
 		scene = _get_current_scene().filename
 	if blocking:
 		WaitingScreen.show()
+		WaitingScreen.is_skippable = false
 	return _scene_cache.update_cache(scene)
 
 
@@ -371,6 +376,13 @@ func wait_screen(time: float):
 		"timeout"
 	)
 	WaitingScreen.hide()
+	emit_signal("waiting_completed")
+
+
+# Called when the waiting screen was skipped
+func wait_skipped():
+	wait_timer.stop()
+	emit_signal("waiting_completed")
 
 
 # Reset the continue state
