@@ -348,10 +348,23 @@ func set_full_screen():
 		OS.window_fullscreen = true
 	else:
 		OS.window_fullscreen = false
-		OS.window_size = Vector2(
-			OS.get_screen_size().x - 300,
-			OS.get_screen_size().y - 300
+		
+		var game_size = Vector2(
+			ProjectSettings.get("display/window/size/width"),
+			ProjectSettings.get("display/window/size/height")
 		)
+		
+		if game_size > OS.get_screen_size():
+			var target_size = OS.get_screen_size() * .9
+			if OS.get_screen_size().x > OS.get_screen_size().y:
+				target_size = OS.get_screen_size().clamped(
+					OS.get_screen_size().x
+				) * .99
+			elif OS.get_screen_size().x < OS.get_screen_size().y:
+				target_size = OS.get_screen_size().clamped(
+					OS.get_screen_size().y
+				) * .99
+			OS.window_size = target_size
 		OS.center_window()
 
 
