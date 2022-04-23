@@ -146,28 +146,6 @@ func _notification(what):
 		save_continue()
 
 
-# Checks wether the mouse cursor needs to be changed
-#
-# ** Arguments **
-# 
-# - offset: A vector to add to the mouse position for calculation
-func check_cursor(offset: Vector2 = Vector2(0,0)):
-	if not is_touch and not Speedy.hidden:
-		var target_shape = Input.CURSOR_ARROW
-		var mousePos = get_viewport().get_mouse_position() + offset
-
-		var current_scene = get_tree().get_current_scene()
-		for child in current_scene.get_children():
-			if "mouse_default_cursor_shape" in child and child.visible:
-				var global_rect = child.get_global_rect()
-				if global_rect.has_point(mousePos):
-					if child.get_class() == "TriggerHotspot":
-						child.on_mouse_entered()
-					target_shape = child.mouse_default_cursor_shape
-		Speedy.keep_shape_once = true
-		Speedy.set_shape(target_shape)
-
-
 # Switch the current scene to the new scene
 #
 # ** Arguments **
@@ -185,8 +163,6 @@ func change_scene(path: String):
 					["res://addons/egoventure/nodes/four_side_room.tscn",
 					"res://addons/egoventure/nodes/eight_side_room.tscn"]:
 				is_multi_side_room = true
-		if not is_multi_side_room:
-			check_cursor()
 	
 
 # Save the current state of the game
@@ -485,8 +461,6 @@ func _load(p_state: BaseState):
 	if EgoVenture.state.current_background != "":
 		Boombox.play_background(load(EgoVenture.state.current_background))
 		
-	check_cursor()
-	
 	emit_signal("game_loaded")
 
 

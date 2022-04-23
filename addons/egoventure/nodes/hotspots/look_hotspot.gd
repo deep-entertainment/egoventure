@@ -93,4 +93,3 @@ func _check_visibility():
 				EgoVenture.state.get(visibility_state) is bool:
 			if not visible == EgoVenture.state.get(visibility_state):
 				visible = EgoVenture.state.get(visibility_state)
-				EgoVenture.check_cursor()

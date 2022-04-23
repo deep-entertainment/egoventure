@@ -60,7 +60,6 @@ func _init():
 func _ready():
 	if not Engine.editor_hint:
 		EgoVenture.update_cache()
-		EgoVenture.check_cursor($Camera.position)
 		$Camera/Left.rect_position.x = 0
 		$Camera/Left.rect_position.y = EgoVenture.configuration.inventory_size
 		$Camera/Left.rect_size.x = EgoVenture.configuration\
