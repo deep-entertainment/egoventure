@@ -1,0 +1,12 @@
+name: "Release new version"
+
+on:
+    push:
+        branches:
+            - main
+
+jobs:
+    release-main:
+        uses: deep-entertainment/egoventure-example-game/.github/workflows/release.shared.yml@main
+        secrets:
+            token: "${{ secrets.DEPLOYMENT_TOKEN }}"
