@@ -2,10 +2,12 @@ on:
     release:
         types:
           - published
+
 name: Push to assetlib
 
 jobs:
     publish:
+        if: github.event.action == 'released'
         runs-on: ubuntu-latest
         name: Publish new version to asset lib
         steps:
@@ -17,5 +19,6 @@ jobs:
                 username: deepgames
                 password: ${{ secrets.ASSET_STORE_PASSWORD }}
                 assetId: 903
+                approveDirectly: "true"
 
 
