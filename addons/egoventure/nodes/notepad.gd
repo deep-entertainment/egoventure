@@ -31,7 +31,7 @@ func _ready():
 	$Control/Hints.add_color_override(
 		"font_color",
 		$Control/Goals.get_color(
-			"goals",
+			"hints",
 			"Label"
 		)
 	)

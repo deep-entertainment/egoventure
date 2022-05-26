@@ -46,6 +46,10 @@ func _enter_tree():
 		"DetailView",
 		"res://addons/egoventure/nodes/inventory/detail_view.tscn"
 	)
+	add_autoload_singleton(
+		"CheckCursor",
+		"res://addons/egoventure/nodes/check_cursor.tscn"
+	)
 
 
 # Remove the previously loaded singletons
@@ -57,3 +61,4 @@ func _exit_tree():
 	remove_autoload_singleton('MapNotification')
 	remove_autoload_singleton('Inventory')
 	remove_autoload_singleton('DetailView')
+	remove_autoload_singleton('CheckCursor')

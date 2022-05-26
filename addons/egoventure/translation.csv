@@ -1,0 +1,23 @@
+key;en;de
+MENU_CONTINUE;Continue;Fortfahren
+MENU_RESUME;Resume;Zurück
+MENU_NEW;New Game;Neues Spiel
+MENU_LOAD;Load;Laden
+MENU_SAVE;Save;Speichern
+MENU_OPTIONS;Options;Optionen
+MENU_QUIT;Quit;Beenden
+SAVESLOTS_TITLE;Load/Save Game;Spiel laden/speichern
+OPTIONS_SPEECH;Speech;Sprachausgabe
+OPTIONS_MUSIC;Music;Musik
+OPTIONS_EFFECTS;Effects;Effekte
+OPTIONS_SUBTITLES;Subtitles;Untertitel
+OPTIONS_FULLSCREEN;Fullscreen;Vollbild
+OPTIONS_RETURN;Return;Zurück
+OPTIONS_LOCALE;Language;Sprache
+SAVESLOTS_SAVE;Save game;Spiel speichern
+SAVESLOTS_LOAD;Load game;Spiel laden
+SAVESLOTS_FREE;Free save slot;Freier Speicherplatz
+DATEFORMAT;{month}/{day}/{year} {hour}:{minute};{day}.{month}.{year} {hour}:{minute}
+DIALOG_QUIT;Do you really want to quit the game?;Willst Du das Spiel wirklich beenden?
+DIALOG_OVERWRITE;Are you sure you want to overwrite a saved game?;Willst Du das Spiel wirklich überschreiben?
+DIALOG_RESTART;You will lose all progress when starting a new game. Do you really want to restart?;Beim Neustart verlierst Du Deinen Spielfortschritt. Willst Du wirklich neu starten?

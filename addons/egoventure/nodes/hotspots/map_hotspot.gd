@@ -49,6 +49,7 @@ func _on_pressed():
 					((end - start) / 1000)
 				)
 			)
-			yield(EgoVenture.wait_timer, "timeout")
+			WaitingScreen.is_skippable = true
+			yield(EgoVenture, "waiting_completed")
 		Speedy.hidden = false
 		EgoVenture.change_scene(target_scene)

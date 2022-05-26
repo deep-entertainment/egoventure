@@ -38,6 +38,9 @@ export(AudioStream) var effect = null
 # variable
 export(String) var visibility_state = ""
 
+# Whether to show the hotspot indicator or not
+export(bool) var show_indicator = true
+
 
 # The hotspot indicator
 var _hotspot_indicator: Sprite
@@ -64,7 +67,8 @@ func _process(_delta):
 
 # Hotspot indicator toggle
 func _input(event):
-	if not DetailView.is_visible or DetailView.is_a_parent_of(self):
+	if show_indicator and \
+			not DetailView.is_visible or DetailView.is_a_parent_of(self):
 		if event.is_action_pressed("hotspot_indicator"):
 			Speedy.hidden = true
 			_hotspot_indicator.show()
@@ -134,4 +138,3 @@ func _check_visibility():
 				EgoVenture.state.get(visibility_state) is bool:
 			if not visible == EgoVenture.state.get(visibility_state):
 				visible = EgoVenture.state.get(visibility_state)
-				EgoVenture.check_cursor()

@@ -12,6 +12,9 @@ signal queue_complete
 # already in the current scene
 signal requested_view_change(to)
 
+# Emitted when the waiting screen finished loading
+signal waiting_completed
+
 
 # A regex to search for the scene index in a scene filename.
 # e.g.: home04b.tscn has the index 4, castle12detail1.tscn has the index 12.
@@ -86,6 +89,7 @@ func _ready():
 	wait_timer.one_shot = true
 	add_child(wait_timer)
 	Boombox.reset()
+	WaitingScreen.connect("skipped", self, "wait_skipped")
 
 
 # Update the scene cache
@@ -111,6 +115,7 @@ func _process(_delta):
 func configure(p_configuration: GameConfiguration):
 	configuration = p_configuration
 	_load_in_game_configuration()
+	TranslationServer.set_locale(self.in_game_configuration.locale)
 	MainMenu.configure(configuration)
 	MainMenu.connect("quit_game", self, "_on_quit_game")
 	Notepad.configure(configuration)
@@ -141,28 +146,6 @@ func _notification(what):
 		save_continue()
 
 
-# Checks wether the mouse cursor needs to be changed
-#
-# ** Arguments **
-# 
-# - offset: A vector to add to the mouse position for calculation
-func check_cursor(offset: Vector2 = Vector2(0,0)):
-	if not is_touch and not Speedy.hidden:
-		var target_shape = Input.CURSOR_ARROW
-		var mousePos = get_viewport().get_mouse_position() + offset
-
-		var current_scene = get_tree().get_current_scene()
-		for child in current_scene.get_children():
-			if "mouse_default_cursor_shape" in child and child.visible:
-				var global_rect = child.get_global_rect()
-				if global_rect.has_point(mousePos):
-					if child.get_class() == "TriggerHotspot":
-						child.on_mouse_entered()
-					target_shape = child.mouse_default_cursor_shape
-		Speedy.keep_shape_once = true
-		Speedy.set_shape(target_shape)
-
-
 # Switch the current scene to the new scene
 #
 # ** Arguments **
@@ -174,13 +157,12 @@ func change_scene(path: String):
 		current_scene = path
 		get_tree().change_scene_to(_scene_cache.get_scene(path))
 		yield(get_tree(),"idle_frame")
-		var is_four_side_room = false
+		var is_multi_side_room = false
 		for child in get_tree().current_scene.get_children():
-			if child.filename == \
-					"res://addons/egoventure/nodes/four_side_room.tscn":
-				is_four_side_room = true
-		if not is_four_side_room:
-			check_cursor()
+			if child.filename in \
+					["res://addons/egoventure/nodes/four_side_room.tscn",
+					"res://addons/egoventure/nodes/eight_side_room.tscn"]:
+				is_multi_side_room = true
 	
 
 # Save the current state of the game
@@ -258,6 +240,7 @@ func update_cache(scene: String = "", blocking = false) -> int:
 		scene = _get_current_scene().filename
 	if blocking:
 		WaitingScreen.show()
+		WaitingScreen.is_skippable = false
 	return _scene_cache.update_cache(scene)
 
 
@@ -341,10 +324,23 @@ func set_full_screen():
 		OS.window_fullscreen = true
 	else:
 		OS.window_fullscreen = false
-		OS.window_size = Vector2(
-			OS.get_screen_size().x - 300,
-			OS.get_screen_size().y - 300
+		
+		var game_size = Vector2(
+			ProjectSettings.get("display/window/size/width"),
+			ProjectSettings.get("display/window/size/height")
 		)
+		
+		if game_size > OS.get_screen_size():
+			var target_size = OS.get_screen_size() * .9
+			if OS.get_screen_size().x > OS.get_screen_size().y:
+				target_size = OS.get_screen_size().clamped(
+					OS.get_screen_size().x
+				) * .99
+			elif OS.get_screen_size().x < OS.get_screen_size().y:
+				target_size = OS.get_screen_size().clamped(
+					OS.get_screen_size().y
+				) * .99
+			OS.window_size = target_size
 		OS.center_window()
 
 
@@ -369,6 +365,13 @@ func wait_screen(time: float):
 		"timeout"
 	)
 	WaitingScreen.hide()
+	emit_signal("waiting_completed")
+
+
+# Called when the waiting screen was skipped
+func wait_skipped():
+	wait_timer.stop()
+	emit_signal("waiting_completed")
 
 
 # Reset the continue state
@@ -458,8 +461,6 @@ func _load(p_state: BaseState):
 	if EgoVenture.state.current_background != "":
 		Boombox.play_background(load(EgoVenture.state.current_background))
 		
-	check_cursor()
-	
 	emit_signal("game_loaded")
 
 
