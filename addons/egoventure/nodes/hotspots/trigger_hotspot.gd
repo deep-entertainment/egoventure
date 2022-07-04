@@ -12,11 +12,11 @@ signal item_used(item)
 
 # Show this hotspot depending on the boolean value of this state
 # variable
-var visibility_state: String = ""
+export(String) var visibility_state: String = ""
 
 
 # The list of valid inventory items that can be used on this hotspot
-var valid_inventory_items: Array = []
+export(Array, Resource) var valid_inventory_items: Array = []
 
 
 # The hotspot indicator
@@ -135,22 +135,6 @@ func _on_pressed():
 		valid_inventory_items.has(Inventory.selected_item.item):
 		emit_signal("item_used", Inventory.selected_item.item)
 	
-
-# Return property list
-func _get_property_list():
-	var properties = []
-	properties.append({
-		"name": "visibility_state",
-		"type": TYPE_STRING,
-	})
-	properties.append({
-		"name": "valid_inventory_items",
-		"type": TYPE_ARRAY,
-		"hint": 24,
-		"hint_string": "17/17:InventoryItem"
-	})
-	return properties
-
 
 # Check wether the hotspot should be shown or hidden
 func _check_visibility():
