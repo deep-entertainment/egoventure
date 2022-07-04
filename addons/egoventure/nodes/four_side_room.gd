@@ -40,6 +40,9 @@ export (Texture) var back_texture setget _back_texture_set
 # The texture for the left view
 export (Texture) var left_texture setget _left_texture_set
 
+# Whether navigation features are enabled in this room
+export (bool) var enable_navigation = true setget _set_navigation
+
 
 # The current view shown to the player
 var current_view = VIEW_UNSET setget _set_current_view
@@ -107,6 +110,21 @@ func _set_current_view(value: String):
 		VIEW_RIGHT: $Camera.position = Vector2(_viewport_size.x, 0)
 		VIEW_BACK: $Camera.position = Vector2(0, _viewport_size.y)
 		VIEW_LEFT: $Camera.position = Vector2(_viewport_size.x * -1, 0)
+
+
+# Disable or enable navigation in this room
+#
+# ** Parameters **
+#
+# - p_enable_navigation: Whether to enable the navigation features
+func _set_navigation(p_enable_navigation: bool):
+	enable_navigation = p_enable_navigation
+	$Camera/Left.show_indicator = enable_navigation
+	$Camera/Left.visible = enable_navigation
+	$Camera/Left.disabled = not enable_navigation
+	$Camera/Right.show_indicator = enable_navigation
+	$Camera/Right.visible = enable_navigation
+	$Camera/Right.disabled = not enable_navigation
 
 
 # Set the texture for the front view
