@@ -155,7 +155,7 @@ func _get_property_list():
 		name = "design_cursors",
 		type = TYPE_ARRAY,
 		hint = 24,
-		hint_string = "17/17:Cursor"
+		hint_string = "17/17:Resource"
 	})
 	properties.append({
 		name = "Menu",

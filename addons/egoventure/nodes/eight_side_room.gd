@@ -41,6 +41,9 @@ export (Texture) var back_texture setget _back_texture_set
 export (Texture) var backleft_texture setget _backleft_texture_set
 export (Texture) var left_texture setget _left_texture_set
 
+# Whether navigation features are enabled in this room
+export (bool) var enable_navigation = true setget _set_navigation
+
 # The current view shown to the player
 var current_view = VIEW_UNSET setget _set_current_view
 
@@ -114,6 +117,21 @@ func _set_current_view(value: String):
 		VIEW_FRONTRIGHT: $Camera.position = Vector2(_viewport_size.x + TEXTURE_DISTANCE, _viewport_size.y * -1 - TEXTURE_DISTANCE)
 		VIEW_BACKLEFT: $Camera.position = Vector2(_viewport_size.x * -1 - TEXTURE_DISTANCE, _viewport_size.y + TEXTURE_DISTANCE)
 		VIEW_BACKRIGHT: $Camera.position = Vector2(_viewport_size.x + TEXTURE_DISTANCE, _viewport_size.y + TEXTURE_DISTANCE)
+
+
+# Disable or enable navigation in this room
+#
+# ** Parameters **
+#
+# - p_enable_navigation: Whether to enable the navigation features
+func _set_navigation(p_enable_navigation: bool):
+	enable_navigation = p_enable_navigation
+	$Camera/Left.show_indicator = enable_navigation
+	$Camera/Left.visible = enable_navigation
+	$Camera/Left.disabled = not enable_navigation
+	$Camera/Right.show_indicator = enable_navigation
+	$Camera/Right.visible = enable_navigation
+	$Camera/Right.disabled = not enable_navigation
 
 
 # Check whether texture for this view is defined

@@ -69,7 +69,7 @@ var _empty_image_texture: ImageTexture = null
 func _init():
 	# Workaround for faulty feature detection as described in
 	# https://github.com/godotengine/godot/issues/49113
-	is_touch = OS.get_name() == "Android" || OS.get_name() == "iPhone"
+	is_touch = OS.get_name() == "Android" || OS.get_name() == "iOS"
 	pause_mode = Node.PAUSE_MODE_PROCESS
 	var userdir = Directory.new()
 	userdir.open("user://")

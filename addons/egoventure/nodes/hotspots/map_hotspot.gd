@@ -30,6 +30,8 @@ func _on_pressed():
 	if Inventory.selected_item == null:
 		Speedy.hidden = true
 		accept_event()
+		if effect:
+			Boombox.play_effect(effect)
 		if state_variable:
 			EgoVenture.state.set(state_variable, false)
 		Boombox.play_music(location_music)

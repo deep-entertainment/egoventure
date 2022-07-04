@@ -104,10 +104,12 @@ func _process(_delta):
 # Reset the settings. Stop all music, sounds and backgrounds
 # Used when starting a new game
 func reset():
-	active_music.stop()
+	$Music1.stop()
+	$Music2.stop()
 	if active_music != $Music1:
 		active_music = $Music1
-	active_background.stop()
+	$Background1.stop()
+	$Background2.stop()
 	if active_background != $Background1:
 		active_background = $Background1
 	_music_fader.reset_all()
