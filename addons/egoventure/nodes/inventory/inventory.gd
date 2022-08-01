@@ -113,10 +113,17 @@ func configure(configuration: GameConfiguration):
 	$Canvas/InventoryAnchor.theme = configuration.design_theme
 	$Canvas/InventoryAnchor/Panel.rect_min_size.y = configuration.inventory_size
 	_scroll_size = configuration.inventory_size
-	$Canvas/InventoryAnchor/Panel.add_stylebox_override(
-		"panel",
-		$Canvas/InventoryAnchor/Panel.get_stylebox("inventory_panel", "Panel")
-	)
+	
+	if EgoVenture.is_touch:
+		$Canvas/InventoryAnchor/Panel.add_stylebox_override(
+			"panel",
+			$Canvas/InventoryAnchor/Panel.get_stylebox("inventory_panel_touch", "Panel")
+		)
+	else:
+		$Canvas/InventoryAnchor/Panel.add_stylebox_override(
+			"panel",
+			$Canvas/InventoryAnchor/Panel.get_stylebox("inventory_panel", "Panel")
+		)
 	
 	$Canvas/InventoryAnchor/Panel/InventoryPanel/Reveal.texture_normal = \
 		configuration.inventory_texture_reveal
