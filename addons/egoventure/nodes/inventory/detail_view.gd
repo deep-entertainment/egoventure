@@ -41,7 +41,7 @@ func _ready():
 #
 # - event: Input event received.
 func _on_panel_gui_input(event: InputEvent):
-	if $Panel.visible and not _item.detail_show_mouse:
+	if $Panel.visible and self._item.detail_scene == '':
 		$Panel.accept_event()
 		if event is InputEventMouseButton and \
 				event.is_pressed():
@@ -54,16 +54,20 @@ func _on_panel_gui_input(event: InputEvent):
 #
 # - item: The inventory item to display
 func show(item: InventoryItem):
-	_item = item
+	self._item = item
 	$Panel/VBox/Description.text = item.description
 	if item.detail_scene == '':
 		$Panel/VBox/Image.texture = item.image_big
+		$Panel.mouse_filter = Control.MOUSE_FILTER_STOP
 	else:
 		$Panel/VBox/DetailScene.add_child(load(item.detail_scene).instance())
+		$Panel.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	if not item.detail_show_mouse:
 		Speedy.hidden = true
 	$Panel.show()
 	is_visible = true
+	if EgoVenture.is_touch:
+		Inventory.release_item()
 	if not EgoVenture.is_touch and Inventory.activated:
 		Inventory.toggle_inventory()
 
