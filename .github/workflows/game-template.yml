@@ -8,7 +8,7 @@ name: Push to game template
 jobs:
     game-template:
         if: github.event.action == 'released'
-        uses: deep-entertainment/egoventure-game-template/.github/workflows/game-template.yaml@main
+        uses: deep-entertainment/egoventure-game-template/.github/workflows/game-template.yml@main
         with:
             addon: egoventure
             branch: "${{ env.branch }}"
