@@ -165,6 +165,16 @@ func change_scene(path: String):
 				is_multi_side_room = true
 	
 
+# Set whether dialog line skipping is enabled in parrot
+#
+# ** Arguments **
+#
+# - value: Whether skipping is enabled
+func set_parrot_skip_enabled(value: bool):
+	(state as BaseState).parrot_skip_enabled = value
+	Parrot.skip_enabled = value
+
+
 # Save the current state of the game
 #
 # ** Arguments **
@@ -319,6 +329,7 @@ func options_get_effects_level() -> float:
 	return in_game_configuration.effects_db
 	
 
+# Set full screen according to game configuration
 func set_full_screen():
 	if in_game_configuration.fullscreen:
 		OS.window_fullscreen = true
@@ -413,6 +424,8 @@ func _load(p_state: BaseState):
 		EgoVenture.state.goals_fulfilled.append(goal_fulfilled.duplicate())
 	EgoVenture.target_view = EgoVenture.state.target_view
 	EgoVenture.current_location = EgoVenture.state.target_location
+	
+	self.set_parrot_skip_enabled(state.parrot_skip_enabled)
 	
 	for item in Inventory.get_items():
 		Inventory.remove_item(item)

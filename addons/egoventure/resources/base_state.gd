@@ -29,3 +29,6 @@ export(Array) var goals_fulfilled: Array
 
 # The currently overridden cursors
 export(Dictionary) var overridden_cursors: Dictionary = {}
+
+# Whether skipping in Parrot is enabled
+export(bool) var parrot_skip_enabled: bool = true
