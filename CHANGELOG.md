@@ -1,3 +1,22 @@
+## [1.3.0-develop.0](https://github.com/deep-entertainment/egoventure/compare/1.1.1...1.3.0-develop.0) (2022-08-08)
+
+
+### Features
+
+* Add show_indicator to TriggerHotspot as well ([9c0f428](https://github.com/deep-entertainment/egoventure/commit/9c0f42831574879470084df6e1a953631cb03e5f)), closes [deep-entertainment/issues#22](https://github.com/deep-entertainment/issues/issues/22)
+
+
+### Bug Fixes
+
+* Fixed icon URL ([cc49618](https://github.com/deep-entertainment/egoventure/commit/cc4961806f2204731915f09cf3794817592414b4))
+
+
+### Documentation
+
+* Added license ([3d8bfdc](https://github.com/deep-entertainment/egoventure/commit/3d8bfdc635ab96acf7c1c5992f8aa6b557b16731))
+
+
+
 ## [1.0.0-develop.0](https://github.com/deep-entertainment/egoventure/compare/0.30.0...1.0.0-develop.0) (2022-05-24)
 
 
@@ -25,7 +44,3 @@
 ### Documentation
 
 * Added license ([a832006](https://github.com/deep-entertainment/egoventure/commit/a83200698ac840b2ac9ac0c330a35cd80f2bb670))
-
-
-
-
