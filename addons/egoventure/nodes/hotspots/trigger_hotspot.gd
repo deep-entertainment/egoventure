@@ -14,9 +14,11 @@ signal item_used(item)
 # variable
 export(String) var visibility_state: String = ""
 
-
 # The list of valid inventory items that can be used on this hotspot
 export(Array, Resource) var valid_inventory_items: Array = []
+
+# Whether to show the hotspot indicator or not
+export(bool) var show_indicator = true
 
 
 # The hotspot indicator
@@ -42,7 +44,7 @@ func _process(_delta):
 
 # Handle the hotspot indicator
 func _input(event):
-	if event.is_action_pressed("hotspot_indicator"):
+	if show_indicator and event.is_action_pressed("hotspot_indicator"):
 		Speedy.hidden = true
 		_hotspot_indicator.show()
 	elif event.is_action_released("hotspot_indicator"):
