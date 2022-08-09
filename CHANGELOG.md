@@ -1,3 +1,17 @@
+### [1.3.1-develop.0](https://github.com/deep-entertainment/egoventure/compare/1.1.1...1.3.1-develop.0) (2022-08-09)
+
+
+### Bug Fixes
+
+* Fixed icon URL ([bf1ef41](https://github.com/deep-entertainment/egoventure/commit/bf1ef41f2427a670259a27e341a7856a278ea775))
+
+
+### Documentation
+
+* Added license ([b9b284d](https://github.com/deep-entertainment/egoventure/commit/b9b284d159cc66bb58c5a919930c91f4dbf697f7))
+
+
+
 <<<<<<< HEAD
 =======
 ## [1.3.0-develop.0](https://github.com/deep-entertainment/egoventure/compare/1.1.1...1.3.0-develop.0) (2022-08-08)
