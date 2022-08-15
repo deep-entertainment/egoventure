@@ -306,7 +306,7 @@ func _on_Reveal_gui_input(event):
 			if DetailView.is_visible:
 				DetailView.hide()
 			else:
-				DetailView.show(Inventory.selected_item.item)
+				DetailView.show_with_item(Inventory.selected_item.item)
 
 
 # Wether to ignore game pauses
