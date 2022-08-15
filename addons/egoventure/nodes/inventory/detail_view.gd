@@ -53,7 +53,7 @@ func _on_panel_gui_input(event: InputEvent):
 # ** Parameters **
 #
 # - item: The inventory item to display
-func show(item: InventoryItem):
+func show_with_item(item: InventoryItem):
 	self._item = item
 	$Panel/VBox/Description.text = item.description
 	if item.detail_scene == '':

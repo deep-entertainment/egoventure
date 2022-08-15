@@ -46,7 +46,7 @@ func configure(p_item: InventoryItem):
 
 # Show the detail view
 func show_detail():
-	DetailView.show(item)
+	DetailView.show_with_item(item)
 
 
 # Show active image on inventory item hover
