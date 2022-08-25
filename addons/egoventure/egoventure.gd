@@ -52,6 +52,9 @@ var saves_exist: bool = false
 # A timer that runs down while a waiting screen is shown
 var wait_timer: Timer
 
+# Whether the game currently accepts input
+var interactive: bool = true setget _set_interactive
+
 
 # A cache of scenes for faster switching
 var _scene_cache: SceneCache
@@ -512,3 +515,22 @@ func _warm_up_cache():
 	for scene in configuration.cache_permanent:
 		print_debug("Queueing load of permanent scene %s" % scene)
 		update_cache(scene)
+
+
+# Sets whether the game is currently accepting input or not
+#
+# ** Arguments **
+#
+# - value: true: Game accepts input, false: Game does not accept input
+func _set_interactive(value: bool):
+	interactive = value
+	if self.interactive:
+		Speedy.hidden = false
+		Boombox.ignore_pause = false
+		Parrot.ignore_pause = false
+		get_tree().paused = false
+	else:
+		Speedy.hidden = true
+		Boombox.ignore_pause = true
+		Parrot.ignore_pause = true
+		get_tree().paused = true
