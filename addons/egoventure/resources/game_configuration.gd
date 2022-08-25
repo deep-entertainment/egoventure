@@ -22,6 +22,12 @@ var menu_music: AudioStream
 # A sound effect to play when the something is pressed
 var menu_switch_effect: AudioStream
 
+# A sound effect played when the mouse is over the menu button
+var menu_button_effect_hover: AudioStream
+
+# A sound effect played when the a menu button is clicked
+var menu_button_effect_click: AudioStream
+
 # The background texture for the save slots
 var menu_saveslots_background: Texture
 
@@ -177,6 +183,18 @@ func _get_property_list():
 	})
 	properties.append({
 		name = "menu_switch_effect",
+		type = TYPE_OBJECT,
+		hint = PROPERTY_HINT_RESOURCE_TYPE,
+		hint_string = "AudioStream"
+	})
+	properties.append({
+		name = "menu_button_effect_hover",
+		type = TYPE_OBJECT,
+		hint = PROPERTY_HINT_RESOURCE_TYPE,
+		hint_string = "AudioStream"
+	})
+	properties.append({
+		name = "menu_button_effect_click",
 		type = TYPE_OBJECT,
 		hint = PROPERTY_HINT_RESOURCE_TYPE,
 		hint_string = "AudioStream"
