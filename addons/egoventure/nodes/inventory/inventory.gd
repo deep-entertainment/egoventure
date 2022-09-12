@@ -160,7 +160,14 @@ func enable():
 # - item: Item to add to the inventory
 # - skip_show: Skip the reveal animation of the inventory bar
 # - allow_duplicate: Allow to add an inventory item already in the inventory
-func add_item(item: InventoryItem, skip_show: bool = false, allow_duplicate: bool = false):
+# - position: Position in the list of inventory items where to add the new
+#   item (defaults to the end of the list)
+func add_item(
+	item: InventoryItem, 
+	skip_show: bool = false, 
+	allow_duplicate: bool = false, 
+	position: int = _inventory_items.size()
+):
 	if not allow_duplicate and has_item(item):
 		print(
 			"Item %s already is in the inventory. Rerufsing to add it twice" % \
@@ -174,7 +181,7 @@ func add_item(item: InventoryItem, skip_show: bool = false, allow_duplicate: boo
 		self,
 		"_on_triggered_inventory_item"
 	)
-	_inventory_items.append(inventory_item_node)
+	_inventory_items.insert(position, inventory_item_node)
 	_update()
 	if not EgoVenture.is_touch and not activated and not skip_show:
 		# Briefly show the inventory when it is not activated
