@@ -26,5 +26,10 @@ export(Array, Resource) var combineable_with: Array
 # A scene to load for the detail view instead of the big image
 export(String) var detail_scene: String = ""
 
-# Wether to show the mouse cursor in the detail view
+# Whether to show the mouse cursor in the detail view
 export(bool) var detail_show_mouse: bool = false
+
+# Whether the item is selectable and useable on the screen
+# If set to false, clicking the item with either mouse button will show the
+# (custom) detail view
+export(bool) var grabbable: bool = true

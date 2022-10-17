@@ -82,7 +82,7 @@ func _on_mouse_exited():
 		)
 
 
-# Handle clicks on another inventory item
+# Handle clicks on this inventory item
 func _on_InventoryItem_pressed():
 	release_focus()
 	if EgoVenture.is_touch and Inventory.selected_item == self:
@@ -95,6 +95,8 @@ func _on_InventoryItem_pressed():
 			Inventory.selected_item.item, 
 			item
 		)
+	elif not item.grabbable:
+		show_detail()
 	else:
 		# Select this inventory item
 		Inventory.selected_item = self
