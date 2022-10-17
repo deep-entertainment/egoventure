@@ -124,7 +124,6 @@ func configure(p_configuration: GameConfiguration):
 	Notepad.configure(configuration)
 	Inventory.configure(configuration)
 	Cursors.configure(configuration)
-	MapNotification.configure(configuration)
 	_scene_cache = SceneCache.new(
 		configuration.cache_scene_count, 
 		configuration.cache_scene_path,

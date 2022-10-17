@@ -32,7 +32,11 @@ func _enter_tree():
 	)
 	add_autoload_singleton(
 		"MapNotification",
-		"res://addons/egoventure/nodes/map_notification.tscn"
+		"res://addons/egoventure/nodes/map_notification.gd"
+	)
+	add_autoload_singleton(
+		"Notification",
+		"res://addons/egoventure/nodes/notification.tscn"
 	)
 	add_autoload_singleton(
 		"MenuGrab",
