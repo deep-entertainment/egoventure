@@ -437,8 +437,8 @@ func _load(p_state: BaseState):
 	for reset_type in Cursors.Type:
 		Cursors.reset(Cursors.Type[reset_type])
 
-	for cursor_type in state.overridden_cursors:
-		var _cursor = state.overridden_cursors[cursor_type]
+	for cursor_type in p_state.overridden_cursors:
+		var _cursor = p_state.overridden_cursors[cursor_type]
 		Cursors.override(cursor_type, _cursor.texture, _cursor.hotspot)
 	
 	game_started = true
