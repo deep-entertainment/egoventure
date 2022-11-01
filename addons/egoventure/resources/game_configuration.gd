@@ -28,6 +28,9 @@ var menu_button_effect_hover: AudioStream
 # A sound effect played when the a menu button is clicked
 var menu_button_effect_click: AudioStream
 
+# The main menu item separation
+var menu_item_separation: int = 30
+
 # The background texture for the save slots
 var menu_saveslots_background: Texture
 
@@ -198,6 +201,10 @@ func _get_property_list():
 		type = TYPE_OBJECT,
 		hint = PROPERTY_HINT_RESOURCE_TYPE,
 		hint_string = "AudioStream"
+	})
+	properties.append({
+		name = "menu_item_separation",
+		type = TYPE_INT
 	})
 	properties.append({
 		name = "menu_quit_confirmation",

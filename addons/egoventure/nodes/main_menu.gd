@@ -94,6 +94,8 @@ func configure(configuration: GameConfiguration):
 	
 	$Menu.theme = configuration.design_theme
 	
+	$Menu/MainMenu/Margin/VBox/MenuItems.add_constant_override("separation", configuration.menu_item_separation)
+	
 	# Set option labels to the menu button style
 	for label in [
 		"SpeechLabel", 
