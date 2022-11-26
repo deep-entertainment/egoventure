@@ -30,7 +30,7 @@ func _process(_delta):
 				"/root/MainMenu", # layer 125
 				"/root/DetailView", # layer 90
 				"/root/Notepad", # layer 2
-				"/root/Inventory/Canvas/InventoryAnchor/Panel", # layer 1
+				"/root/Inventory/Canvas/InventoryAnchor", # layer 1
 				get_tree().get_current_scene().get_path() # layer 0
 		]:
 			if !layer_processed:
