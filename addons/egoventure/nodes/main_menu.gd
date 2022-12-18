@@ -293,7 +293,8 @@ func _on_slot_selected(slot: int, exists: bool):
 			Speedy.hidden = true
 			yield(VisualServer, "frame_post_draw")
 			var screenshot = get_viewport().get_texture().get_data()
-			screenshot.resize(464, 261, Image.INTERPOLATE_NEAREST)
+			var screenshot_size = OS.window_size * .5
+			screenshot.resize(screenshot_size.x, screenshot_size.y, Image.INTERPOLATE_NEAREST)
 			screenshot.flip_y()
 			screenshot.save_png("user://save_%d.png" % slot)
 			yield(VisualServer, "frame_post_draw")
