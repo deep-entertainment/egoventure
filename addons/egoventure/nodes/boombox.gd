@@ -307,14 +307,18 @@ func _fade(
 		"volume_db",
 		VOLUME_MAX,
 		VOLUME_MIN,
-		time
+		time,
+		Tween.TRANS_EXPO,
+		Tween.EASE_IN
 	)
 	fader.interpolate_property(
 		fade_to,
 		"volume_db",
 		VOLUME_MIN,
 		VOLUME_MAX,
-		time
+		time,
+		Tween.TRANS_EXPO,
+		Tween.EASE_OUT
 	)
 	fader.start()
 	
