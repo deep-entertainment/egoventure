@@ -43,6 +43,8 @@ func _ready():
 		$Canvas/InventoryAnchor/Panel/InventoryPanel/Menu.hide()
 	$Canvas/InventoryAnchor/Panel/InventoryPanel/ScrollContainer\
 			.get_h_scrollbar().rect_scale.x = 0
+	$Canvas/InventoryAnchor/Panel/InventoryPanel/ScrollContainer\
+			.get_h_scrollbar().modulate = Color(0, 0, 0, 0)
 	$Canvas/InventoryAnchor/Panel/InventoryPanel/ArrowLeft.hide()
 	$Canvas/InventoryAnchor/Panel/InventoryPanel/ArrowRight.hide()
 
@@ -170,7 +172,7 @@ func add_item(
 ):
 	if not allow_duplicate and has_item(item):
 		print(
-			"Item %s already is in the inventory. Rerufsing to add it twice" % \
+			"Item %s already is in the inventory. Refusing to add it twice" % \
 				item.title
 		)
 		return
@@ -183,6 +185,12 @@ func add_item(
 	)
 	_inventory_items.insert(position, inventory_item_node)
 	_update()
+	
+	if _inventory_items.size() > 1:
+		_items_width += \
+			$Canvas/InventoryAnchor/Panel/InventoryPanel/ScrollContainer/Inventory.get_constant("separation")
+	_items_width += inventory_item_node.get_rect().size.x
+	
 	if not EgoVenture.is_touch and not activated and not skip_show:
 		# Briefly show the inventory when it is not activated
 		toggle_inventory()
@@ -190,9 +198,7 @@ func add_item(
 		yield($Timer,"timeout")
 		$Timer.stop()
 		toggle_inventory()
-	
-	_items_width += inventory_item_node.get_rect().size.x
-		
+
 
 # Remove item from the inventory
 # 
@@ -207,6 +213,10 @@ func remove_item(item: InventoryItem):
 	if found_index != -1:
 		if selected_item == _inventory_items[found_index]:
 			release_item()
+		
+		if _inventory_items.size() > 1:
+			_items_width -= \
+				$Canvas/InventoryAnchor/Panel/InventoryPanel/ScrollContainer/Inventory.get_constant("separation")
 		_items_width -= _inventory_items[found_index].get_rect().size.x
 		_inventory_items.remove(found_index)
 		_update()
