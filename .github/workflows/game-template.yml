@@ -11,4 +11,4 @@ jobs:
         uses: deep-entertainment/egoventure-game-template/.github/workflows/game-template.yml@main
         with:
             addon: egoventure
-            branch: "${{ env.branch }}"
+            branch: "main"
