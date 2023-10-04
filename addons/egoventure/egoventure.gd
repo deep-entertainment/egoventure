@@ -16,11 +16,6 @@ signal requested_view_change(to)
 signal waiting_completed
 
 
-# A regex to search for the scene index in a scene filename.
-# e.g.: home04b.tscn has the index 4, castle12detail1.tscn has the index 12.
-const SCENE_REGEX = "^[a-z_-]+(?<index>\\d+)\\D?.*$"
-
-
 # The current state of the game
 var state: BaseState
 
@@ -127,8 +122,8 @@ func configure(p_configuration: GameConfiguration):
 	_scene_cache = SceneCache.new(
 		configuration.cache_scene_count, 
 		configuration.cache_scene_path,
-		SCENE_REGEX,
-		configuration.cache_permanent
+		configuration.cache_permanent,
+		configuration.cache_maximum_size_megabyte
 	)
 	MenuGrab.set_top(configuration.inventory_size)
 	_scene_cache.connect("queue_complete", self, "_on_queue_complete")
@@ -165,7 +160,8 @@ func change_scene(path: String):
 					["res://addons/egoventure/nodes/four_side_room.tscn",
 					"res://addons/egoventure/nodes/eight_side_room.tscn"]:
 				is_multi_side_room = true
-	
+		# update cache when scene is changed
+		update_cache(path)
 
 # Set whether dialog line skipping is enabled in parrot
 #
@@ -513,7 +509,7 @@ func _on_quit_game():
 func _warm_up_cache():
 	for scene in configuration.cache_permanent:
 		print_debug("Queueing load of permanent scene %s" % scene)
-		update_cache(scene)
+		_scene_cache.update_permanent_cache(scene)
 
 
 # Sets whether the game is currently accepting input or not

@@ -127,7 +127,10 @@ var tools_background_fader_seconds: float = 0.5
 var cache_scene_path: String = "res://scenes"
 
 # Number of scenes to precache before and after the current scene
-var cache_scene_count: int = 3
+var cache_scene_count: int = 2
+
+# Size of scene cache in MB
+var cache_maximum_size_megabyte: int = 50
 
 # A list of scenes (as path to the scene files) that are always cached
 var cache_permanent: PoolStringArray = []
@@ -399,6 +402,10 @@ func _get_property_list():
 	})
 	properties.append({
 		name = "cache_scene_count",
+		type = TYPE_INT
+	})
+	properties.append({
+		name = "cache_maximum_size_megabyte",
 		type = TYPE_INT
 	})
 	properties.append({

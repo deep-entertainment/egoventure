@@ -3,6 +3,8 @@ tool
 extends EditorPlugin
 
 
+var _cache_update_dialog: CacheUpdateDialog
+
 # Add the required singletons, load the default audio bus
 # layout
 func _enter_tree():
@@ -54,6 +56,9 @@ func _enter_tree():
 		"CheckCursor",
 		"res://addons/egoventure/nodes/check_cursor.tscn"
 	)
+	add_tool_menu_item("Update Cache Map", self, "_on_cache_update_menu_clicked")
+	_cache_update_dialog = preload("res://addons/egoventure/cache/cache_update_dialog.tscn").instance()
+	get_editor_interface().get_editor_viewport().add_child(_cache_update_dialog)
 
 
 # Remove the previously loaded singletons
@@ -66,3 +71,10 @@ func _exit_tree():
 	remove_autoload_singleton('Inventory')
 	remove_autoload_singleton('DetailView')
 	remove_autoload_singleton('CheckCursor')
+	remove_tool_menu_item("Update Cache Map")
+	_cache_update_dialog.queue_free()
+
+
+# Show cache update dialog popup
+func _on_cache_update_menu_clicked(_ud):
+	_cache_update_dialog.show_popup()
