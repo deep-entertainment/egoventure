@@ -63,7 +63,6 @@ func _init():
 # Update the cache and position the navigation tools
 func _ready():
 	if not Engine.editor_hint:
-		EgoVenture.update_cache()
 		$Camera/Left.rect_position.x = 0
 		$Camera/Left.rect_position.y = EgoVenture.configuration.inventory_size
 		$Camera/Left.rect_size.x = EgoVenture.configuration\
