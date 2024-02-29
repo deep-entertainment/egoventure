@@ -44,7 +44,7 @@ func _process(_delta):
 							layer_processed = true
 							if child.get_class() == "TriggerHotspot":
 								child.on_mouse_entered()
-							if child.is_class("BaseButton"):
+							if child.is_class("BaseButton") or child.is_class("Slider"):
 								# exclude hotspots with click_masks
 								if "texture_click_mask" in child and child.texture_click_mask != null:
 									keep_cursor = true
