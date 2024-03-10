@@ -179,23 +179,45 @@ func _scan_scene(scene_node: Node) -> Array:
 	var regex_scene = RegEx.new()
 	regex_scene.compile("res:\\/\\/[\\w\\/]*.tscn")
 	
-	# get all sprites and target scenes listed in nodes
+	# get all textures and target scenes listed in nodes
 	for node in _get_all_children(scene_node):
 		
 		if node.get_class() == "Sprite" and node.texture != null:
 			if ResourceLoader.exists(node.texture.resource_path):
 				size_estimate += node.texture.get_data().get_data().size()
 		
-		if ( node.get_class() == "TextureButton"
-			and "target_scene" in node      # include Hotspot (and derived classes)
-			and not "loading_image" in node # but exclude MapHotspot
-		):
-			var scene_path = node.target_scene
-			if (
-				scene_path != "" 
-				and ResourceLoader.exists(scene_path)
+		elif node.get_class() == "TextureButton":
+			if node.texture_normal != null \
+				and ResourceLoader.exists(node.texture_normal.resource_path):
+				size_estimate += node.texture_normal.get_data().get_data().size()
+			if node.texture_pressed != null \
+				and ResourceLoader.exists(node.texture_pressed.resource_path):
+				size_estimate += node.texture_pressed.get_data().get_data().size()
+			if node.texture_disabled != null \
+				and ResourceLoader.exists(node.texture_disabled.resource_path):
+				size_estimate += node.texture_disabled.get_data().get_data().size()
+			if node.texture_hover != null \
+				and ResourceLoader.exists(node.texture_hover.resource_path):
+				size_estimate += node.texture_hover.get_data().get_data().size()
+			if node.texture_focused != null \
+				and ResourceLoader.exists(node.texture_focused.resource_path):
+				size_estimate += node.texture_focused.get_data().get_data().size()
+			
+			if "loading_image" in node and node.loading_image != null \
+				and ResourceLoader.exists(node.loading_image.resource_path):
+				size_estimate += node.loading_image.get_data().get_data().size()
+			
+			if(
+				"target_scene" in node      # include Hotspot (and derived classes)
+				and not "loading_image" in node # but exclude MapHotspot
 			):
-				linked_scenes.append(scene_path)
+				var scene_path = node.target_scene
+				if (
+					scene_path != ""
+					and not scene_path in linked_scenes 
+					and ResourceLoader.exists(scene_path)
+				):
+					linked_scenes.append(scene_path)
 	
 	# remove comments from source code
 	var scene_script = scene_node.get_script()
