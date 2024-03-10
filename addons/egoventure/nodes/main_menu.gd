@@ -269,6 +269,7 @@ func _on_Load_pressed():
 # Cancel was pressed. Hide saveslots
 func _on_SaveLoad_Cancel_pressed():
 	$Menu/SaveSlots.hide()
+	$Menu/SaveSlots/VBox/Cancel.emit_signal("mouse_exited")
 
 
 # A save slot was selected
@@ -333,6 +334,7 @@ func _on_Options_pressed():
 # Return was pressed on the options screen
 func _on_Return_pressed():
 	$Menu/Options.hide()
+	$Menu/Options/CenterContainer/VBox/Return.emit_signal("mouse_exited")
 
 
 # The speech slider was changed

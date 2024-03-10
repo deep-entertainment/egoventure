@@ -157,6 +157,7 @@ func _on_Goals_gui_input(event):
 # Get out of notepad
 func _on_Close_pressed():
 	$Control.hide()
+	$Control/Close.emit_signal("mouse_exited")
 
 
 # Find the first unfulfilled hint of a goal

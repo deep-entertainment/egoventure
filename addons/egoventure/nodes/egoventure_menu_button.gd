@@ -56,20 +56,26 @@ func _ready():
 		StyleBoxEmpty.new()
 	)
 	_on_menuitem_hover_out()
+	
+	# disable focus for menu buttons
+	self.focus_mode = FOCUS_NONE
+	# keep font_color_press outside of button to match the menu_hover_button font
+	self.keep_pressed_outside = true
 
 
 # Switch fonts to allow more features on hover
 func _on_menuitem_hover():
-	add_font_override(
-		"font",
-		get_font(
-			"menu_button_hover",
-			"Button"
+	if !disabled:
+		add_font_override(
+			"font",
+			get_font(
+				"menu_button_hover",
+				"Button"
+			)
 		)
-	)
-	_effect_player.stream = EgoVenture.configuration.menu_button_effect_hover
-	_effect_player.play()
-	
+		_effect_player.stream = EgoVenture.configuration.menu_button_effect_hover
+		_effect_player.play()
+
 
 # Set menu font
 func _on_menuitem_hover_out():
